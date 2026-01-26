@@ -1,0 +1,147 @@
+:root {
+  /* use var() to define Amazon's color palette */
+  /* ================================== */
+  /* === Amazon Brand Core === */
+  --amazon-orange: #FF9900;
+  --amazon-orange-dark: #E47911;
+
+  /* === Amazon Dark UI === */
+  --amazon-dark: #131921;        /* Main header */
+  --amazon-dark-2: #232F3E;      /* Secondary header / footer */
+  --amazon-dark-3: #37475A;      /* Hover / accents */
+
+  /* === Text Colors === */
+  --amazon-text-primary: #0F1111;
+  --amazon-text-secondary: #565959;
+  --amazon-text-inverse: #FFFFFF;
+
+  /* === Backgrounds === */
+  --amazon-bg-light: #FFFFFF;
+  --amazon-bg-grey: #EAEDED;
+  --amazon-bg-panel: #F3F3F3;
+
+  /* === Borders & Dividers === */
+  --amazon-border-light: #D5D9D9;
+  --amazon-border-dark: #3A4553;
+
+  /* === Buttons === */
+  --amazon-btn-primary: #FFD814;
+  --amazon-btn-primary-hover: #F7CA00;
+  --amazon-btn-secondary: #FFA41C;
+
+  /* === Links === */
+  --amazon-link: #007185;
+  --amazon-link-hover: #C7511F;
+
+  /* === Status === */
+  --amazon-success: #007600;
+  --amazon-warning: #B12704;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+               sans-serif;
+
+  font-size: 16px;
+  line-height: 1.6;
+  color: #0F1111;
+
+  min-height: 100vh;
+}
+
+/* ================ Top Header ================ */
+
+.topheader{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 60px;
+  padding-top: env(safe-area-inset-top);
+  padding-left: 15px;
+  padding-right: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: transparent;
+
+  z-index: 1;
+}
+
+.topheader-ai{
+  height: 45px;
+  width: 45px;
+
+  font-size: 25px;
+
+  border-radius: 25px;
+}
+
+.bottomheader {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  height: 65px;
+  padding-bottom: env(safe-area-inset-bottom);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background: #ffffff;
+
+  border-top: 3px solid rgba(0,0,0,0.12);
+
+  z-index: 1000;
+  overflow: hidden; /* keeps slider clean */
+}
+
+.bottomheader .active-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 3px;
+  width: 20%;
+
+  background: var(--amazon-orange);
+  border-radius: 25px;
+
+  transform: translateX(0%);
+  transition: transform 240ms ease;
+  z-index: 1;
+}
+
+.nav-item {
+  all: unset;
+  flex: 1;
+
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--amazon-border-dark);
+  font-size: 25px;
+
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+
+  transition: color 120ms ease, transform 120ms ease;
+  position: relative;
+  z-index: 2;
+}
+
+.nav-item.active {
+  color: var(--amazon-orange-dark);
+}
+
+

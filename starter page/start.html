@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Amazon.co.uk: Low Prices from millions of sellers</title>
+    <link rel="stylesheet" href="start.css">
+    <link rel="stylesheet" href="../starter page/start-darkmode/darkmode-start.css">
+    <link rel="stylesheet" href="../global/global!/global.css">
+    <link rel="stylesheet" href="../global/popup-global/popup.css">
+    <link rel="stylesheet" href="../starter page/starter popup/starter-popup.css">
+    <link rel="shortcut icon" href="../images/favicon-dark.svg" id="favicon" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+  </head>
+  <body>
+    <!--- Top Header --->
+    <header class="topheader">
+      <button class="topheader-support" data-open="popupSupport" aria-label="Support"><i class="fa-regular fa-message"></i></button>
+      <img id="amazonLogo" class="topheader-logo" src="../images/amazon_black.png" alt="Amazon Logo">
+      <button class="topheader-menu" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </header>
+    <!-- ------------- -->
+    <!---- Side menu ---->
+    <div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
+    <aside class="side-menu" id="sideMenu" aria-hidden="true" aria-label="Menu">
+      <div class="side-menu-header">
+        <div class="side-menu-title">
+          <img id="amazonLogoMenu" src="../images/amazon_black.png" alt="Amazon Logo">
+          <h1 class="side-menu-title-text">.co.uk</h1>
+          <button id="menuCloseBtn" class="side-menu-close" data-close aria-label="Close menu"><i class="fa-solid fa-x"></i></button>
+        </div>
+      </div>
+      <div class="side-menu-content">
+        <a class="side-menu-item" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sign up</span></a>
+        <a class="side-menu-item" href="#"><i class="fa-solid fa-arrow-right-to-bracket"></i><span>Log in</span></a>
+        <a class="side-menu-item" href="#"><i class="fa-solid fa-arrow-right"></i><span>Continue as Guest</span></a>
+        <div class="side-menu-divider"></div>
+        <a class="side-menu-item" href="#" data-open="popupaccess"><i class="fa-solid fa-universal-access"></i><span>Accessibilty</span></a>
+        <div class="side-menu-item side-menu-toggle" role="button" tabindex="0" aria-label="Screen mode toggle">
+          <div class="side-menu-left">
+            <i class="fa-solid fa-sun"></i>
+            <div class="side-menu-text">
+              <span class="side-menu-main">Screen mode</span>
+              <span class="side-menu-sub" id="screenModeLabel">Light mode</span>
+            </div>
+          </div>
+          <label class="switch" aria-label="Toggle light/dark mode"><input id="screenModeToggle" type="checkbox"/><span class="slider" aria-hidden="true"></span></label>
+        </div>
+        <div class="side-menu-divider"></div>
+        <a class="side-menu-item" href="#" data-open="popuppands"><i class="fa-solid fa-shield-halved"></i><span>Privacy & Safety</span><i class="fa-solid fa-up-right-from-square"></i></a>
+        <a class="side-menu-item" href="#" data-open="popuptos"><i class="fa-solid fa-file-circle-check"></i><span>Terms of service</span><i class="fa-solid fa-up-right-from-square"></i></a>
+        <a class="side-menu-item" href="#" data-open="popupcookies"><i class="fa-solid fa-cookie"></i><span>Cookies</span><i class="fa-solid fa-up-right-from-square"></i></a>
+        <div class="side-menu-divider"></div>
+        <a class="side-menu-item" href="#" data-switch="popupSupport"><i class="fa-regular fa-message"></i><span>Support</span></a>
+        <div class="side-menu-divider"></div>
+        <p><i class="fa-regular fa-copyright"></i> Copyright 1996-2026, Amazon.com, Inc. or its affiliates</p>
+        <p>EU/UK Approved, eurpoa.eu</p>
+      </div>
+    </aside>
+    <!-- ------------- -->
+    <!-- Popup storage -->
+    <div class="overlay" id="overlay"></div>
+    <!-- Popup support -->
+    <div class="popup" id="popupSupport" data-popup="popupSupport">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-regular fa-message popup-icon"></i></div>
+      <div class="content">
+        <h1>Support</h1>
+        <h2>We're here to help you.</h2>
+        <p>How would you like to be assisted?</p>
+        <div class="support-grid">
+          <div class="support-grid-top">
+            <button class="support-button support-email" type="button" data-switch="popupEmail"><i class="fa-regular fa-envelope"></i> Email</button>
+            <button class="support-button support-phone" type="button" data-switch="popupphone"><i class="fa-solid fa-phone"></i> Phoneline</button>
+          </div>
+          <button class="support-button support-rufus" type="button" data-switch="popupai"><i class="fa-regular fa-star"></i> Rufus.ai helper</button>
+        </div>
+        <div class="actions"><button class="close-button" data-close type="button">Close</button></div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!--- Popup email --->
+    <div class="popup" id="popupEmail" data-popup="popupEmail">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i> </div>
+      <div class="content">
+        <h1>Redirect</h1>
+        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/support</strong></p>
+        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
+         <div class="actions">
+          <button class="decline-button" data-switch="popupSupport">Decline</button>
+          <button onclick="supportemailredirect()" class="accept-button" data-close type="button">Accept</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!--- Popup phone --->
+    <div class="popup" id="popupphone" data-popup="popupphone">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-heart-crack popup-icon"></i></div>
+      <div class="content">
+        <h1>Oops</h1>
+        <p>We're sorry, but you're phone is not registered to a <strong>phone provider</strong>, this process is needed.</p>
+        <p>We make mistakes, <strong>contact us from email if this is an issue on our end.</strong></p>
+        <div class="actions">
+          <button class="back-button" data-switch="popupSupport">Back</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!---- Popup RAI ---->
+    <div class="popup" id="popupai" data-popup="popupai">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-heart-crack popup-icon"></i></div>
+      <div class="content">
+        <h1>Oops</h1>
+        <p>We're sorry, <strong>Rufus.ai helper is currently unavailable</strong></p>
+        <p>Please <strong>try again later or contact support for assistance.</strong></p>
+        <div class="actions"><button class="back-button" data-switch="popupSupport">Back</button></div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!--- Popup pands --->
+    <div class="popup" id="popuppands" data-popup="popuppands">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
+      <div class="content">
+        <h1>Redirect</h1>
+        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/privacy-and-safety</strong></p>
+        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
+        <div class="actions">
+          <button class="decline-button" data-close="">Decline</button>
+          <button onclick="pandsredirect()" class="accept-button" data-close type="button">Accept</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!---- Popup TOS ---->
+    <div class="popup" id="popuptos" data-popup="popuptos">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
+      <div class="content">
+        <h1>Redirect</h1>
+        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/terms-of-service</strong></p>
+        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
+        <div class="actions">
+          <button class="decline-button" data-close="">Decline</button>
+          <button onclick="tosredirect()" class="accept-button" data-close type="button">Accept</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!-- Popup cookies -->
+    <div class="popup" id="popupcookies" data-popup="popupcookies">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
+      <div class="content">
+        <h1>Redirect</h1>
+        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/cookies-and-usage</strong></p>
+        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
+        <div class="actions">
+          <button class="decline-button" data-close="">Decline</button>
+          <button onclick="cookieredirect()" class="accept-button" data-close type="button">Accept</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!--- Popup access --->
+    <div class="popup" id="popupaccess" data-popup="popupaccess">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-universal-access popup-icon"></i></div>
+      <div class="content">
+        <h1>Accessibilty</h1>
+        <p>Sorry, This is to diffcult to make!</p>
+        <div class="actions">
+          <button class="close-button" data-close="">Close</button>
+          <button class="apply-button" data-close="">Apply</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!--- Popup ASK CK -->
+    <div class="popup is-open" id="popupaskcookies" data-popup="popupaskcookies">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-cookie popup-icon"></i></div>
+      <div class="content">
+        <h1>Cookies!</h1>
+        <p>Would you like cookies? Cookies are used to remember you and your preferences</p>
+        <p>However, you have a choice to decline this option.</p>
+        <div class="popupaskcookies-actions">
+          <button class="options-button"  id="options-button" data-open="popupcookiesoptions"><i class="fa-solid fa-sliders fa-rotate-90 "></i></button>
+          <button class="declineall-button" id="declineall-button" data-open="popupcookiesdecline">Decline All</button>
+          <button class="acceptall-button" id="acceptall-button" data-open="popupcookiesaccept">Accept All</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!--- Popup ACCEPT -->
+    <div class="popup" id="popupcookiesaccept" data-popup="popupcookiesaccept">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-square-check popup-icon"></i></div>
+      <div class="content">
+        <h1>Accepted</h1>
+        <h2>Thanks!</h2>
+        <p>You may close this popup now, or wait 5 seconds</p>
+        <div class="actions">
+          <button class="close-button" data-close="">Close</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!-- Popup DECLINE -->
+    <div class="popup" id="popupcookiesdecline" data-popup="popupcookiesdecline">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-square-xmark popup-icon"></i></div>
+      <div class="content">
+        <h1>Declined</h1>
+        <h2>We will ask you again next time</h2>
+        <p>You may close this popup now, or wait 5 seconds</p>
+        <div class="actions">
+          <button class="close-button" data-close="">Close</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!-- Popup APPLIED -->
+    <div class="popup" id="popupcookiesapplied" data-popup="popupcookiesapplied">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-square-check popup-icon"></i></div>
+      <div class="content">
+        <h1>Applied</h1>
+        <h2>Thanks!</h2>
+        <p>You may close this popup now, or wait 5 seconds</p>
+        <div class="actions">
+          <button class="close-button" data-close="">Close</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!-- Popup OPTIONS -->
+    <div class="popup pco" id="popupcookiesoptions" data-popup="popupcookiesoptions">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-cookie-bite popup-icon"></i></div>
+      <div class="content">
+        <h1>Options</h1>
+        <p>Please enable or disable any options below</p>
+        <p>By default, all options are enabled. We're still going to ask you next time.</p>
+        <div>
+          <article class="option-row">
+            <div class="option-text">
+              <h2>Option 1</h2>
+              <p>Explains what option 1 does...</p>
+            </div>
+            <label class="switch" aria-label="Toggle light/dark mode">
+              <input id="screenModeToggle" type="checkbox"/>
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </article>
+
+          <article class="option-row">
+            <div class="option-text">
+              <h2>Option 2</h2>
+              <p>Explains what option 2 does...</p>
+            </div>
+            <label class="switch" aria-label="Toggle light/dark mode">
+              <input id="screenModeToggle" type="checkbox"/>
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </article>
+
+          <article class="option-row">
+            <div class="option-text">
+              <h2>Option 3</h2>
+              <p>Explains what option 3 does...</p>
+            </div>
+            <label class="switch" aria-label="Toggle light/dark mode">
+              <input id="screenModeToggle" type="checkbox"/>
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </article>
+
+          <article class="option-row">
+            <div class="option-text">
+              <h2>Option 4</h2>
+              <p>Explains what option 4 does...</p>
+            </div>
+            <label class="switch" aria-label="Toggle light/dark mode">
+              <input id="screenModeToggle" type="checkbox"/>
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </article>
+        </div>
+        <div class="popupaskcookies-actions">
+          <button class="options-button" data-open="popupaskcookies"><i class="fa-regular fa-circle-left"></i></button>
+          <button class="declineall-button" id="declineall-button-closepopup" data-open="popupcookiesdecline">Decline All</button>
+          <button class="acceptall-button" id="acceptall-button-closepopup" data-open="popupcookiesapplied">Apply Options</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!---- Popup CAG ---->
+    <div class="popup" id="popupcag" data-popup="popupcag">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-regular fa-circle-right popup-icon"></i></div>
+      <div class="content">
+        <h1>Continue as Guest?</h1>
+        <p>
+          You can still do everything on amazon. However, <strong>you are unable to checkout 
+          or buy products.</strong> Otherwise, an account is required to use checkout.
+        </p>
+        <div class="actions">
+          <button class="declineall-button" id="declineall-button-closepopup" data-close="">Close</button>
+          <button class="acceptall-button" id="acceptall-button-closepopup" onclick="cagredirect()">Continue</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!-- ------------- -->
+    <!--- Popup SU/LI --->
+    <!-- Popup Signup --->
+    <div class="popup" id="popupsignup" data-popup="popupsignup">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-arrow-right-from-bracket popup-icon"></i></div>
+      <div class="content">
+        <h1>Sign Up</h1>
+        <p>Welcome to Amazon.co.uk! Please enter valid details below to create your amazon account</p>
+        <p><i class="fa-solid fa-star-of-life" style="color: #c31d1d;"></i> All fields are required</p>
+        <!-- FIELD: EMAIL -->
+        <article class="signup-field">
+          <div class="signup-row">
+            <i class="fa-regular fa-envelope signup-lefticon"></i>
+            <p class="signup-label">Email Address</p>
+            <div class="signup-divider" aria-hidden="true"></div>
+            <i class="fa-regular fa-circle signup-rightdot" id="emailStatusIcon" aria-hidden="true"></i>
+          </div>
+          <div>
+          <div class="email-suggest-wrap">
+            <input class="signup-flied"type="email"id="email"name="email"placeholder="Enter your email address..."maxlength="254"autocomplete="email"inputmode="email"autocapitalize="none"autocorrect="off"spellcheck="false"enterkeyhint="done">
+           <div class="email-swipebar" id="emailSuggest"></div>
+          </div>
+          </div>
+        </article>
+        <article class="signup-field">
+          <div class="signup-row">
+            <i class="fa-solid fa-phone signup-lefticon"></i>
+            <p class="signup-label">Phone number</p>
+            <div class="signup-divider" aria-hidden="true"></div>
+            <i class="fa-regular fa-circle signup-rightdot" id="emailStatusIcon" aria-hidden="true"></i>
+          </div>
+          <div>
+            <label for="phoneCountry" class="signup-select-label" style="display:none">Country code</label>
+            <select id="phoneCountry" name="phoneCountry" class="signup-select" aria-label="Country code">
+              <option value="+44">+44 United Kingdom</option>
+              <option value="+1">+1 United States</option>
+              <option value="+49">+49 Germany</option>
+              <option value="+33">+33 France</option>
+              <option value="+91">+91 India</option>
+            </select>
+
+            <input class="signup-flied" type="tel" id="phone" name="phone" placeholder="Enter your Phone number..." maxlength="20" autocomplete="tel" inputmode="tel">
+          </div>
+        </article>
+        <div class="actions">
+          <button class="acceptall-button" type="button">Continue</button>
+        </div>
+      </div>
+    </div>
+    <!-- Middle Header -->
+    <main class="middle-header">
+      <div class="middle-header-track">
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(1).png" alt="Slide 1"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(2).png" alt="Slide 2"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(3).png" alt="Slide 3"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(4).png" alt="Slide 4"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(5).png" alt="Slide 5"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(6).png" alt="Slide 6"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(7).png" alt="Slide 7"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(8).png" alt="Slide 8"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(9).png" alt="Slide 9"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(10).png" alt="Slide 10"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(11).png" alt="Slide 11"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(12).png" alt="Slide 12"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(13).png" alt="Slide 13"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(14).png" alt="Slide 14"></article>
+      </div>
+    </main>
+    <!-- ------------- -->
+    <!-- Bottom Header -->
+    <header class="bottomheader">
+      <div class="bottomheader-top">
+        <button class="bottomheader-signup" type="button" data-open="popupsignup">Sign Up</button>
+        <button class="bottomheader-login" type="button" data-open="popuplogin">Login</button>
+      </div>
+      <div class="bottomheader-bottom"><button class="bottomheader-cag" type="button" data-open="popupcag">Continue as Guest</button></div>
+    </header> 
+    <!-- ------------- -->
+    <script defer src="start.js"></script>
+    <script defer src="../global/global/global.js"></script>
+    <script defer src="../starter page/start-darkmode/darkmode-start.js"></script>
+    <script defer src="../global/popup-global/popup-stack.js"></script>
+    <script defer src="../starter page/starter-redirect/starter-redirect.js"></script>
+    <script defer src="../global/popup-global/popup.js"></script>
+  </body>
+</html>
