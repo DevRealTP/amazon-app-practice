@@ -792,12 +792,29 @@ body{
 .continue-button:active{
   background: var(--amazon-btn-light-active-background);
   border: var(--amazon-btn-light-active-border);
-  box-shadow: var(--amazon-btn-light-active-boxshadow);
-  font-size: 17px;
-  transform: var(--amazon-btn-light-active-transform);
+  box-shadow: none;
+  font-size: 16px;
+  transform: none
 }
 
 @keyframes spin{
   to { transform: rotate(360deg); }
+}
+
+.continue-button:disabled {opacity: 0.55;}
+
+.continue-button.is-enabled {
+  background: var(--amazon-btn-primary);
+  border: solid rgba(255, 255, 255, 0.08);
+  color: var(--amazon-text-primary);
+  font-size: 18px;
+}
+
+.continue-button-is-enabled:active{
+  background: var(--amazon-btn-primary-active-background);
+  border: var(--amazon-btn-primary-active-border);
+  box-shadow: var(--amazon-btn-primary-active-boxshadow);
+  font-size: var(--amazon-btn-primary-active-fontsize);
+  transform: var(--amazon-btn-primary-active-transform);
 }
 
