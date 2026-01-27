@@ -10,6 +10,7 @@ document.querySelectorAll('.topheader button, .bottomheader button').forEach(btn
 });
 
 // ---------------------------
+
 // Side menu: OPEN & CLOSE
 const menuBtn = document.querySelector('.topheader-menu');
 const sideMenu = document.getElementById('sideMenu');
@@ -39,47 +40,43 @@ document.addEventListener('keydown', (e) => {
 
 // Cookie logic
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   const consentExpiry = localStorage.getItem('cookieconsent-expiry')
-//   const onemin = 60 * 1000
-
-//   if(consentExpiry && Date.now() > Number(consentExpiry)){
-//     localStorage.removeItem('cookieconsent')
-//     localStorage.removeItem('cookieconsent-expiry')
-//   }
-
-//   const cookieconsent = localStorage.getItem('cookieconsent')
-
-//   if(cookieconsent !== '✓'){
-//     openPopup('popupaskcookies');
-//   }
-
-//   const buttonpressed = document.querySelectorAll('#acceptall-button, #declineall-button, #declineall-button-closepopup, #acceptall-button-closepopup');
-//   const closepopup = ['popupcookiesaccept', 'popupcookiesdecline', 'popupcookiesapplied', 'popupaskcookies'];
-
-//   buttonpressed.forEach(button => {
-//     button.addEventListener('click', () => {
-
-//       localStorage.setItem('cookieconsent-expiry',Date.now() + onemin)
-
-//       if(button.id === 'acceptall-button' || button.id === 'acceptall-button-closepopup'){
-//         localStorage.setItem('cookieconsent','✓')
-//       }
-
-//       if(button.id === 'declineall-button' || button.id === 'declineall-button-closepopup'){
-//         localStorage.setItem('cookieconsent','✗')
-//       }
-
-//       setTimeout(() => {
-//         closepopup.forEach(id => closePopup(id));
-//       }, 5000);
-//     });
-//   });
-// });
-
 document.addEventListener('DOMContentLoaded', () => {
-  openPopup('popupsignup')
-})
+  const consentExpiry = localStorage.getItem('cookieconsent-expiry')
+  const onemin = 60 * 1000
+
+  if(consentExpiry && Date.now() > Number(consentExpiry)){
+    localStorage.removeItem('cookieconsent')
+    localStorage.removeItem('cookieconsent-expiry')
+  }
+
+  const cookieconsent = localStorage.getItem('cookieconsent')
+
+  if(cookieconsent !== '✓'){
+    openPopup('popupaskcookies');
+  }
+
+  const buttonpressed = document.querySelectorAll('#acceptall-button, #declineall-button, #declineall-button-closepopup, #acceptall-button-closepopup');
+  const closepopup = ['popupcookiesaccept', 'popupcookiesdecline', 'popupcookiesapplied', 'popupaskcookies'];
+
+  buttonpressed.forEach(button => {
+    button.addEventListener('click', () => {
+
+      localStorage.setItem('cookieconsent-expiry',Date.now() + onemin)
+
+      if(button.id === 'acceptall-button' || button.id === 'acceptall-button-closepopup'){
+        localStorage.setItem('cookieconsent','✓')
+      }
+
+      if(button.id === 'declineall-button' || button.id === 'declineall-button-closepopup'){
+        localStorage.setItem('cookieconsent','✗')
+      }
+
+      setTimeout(() => {
+        closepopup.forEach(id => closePopup(id));
+      }, 5000);
+    });
+  });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('email');

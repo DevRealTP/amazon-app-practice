@@ -1,7 +1,7 @@
 // Scroll EXPAND or COLLSAPE Behavior
 
 (() => {
-  const popup = document.getElementById('popupcookiesoptions');
+  const popup = document.querySelectorAll('#popupcookiesoptions,#popupsignup');
   // ^ 
   // 1. if adding on more, replace ('','') --> ['#,#']
   // 2. Then rename getElementById --> querySelectorAll

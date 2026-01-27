@@ -355,31 +355,81 @@
           </div>
           </div>
         </article>
-        <article class="signup-field">
+        <article class="signup-field signup-field-phone">
           <div class="signup-row">
             <i class="fa-solid fa-phone signup-lefticon"></i>
             <p class="signup-label">Phone number</p>
             <div class="signup-divider" aria-hidden="true"></div>
             <i class="fa-regular fa-circle signup-rightdot" id="emailStatusIcon" aria-hidden="true"></i>
           </div>
-          <div>
-            <label for="phoneCountry" class="signup-select-label" style="display:none">Country code</label>
+          <div class="phoneWrap">
             <select id="phoneCountry" name="phoneCountry" class="signup-select" aria-label="Country code">
-              <option value="+44">+44 United Kingdom</option>
-              <option value="+1">+1 United States</option>
-              <option value="+49">+49 Germany</option>
-              <option value="+33">+33 France</option>
-              <option value="+91">+91 India</option>
+              <option value="+44" data-code="+44">+44 (UK)</option>
+              <option value="+353" data-code="+353">+353 (IE)</option>
+              <option value="+49" data-code="+49">+49 (DE)</option>
+              <option value="+33" data-code="+33">+33 (FR)</option>
+              <option value="+31" data-code="+31">+31 (NL)</option>
+              <option value="+32" data-code="+32">+32 (BE)</option>
+              <option value="+39" data-code="+39">+39 (IT)</option>
+              <option value="+34" data-code="+34">+34 (ES)</option>
+              <option value="+351" data-code="+351">+351 (PT)</option>
+              <option value="+41" data-code="+41">+41 (CH)</option>
+              <option value="+43" data-code="+43">+43 (AT)</option>
+              <option value="+46" data-code="+46">+46 (SE)</option>
+              <option value="+47" data-code="+47">+47 (NO)</option>
+              <option value="+45" data-code="+45">+45 (DK)</option>
+              <option value="+358" data-code="+358">+358 (FI)</option>
+              <option value="+48" data-code="+48">+48 (PL)</option>
+              <option value="+420" data-code="+420">+420 (CZ)</option>
+              <option value="+421" data-code="+421">+421 (SK)</option>
+              <option value="+36" data-code="+36">+36 (HU)</option>
+              <option value="+40" data-code="+40">+40 (RO)</option>
+              <option value="+30" data-code="+30">+30 (GR)</option>
+              <option value="+357" data-code="+357">+357 (CY)</option>
+              <option value="+356" data-code="+356">+356 (MT)</option>
+              <option value="+354" data-code="+354">+354 (IS)</option>
+              <option value="+370" data-code="+370">+370 (LT)</option>
+              <option value="+371" data-code="+371">+371 (LV)</option>
+              <option value="+372" data-code="+372">+372 (EE)</option>
+              <option value="+359" data-code="+359">+359 (BG)</option>
+              <option value="+385" data-code="+385">+385 (HR)</option>
+              <option value="+386" data-code="+386">+386 (SI)</option>
+              <option value="+381" data-code="+381">+381 (RS)</option>
+              <option value="+382" data-code="+382">+382 (ME)</option>
+              <option value="+389" data-code="+389">+389 (MK)</option>
+              <option value="+387" data-code="+387">+387 (BA)</option>
+              <option value="+355" data-code="+355">+355 (AL)</option>
+              <option value="+352" data-code="+352">+352 (LU)</option>
+              <option value="+373" data-code="+373">+373 (MD)</option>
+              <option value="+380" data-code="+380">+380 (UA)</option>
+              <option value="+375" data-code="+375">+375 (BY)</option>
             </select>
-
-            <input class="signup-flied" type="tel" id="phone" name="phone" placeholder="Enter your Phone number..." maxlength="20" autocomplete="tel" inputmode="tel">
+            <input class="signup-flied signup-field-phone" type="tel" id="phone" name="phone" placeholder="Enter your Phone number..." maxlength="20" autocomplete="tel" inputmode="tel">
           </div>
         </article>
         <div class="actions">
-          <button class="acceptall-button" type="button">Continue</button>
+          <button class="acceptall-button continue-button" type="button">Continue</button>
         </div>
       </div>
     </div>
+    <!---- Popup Password ---->
+    <div class="popup" id="popupcag" data-popup="popupcag">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-lock popup-icon"></i></div>
+      <div class="content">
+        <h1>Password</h1>
+        <p>
+          You can still do everything on amazon. However, <strong>you are unable to checkout 
+          or buy products.</strong> Otherwise, an account is required to use checkout.
+        </p>
+        <div class="actions">
+          <button class="declineall-button" id="declineall-button-closepopup" data-close="">Close</button>
+          <button class="acceptall-button" id="acceptall-button-closepopup" onclick="cagredirect()">Continue</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
     <!-- Middle Header -->
     <main class="middle-header">
       <div class="middle-header-track">
@@ -403,8 +453,8 @@
     <!-- Bottom Header -->
     <header class="bottomheader">
       <div class="bottomheader-top">
-        <button class="bottomheader-signup" type="button" data-open="popupsignup">Sign Up</button>
-        <button class="bottomheader-login" type="button" data-open="popuplogin">Login</button>
+        <button class="bottomheader-signup" id="bottomheadersignup" type="button" data-open="popupsignup">Sign Up</button>
+        <button class="bottomheader-login" id="bottomheaderlogin" type="button" data-open="popuplogin">Login</button>
       </div>
       <div class="bottomheader-bottom"><button class="bottomheader-cag" type="button" data-open="popupcag">Continue as Guest</button></div>
     </header> 
