@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Amazon.co.uk: Low Prices from millions of sellers</title>
-    <link rel="stylesheet" href="start.css">
+    <link rel="stylesheet" href="../starter page/start.css">
     <link rel="stylesheet" href="../starter page/start-darkmode/darkmode-start.css">
     <link rel="stylesheet" href="../global/global!/global.css">
     <link rel="stylesheet" href="../global/popup-global/popup.css">
@@ -408,7 +408,7 @@
           </div>
         </article>
         <div class="actions">
-          <button class="acceptall-button continue-button" data-open="popupinvaild" type="button">Continue</button>
+          <button class="acceptall-button continue-button" data-open="popupinvaild" type="button">Next</button>
         </div>
       </div>
     </div>
@@ -420,12 +420,28 @@
       <div class="content">
         <h1>Password</h1>
         <p>
-          You can still do everything on amazon. However, <strong>you are unable to checkout 
-          or buy products.</strong> Otherwise, an account is required to use checkout.
+          Please <strong>create a strong password</strong> for your amazon account, <strong>follow the password rules to continue on.</strong>
         </p>
+        <article class="signup-field">
+          <div class="signup-row">
+            <i class="fa-solid fa-user-lock signup-lefticon"></i>
+            <p class="signup-label">Password</p>
+            <div class="signup-divider" aria-hidden="true"></div>
+            <i class="fa-regular fa-circle signup-rightdot" id="passwordStatusIcon" aria-hidden="true"></i>
+          </div>
+          <div>
+            <input class="signup-flied"type="password"id="password"name="password"placeholder="Enter your password..."maxlength="254"autocomplete="new-password"autocapitalize="none"autocorrect="off"spellcheck="false"enterkeyhint="done">
+          </div>
+        </article>
+        <article class="signup-field">
+          <p><i class="fa-regular fa-circle passrule-icon" id="passwordStatusIconOne"></i> Contains Uppercases and Lowercase letters</p>
+          <p><i class="fa-regular fa-circle passrule-icon" id="passwordStatusIconTwo"></i> Contains One or more number</p> 
+          <p><i class="fa-regular fa-circle passrule-icon" id="passwordStatusIconThree"></i> Contains Special symbols</p>
+          <p><i class="fa-regular fa-circle passrule-icon" id="passwordStatusIconFour"></i> More than 8 characters</p>
+        </article>
         <div class="actions">
-          <button class="declineall-button" id="declineall-button-closepopup" data-close="">Close</button>
-          <button class="acceptall-button" id="acceptall-button-closepopup" onclick="cagredirect()">Continue</button>
+          <button class="declineall-button" id="declineall-button-closepopup" data-open="popupsignup">Back</button>
+          <button class="acceptall-button next-button" id="acceptall-button-closepopup">Next</button>
         </div>
       </div>
     </div>

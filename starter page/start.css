@@ -783,13 +783,15 @@ body{
   box-shadow: 0 0 0 3px rgba(199, 81, 31, 0.15);
 }
 
-.continue-button{
+.continue-button,
+.next-button{
   background: var(--amazon-bg-light);
   border: 2px solid var(--amazon-border-light);
-  color: grey
+  color: grey;
 }
 
-.continue-button:active{
+.continue-button:active,
+.next-button:active{
   background: var(--amazon-btn-light-active-background);
   border: var(--amazon-btn-light-active-border);
   box-shadow: none;
@@ -802,15 +804,23 @@ body{
 }
 
 .continue-button:disabled {opacity: 0.55;}
+.next-button:disabled {opacity: 0.55;}
 
 .continue-button.is-enabled {
   background: var(--amazon-btn-primary);
-  border: solid rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.08);
   color: var(--amazon-text-primary);
   font-size: 18px;
 }
 
-.continue-button-is-enabled:active{
+.next-button.is-enabled{
+  background: var(--amazon-btn-primary);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: var(--amazon-text-primary);
+  font-size: 18px;
+}
+
+.continue-button.is-enabled:active{
   background: var(--amazon-btn-primary-active-background);
   border: var(--amazon-btn-primary-active-border);
   box-shadow: var(--amazon-btn-primary-active-boxshadow);
@@ -818,3 +828,10 @@ body{
   transform: var(--amazon-btn-primary-active-transform);
 }
 
+.next-button.is-enabled:active{
+  background: var(--amazon-btn-primary-active-background);
+  border: var(--amazon-btn-primary-active-border);
+  box-shadow: var(--amazon-btn-primary-active-boxshadow);
+  font-size: var(--amazon-btn-primary-active-fontsize);
+  transform: var(--amazon-btn-primary-active-transform);
+}

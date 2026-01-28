@@ -1,4 +1,4 @@
-// Touch behavior and movement
+// Touch behaviour and movement
 document.querySelectorAll('.topheader button, .bottomheader button').forEach(btn => {
   btn.addEventListener('touchstart', () => btn.classList.add('pressed'), { passive: true });
   btn.addEventListener('touchend', () => btn.classList.remove('pressed'));
@@ -208,14 +208,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ---------------------------
-// Shared: Continue button gating + password opening
+// ---------------------------
+// Shared: Continue + Next button gating
 const continueButton = document.querySelector('.continue-button');
+const nextbutton = document.querySelector('.next-button'); // ✅ FIXED selector
 
-// IMPORTANT: these must be let (you update them)
 let emailcheck = false;
 let phonecheck = false;
+let passwordcheck = false;
 
-function nextButtonAllowed() {
+// Continue button: depends on email + phone
+function nextButtonAllowedOne() {
   if (!continueButton) return;
 
   const allowed = emailcheck && phonecheck;
@@ -223,37 +226,82 @@ function nextButtonAllowed() {
   continueButton.disabled = !allowed;
   continueButton.setAttribute('aria-disabled', String(!allowed));
   continueButton.classList.toggle('is-enabled', allowed);
+  continueButton.classList.toggle('enabled', allowed);
 }
 
-function updateContinueTarget() {
+// Next button (password popup): depends on passwordcheck
+function nextButtonAllowedTwo() {
+  if (!nextbutton) return;
+
+  const allowed = passwordcheck;
+
+  nextbutton.disabled = !allowed;
+  nextbutton.setAttribute('aria-disabled', String(!allowed));
+  nextbutton.classList.toggle('is-enabled', allowed);
+  nextbutton.classList.toggle('enabled', allowed);
+}
+
+// ✅ Single wrapper that updates BOTH (so old code can call it)
+function nextButtonAllowed() {
+  nextButtonAllowedOne();
+  nextButtonAllowedTwo();
+}
+
+// Keep your dataset targeting
+function updateNextButton() {
   if (!continueButton) return;
 
-  // This only works if your password popup is:
-  // <div class="popup" id="popuppassword" data-popup="popuppassword">
   if (emailcheck && phonecheck) {
     continueButton.dataset.open = 'popuppassword';
   } else {
     delete continueButton.dataset.open;
   }
 }
+function updateContinueTarget() {
+  updateNextButton();
+}
 
-// Bullet-proof: open password directly when allowed (doesn't depend on dataset being re-read)
+// Open password popup when allowed
 if (continueButton) {
   continueButton.addEventListener('click', (e) => {
     e.preventDefault();
-    if (emailcheck && phonecheck) {
-      openPopup('popuppassword');
-    } else {
-      openPopup('popupinvaild');
-    }
+    if (emailcheck && phonecheck) openPopup('popuppassword');
   });
-} else {
-  // continue button not found — nothing to attach
 }
 
-// set initial disabled + target state
+// initial state
 nextButtonAllowed();
-updateContinueTarget();
+updateNextButton();
+
+// ---------------------------
+// Password popup: Next button gating (ADDED)
+// This is independent and does NOT modify your password section.
+const passwordPopupNextBtn = document.querySelector('#popuppassword .next-buitton');
+
+function passwordRulesLocal(v) {
+  const letters = /[A-Z]/.test(v) && /[a-z]/.test(v);
+  const digit = /\d/.test(v);
+  const symbol = /[!@#$%^&*()_\-+={}[\]|\\:;"'<>,.?/~`]/.test(v);
+  const len = (v || '').length >= 8;
+  return letters && digit && symbol && len;
+}
+
+function nextButtonAllowedOnePassword() {
+  if (!passwordPopupNextBtn) return;
+
+  const v = document.getElementById('password')?.value || '';
+  const allowed = passwordRulesLocal(v);
+
+  passwordPopupNextBtn.disabled = !allowed;
+  passwordPopupNextBtn.setAttribute('aria-disabled', String(!allowed));
+  passwordPopupNextBtn.classList.toggle('is-enabled', allowed);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const pwd = document.getElementById('password');
+  pwd?.addEventListener('input', nextButtonAllowedOnePassword);
+  nextButtonAllowedOnePassword();
+});
 
 // ---------------------------
 // Email validation (spinner -> tick/cross)
@@ -305,8 +353,8 @@ if (emailinput && emailstatusicon) {
       emailstatusicon.classList.toggle('loading', false);
 
       emailcheck = false;
-      nextButtonAllowed();
-      updateContinueTarget();
+      nextButtonAllowedOne();
+      updateNextButton();
 
       emptyTimer = setTimeout(() => {
         if (!emailinput.value.trim()) {
@@ -330,8 +378,8 @@ if (emailinput && emailstatusicon) {
       emailstatusicon.classList.toggle('loading', true);
 
       emailcheck = false;
-      nextButtonAllowed();
-      updateContinueTarget();
+      nextButtonAllowedOne();
+      updateNextButton();
     }, 190);
 
     // final
@@ -345,8 +393,8 @@ if (emailinput && emailstatusicon) {
       emailstatusicon.classList.toggle('loading', false);
 
       emailcheck = ok;
-      nextButtonAllowed();
-      updateContinueTarget();
+      nextButtonAllowedOne();
+      updateNextButton();
     }, 700);
   });
 }
@@ -423,8 +471,8 @@ if (phoneInput && phoneCountry && phoneStatusIcon) {
       phoneStatusIcon.classList.toggle('loading', false);
 
       phonecheck = false;
-      nextButtonAllowed();
-      updateContinueTarget();
+      nextButtonAllowedOne();
+      updateNextButton();
 
       phoneEmptyTimer = setTimeout(() => {
         if (!phoneInput.value.trim()) {
@@ -448,8 +496,8 @@ if (phoneInput && phoneCountry && phoneStatusIcon) {
       phoneStatusIcon.classList.toggle('loading', true);
 
       phonecheck = false;
-      nextButtonAllowed();
-      updateContinueTarget();
+      nextButtonAllowedOne();
+      updateNextButton();
     }, 190);
 
     // final
@@ -463,11 +511,151 @@ if (phoneInput && phoneCountry && phoneStatusIcon) {
       phoneStatusIcon.classList.toggle('loading', false);
 
       phonecheck = valid;
-      nextButtonAllowed();
-      updateContinueTarget();
+      nextButtonAllowedOne();
+      updateNextButton();
     }, 700);
   }
 
   phoneInput.addEventListener('input', validatePhone);
   phoneCountry.addEventListener('change', validatePhone);
+}
+
+// ---------------------------
+// Password validation (spinner -> tick/cross + rule icons)
+// (UNCHANGED inside this section, per your instruction)
+const passwordInput = document.getElementById('password');
+const passwordStatusIcon = document.getElementById('passwordStatusIcon');
+
+const passwordStatusIconOne = document.getElementById('passwordStatusIconOne');     // Upper
+const passwordStatusIconTwo = document.getElementById('passwordStatusIconTwo');     // Lower
+const passwordStatusIconThree = document.getElementById('passwordStatusIconThree'); // Symbol
+const passwordStatusIconFour = document.getElementById('passwordStatusIconFour');   // Length
+
+let passwordSpinnerTimer = null;
+let passwordFinalTimer = null;
+let passwordEmptyTimer = null;
+
+passwordcheck = false;
+
+// Unique helper (won’t clash with email’s seticon)
+function setPwdIcon(el, iconClasses, spin = false) {
+  if (!el) return;
+
+  el.classList.remove(
+    'fa-regular', 'fa-solid', 'fa-brands',
+    'fa-circle', 'fa-circle-notch', 'fa-square-check', 'fa-square-xmark'
+  );
+
+  iconClasses
+    .split(/\s+/)
+    .filter(Boolean)
+    .forEach(c => el.classList.add(c));
+
+  el.classList.add('signup-righticon');
+  el.classList.toggle('spin', !!spin);
+}
+
+// Optional but tidy: state classes for styling (idle/loading/valid/invalid)
+function setPwdState(el, state) {
+  if (!el) return;
+  el.classList.toggle('idle', state === 'idle');
+  el.classList.toggle('loading', state === 'loading');
+  el.classList.toggle('valid', state === 'valid');
+  el.classList.toggle('invalid', state === 'invalid');
+}
+
+function setPwdRuleIcon(el, pass) {
+  setPwdIcon(el, pass ? 'fa-solid fa-square-check' : 'fa-solid fa-square-xmark', false);
+  setPwdState(el, pass ? 'valid' : 'invalid');
+}
+
+function passwordRules(v) {
+  const letters = /[A-Z]/.test(v) && /[a-z]/.test(v);
+  const digit = /\d/.test(v);
+  const symbol = /[!@#$%^&*()_\-+={}[\]|\\:;"'<>,.?/~`]/.test(v);
+  const len = v.length >= 8;
+  const all = letters && digit && symbol && len;
+  return { letters, digit, symbol, len, all };
+}
+
+function updateRuleIcons(res) {
+  setPwdRuleIcon(passwordStatusIconOne,   res.letters);
+  setPwdRuleIcon(passwordStatusIconTwo,   res.digit);
+  setPwdRuleIcon(passwordStatusIconThree, res.symbol);
+  setPwdRuleIcon(passwordStatusIconFour,  res.len);
+}
+
+function resetRuleIconsIdle() {
+  [passwordStatusIconOne, passwordStatusIconTwo, passwordStatusIconThree, passwordStatusIconFour].forEach(el => {
+    setPwdIcon(el, 'fa-regular fa-circle', false);
+    setPwdState(el, 'idle');
+  });
+}
+
+if (passwordInput && passwordStatusIcon) {
+  setPwdIcon(passwordStatusIcon, 'fa-regular fa-circle', false);
+  setPwdState(passwordStatusIcon, 'idle');
+  resetRuleIconsIdle();
+
+  passwordInput.addEventListener('input', () => {
+    const v = passwordInput.value; // keep raw (don’t trim passwords)
+
+    clearTimeout(passwordSpinnerTimer);
+    clearTimeout(passwordFinalTimer);
+    clearTimeout(passwordEmptyTimer);
+
+    // empty
+    if (!v) {
+      setPwdIcon(passwordStatusIcon, 'fa-solid fa-square-xmark', false);
+      setPwdState(passwordStatusIcon, 'invalid');
+      passwordcheck = false;
+
+      resetRuleIconsIdle();
+
+      // These two won’t hurt, but they currently only gate the main continue button
+      if (typeof nextButtonAllowed === 'function') nextButtonAllowed();
+      if (typeof updateContinueTarget === 'function') updateContinueTarget();
+
+      passwordEmptyTimer = setTimeout(() => {
+        if (!passwordInput.value) {
+          setPwdIcon(passwordStatusIcon, 'fa-regular fa-circle', false);
+          setPwdState(passwordStatusIcon, 'idle');
+          resetRuleIconsIdle();
+        }
+      }, 2500);
+
+      return;
+    }
+
+    passwordSpinnerTimer = setTimeout(() => {
+      setPwdIcon(passwordStatusIcon, 'fa-solid fa-circle-notch', true);
+      setPwdState(passwordStatusIcon, 'loading');
+
+      // Rules go into loading too (nice feedback while user types)
+      [passwordStatusIconOne, passwordStatusIconTwo, passwordStatusIconThree, passwordStatusIconFour].forEach(el => {
+        setPwdIcon(el, 'fa-solid fa-circle-notch', true);
+        setPwdState(el, 'loading');
+      });
+
+      passwordcheck = false;
+
+      if (typeof nextButtonAllowed === 'function') nextButtonAllowed();
+      if (typeof updateContinueTarget === 'function') updateContinueTarget();
+    }, 170);
+
+    // final
+    passwordFinalTimer = setTimeout(() => {
+      const res = passwordRules(v);
+
+      setPwdIcon(passwordStatusIcon, res.all ? 'fa-solid fa-square-check' : 'fa-solid fa-square-xmark', false);
+      setPwdState(passwordStatusIcon, res.all ? 'valid' : 'invalid');
+
+      updateRuleIcons(res);
+
+      passwordcheck = res.all;
+
+      if (typeof nextButtonAllowed === 'function') nextButtonAllowed();
+      if (typeof updateContinueTarget === 'function') updateContinueTarget();
+    }, 1000);
+  });
 }
