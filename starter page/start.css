@@ -499,7 +499,7 @@ body{
 
 .switch{
   position: relative;
-  width: 50px;
+  width: 62px;
   height: 30px;
   flex: 0 0 auto;
 }
@@ -515,7 +515,7 @@ body{
 .switch .slider{
   position: absolute;
   inset: 0;
-  background: var(--amazon-warning);
+  background: #ccc;
   border-radius: 20px;
   border: 2px solid rgba(255,255,255,0.25);
   transition: 0.2s ease;
@@ -524,18 +524,18 @@ body{
 .switch .slider::before{
   position: absolute;
   content: "";
-  height: 23px;
-  width: 23px;
+  height: 22px;
+  width: 35px;
   left: 3px;
   top: 50%;
-  border-radius: 50%;
+  border-radius: 20px;
   background: #fff;
   transform: translateY(-50%);
   transition: 0.2s ease;
 }
 
 .switch input:checked + .slider{background: #007600;border-color: rgba(2, 66, 15, 0.95);}
-.switch input:checked + .slider::before{transform: translate(18px, -50%);}
+.switch input:checked + .slider::before{transform: translate(16px, -50%);}
 .side-menu-item.side-menu-toggle{ padding: 12px 14px; }
 .side-menu, .menu-overlay{ user-select: none; }
 .side-menu-item > span{ flex: 1; min-width: 0; }
@@ -834,4 +834,59 @@ body{
   box-shadow: var(--amazon-btn-primary-active-boxshadow);
   font-size: var(--amazon-btn-primary-active-fontsize);
   transform: var(--amazon-btn-primary-active-transform);
+}
+
+input[disabled]{
+  opacity: 1;
+  color: inherit;
+  background: inherit;
+}
+
+/* review display input + eye button */
+.display-wrap{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.display-wrap .signup-flied{
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-right: 12px; /* keep small internal padding */
+}
+
+.eye-btn{
+  position: relative;
+  height: 34px;
+  width: 34px;
+  border-radius: 10px;
+  border: 2px solid var(--amazon-border-light);
+  background: var(--amazon-bg-light);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0;
+  margin-left: 4px;
+}
+
+.eye-btn i{
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.eye-btn:active{
+  transform: scale(0.96);
+}
+
+/* Focus styles for accessibility */
+.signup-flied:focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.12);
+  border-color: var(--amazon-link);
+}
+.eye-btn:focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.12);
 }

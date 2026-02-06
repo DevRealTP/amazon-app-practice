@@ -84,3 +84,12 @@ body.dark .bottomheader button:not(.bottomheader-cag):active{
   box-shadow: var(--amazon-btn-primary-active-boxshadow);
   font-size: var(--amazon-btn-primary-active-fontsize);
 }
+
+body.dark .signup-rightdot {
+  color: white;
+}
+
+body.dark .signup-righticon.valid {color: #21a67e !important; }
+body.dark .signup-righticon.invalid {color: #d93025 !important; }
+body.dark .signup-righticon.idle {color: #ffffff !important; }
+body.dark .signup-righticon.loading{color: #f8c81b !important; }

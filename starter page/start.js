@@ -250,13 +250,21 @@ function nextButtonAllowed() {
 // Keep your dataset targeting
 function updateNextButton() {
   if (!continueButton) return;
+  if (!nextbutton) return;
 
   if (emailcheck && phonecheck) {
     continueButton.dataset.open = 'popuppassword';
   } else {
-    delete continueButton.dataset.open;
+    continueButton.dataset.open = 'popupinvalid';
+  }
+
+  if (passwordcheck) {
+    nextbutton.dataset.open = 'popupreview'
+  } else{
+    nextbutton.dataset.open = 'popupinvalidtwo'
   }
 }
+
 function updateContinueTarget() {
   updateNextButton();
 }
@@ -659,3 +667,119 @@ if (passwordInput && passwordStatusIcon) {
     }, 1000);
   });
 }
+
+// ---------------------------
+// REVIEW POPUP: copy values + mask phone/password + eye toggles
+
+(function reviewMasking() {
+  const emailInput = document.getElementById('email');
+  const phoneInput = document.getElementById('phone');
+  const phoneCountry = document.getElementById('phoneCountry');
+  const passwordInput = document.getElementById('password');
+
+  const emailDisplay = document.getElementById('Emaildisplay');
+  const phoneDisplay = document.getElementById('phonedisplay');
+  const passwordDisplay = document.getElementById('passworddisplay');
+
+  const togglePhoneBtn = document.getElementById('togglePhone');
+  const togglePasswordBtn = document.getElementById('togglePassword');
+
+  if (!emailInput || !phoneInput || !phoneCountry || !passwordInput) return;
+  if (!emailDisplay || !phoneDisplay || !passwordDisplay) return;
+
+  // Internal state: what we *could* show if user taps eye
+  let phoneShown = false;
+  let passwordShown = false;
+
+  function digitsOnly(v) {
+    return String(v || '').replace(/\D/g, '');
+  }
+
+  function maskPhone(code, rawPhone) {
+    const digits = digitsOnly(rawPhone);
+    if (!digits) return '';
+
+    // If user starts with 0 (UK 07...), drop leading 0 for E.164 style display
+    const normalised = digits.startsWith('0') ? digits.slice(1) : digits;
+
+    // Need at least 2 digits to show first/last properly
+    if (normalised.length === 1) return `${code} ${normalised}*`;
+    const first = normalised[0];
+    const last = normalised[normalised.length - 1];
+
+    return `${code} ${first}${'*'.repeat(Math.max(4, normalised.length - 2))}${last}`;
+  }
+
+  function fullPhone(code, rawPhone) {
+    const digits = digitsOnly(rawPhone);
+    if (!digits) return '';
+    const normalised = digits.startsWith('0') ? digits.slice(1) : digits;
+    return `${code} ${normalised}`;
+  }
+
+  function maskPassword(rawPwd) {
+    if (!rawPwd) return '';
+    // show fixed bullets length for privacy (or use rawPwd.length if you prefer)
+    return '•'.repeat(Math.max(8, Math.min(16, rawPwd.length)));
+  }
+
+  function setEye(btn, isOn) {
+    if (!btn) return;
+    const icon = btn.querySelector('i');
+    if (!icon) return;
+    icon.className = isOn ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+  }
+
+  function refreshReviewFields() {
+    // email full
+    emailDisplay.value = (emailInput.value || '').trim();
+
+    // phone masked by default
+    const code = phoneCountry.value || '';
+    const rawPhone = phoneInput.value || '';
+    phoneDisplay.value = phoneShown ? fullPhone(code, rawPhone) : maskPhone(code, rawPhone);
+
+    // password fully censored by default (unless shown)
+    const rawPwd = passwordInput.value || '';
+    passwordDisplay.value = passwordShown ? rawPwd : maskPassword(rawPwd);
+
+    setEye(togglePhoneBtn, phoneShown);
+    setEye(togglePasswordBtn, passwordShown);
+  }
+
+  // Keep review updated while typing (optional but nice)
+  emailInput.addEventListener('input', refreshReviewFields);
+  phoneInput.addEventListener('input', refreshReviewFields);
+  phoneCountry.addEventListener('change', refreshReviewFields);
+  passwordInput.addEventListener('input', refreshReviewFields);
+
+  // Toggle phone
+  togglePhoneBtn?.addEventListener('click', () => {
+    phoneShown = !phoneShown;
+    togglePhoneBtn.setAttribute('aria-label', phoneShown ? 'Hide phone number' : 'Show phone number');
+    refreshReviewFields();
+  });
+
+  // Toggle password
+  togglePasswordBtn?.addEventListener('click', () => {
+    passwordShown = !passwordShown;
+    togglePasswordBtn.setAttribute('aria-label', passwordShown ? 'Hide password' : 'Show password');
+    refreshReviewFields();
+  });
+
+  // When review popup opens, refresh values (works even if opened later)
+  document.addEventListener('click', (e) => {
+    const opener = e.target.closest('[data-open="popupreview"]');
+    if (opener) {
+      // reset to masked every time you open review (optional)
+      phoneShown = false;
+      passwordShown = false;
+      refreshReviewFields();
+    }
+  });
+
+  // If you force-open popupreview on DOMContentLoaded, update after load:
+  document.addEventListener('DOMContentLoaded', () => {
+    refreshReviewFields();
+  });
+})();
