@@ -49,7 +49,7 @@ EXAMPLE:
 
 3. Required Data Attributes
 
-Attribute	         | Purpose
+Attribute	           | Purpose
                      |
 data-popup	         | Marks an element as a popup
 data-open="popupId"	 | Opens another popup

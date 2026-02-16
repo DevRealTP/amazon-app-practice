@@ -543,7 +543,8 @@ body{
 
 .declineall-button, 
 .acceptall-button, 
-.options-button{
+.options-button,
+.popup-signup-clearflieds{
   flex:1;
   padding:15px;
   border-radius:12px;
@@ -556,12 +557,14 @@ body{
 }
 
 .declineall-button,
-.options-button{
+.options-button,
+.popup-signup-clearflieds{
   background: var(--amazon-bg-light);
   border: 2px solid var(--amazon-border-light);
 }
 
-.options-button{
+.options-button,
+.popup-signup-clearflieds{
   flex:0;
   width:50px;
   display:flex;
@@ -846,20 +849,21 @@ input[disabled]{
 .display-wrap{
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 1px;
   width: 100%;
 }
 
 .display-wrap .signup-flied{
   flex: 1 1 auto;
   min-width: 0;
-  padding-right: 12px; /* keep small internal padding */
+  padding-right: 5px; 
+  font-weight: 700;
 }
 
 .eye-btn{
   position: relative;
-  height: 34px;
-  width: 34px;
+  height: 50px;
+  width: 50px;
   border-radius: 10px;
   border: 2px solid var(--amazon-border-light);
   background: var(--amazon-bg-light);
@@ -872,7 +876,8 @@ input[disabled]{
 }
 
 .eye-btn i{
-  font-size: 16px;
+  font-size: 20px;
+  color: var(--amazon-text-primary);
   pointer-events: none;
 }
 
@@ -889,4 +894,20 @@ input[disabled]{
 .eye-btn:focus{
   outline: none;
   box-shadow: 0 0 0 3px rgba(0,123,255,0.12);
+}
+
+/* Scrollable password and phone inputs on review page */
+.password-review .signup-flied{
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.eye-btn-2{
+  width: 60px;
+}
+
+.popupsignup-actions{
+  display:flex;
+  gap:10px;
 }

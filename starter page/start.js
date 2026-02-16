@@ -70,10 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (button.id === 'declineall-button' || button.id === 'declineall-button-closepopup') {
         localStorage.setItem('cookieconsent', '✗');
       }
-
-      setTimeout(() => {
-        closepopup.forEach(id => closePopup(id));
-      }, 5000);
     });
   });
 });
@@ -705,9 +701,10 @@ if (passwordInput && passwordStatusIcon) {
     // Need at least 2 digits to show first/last properly
     if (normalised.length === 1) return `${code} ${normalised}*`;
     const first = normalised[0];
-    const last = normalised[normalised.length - 1];
+    const lastone = normalised[normalised.length - 2]
+    const lasttwo = normalised[normalised.length - 1];
 
-    return `${code} ${first}${'*'.repeat(Math.max(4, normalised.length - 2))}${last}`;
+    return `${code} ${first}${'•'.repeat(Math.max(4, normalised.length - 2))}${lastone}${lasttwo}`;
   }
 
   function fullPhone(code, rawPhone) {
@@ -720,7 +717,7 @@ if (passwordInput && passwordStatusIcon) {
   function maskPassword(rawPwd) {
     if (!rawPwd) return '';
     // show fixed bullets length for privacy (or use rawPwd.length if you prefer)
-    return '•'.repeat(Math.max(8, Math.min(16, rawPwd.length)));
+    return '•'.repeat(Math.max(8, Math.min(100, rawPwd.length)));
   }
 
   function setEye(btn, isOn) {
@@ -783,3 +780,47 @@ if (passwordInput && passwordStatusIcon) {
     refreshReviewFields();
   });
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+  closePopup('popupaskcookies')
+  openPopup('popuplogin')
+})
+
+const editemailandphone = document.querySelectorAll('.edit-trigger')
+const editpassword = document.getElementById('editpassword')
+
+function ClosereviewOpensignup() {
+  setTimeout(() => {
+    closePopup('popupreview');
+    openPopup('popupsignup');
+  }, 500);
+}
+
+function ClosereviewOpenpassword() {
+  setTimeout(() => {  
+    closePopup('popupreview');
+    openPopup('popuppassword');
+  }, 500);
+}
+
+editemailandphone.forEach(btn => {
+  btn.addEventListener('click', () => {
+    ClosereviewOpensignup()
+  })
+})
+
+editpassword.addEventListener('click', () => {
+  ClosereviewOpenpassword()
+})
+
+const email = document.getElementById('email')
+const phoneoptions = document.getElementById('phoneCountry')
+const phone = document.getElementById('phone')
+
+email.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter'){
+    e.preventDefault();
+    email.blur();
+    phoneoptions.focus()
+  }
+})

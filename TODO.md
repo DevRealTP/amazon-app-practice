@@ -1,4 +1,3 @@
-1. Convert all ements to darkmode friendly.
-2. after --> Devlop login
-DAO: 06/02/2026
-DAD: 07/02/2026
+1. Organise the folder structure. 
+2. Complete the login page. 
+3. Convert all elements to dark mode.
