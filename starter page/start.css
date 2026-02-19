@@ -534,8 +534,8 @@ body{
   transition: 0.2s ease;
 }
 
-.switch input:checked + .slider{background: #007600;border-color: rgba(2, 66, 15, 0.95);}
-.switch input:checked + .slider::before{transform: translate(16px, -50%);}
+.switch input:checked + .slider{background: var(--amazon-orange);border-color: var(--amazon-orange-dark)}
+.switch input:checked + .slider::before{transform: translate(17px, -50%);}
 .side-menu-item.side-menu-toggle{ padding: 12px 14px; }
 .side-menu, .menu-overlay{ user-select: none; }
 .side-menu-item > span{ flex: 1; min-width: 0; }
@@ -885,12 +885,6 @@ input[disabled]{
   transform: scale(0.96);
 }
 
-/* Focus styles for accessibility */
-.signup-flied:focus{
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0,123,255,0.12);
-  border-color: var(--amazon-link);
-}
 .eye-btn:focus{
   outline: none;
   box-shadow: 0 0 0 3px rgba(0,123,255,0.12);
@@ -910,4 +904,14 @@ input[disabled]{
 .popupsignup-actions{
   display:flex;
   gap:10px;
+}
+
+.signup-flied-display{
+  -webkit-tap-highlight-color: none;
+}
+
+.signup-flied-display:focus{
+  outline: none;
+  box-shadow: none;
+  border: 2px solid var(--amazon-border-light);
 }

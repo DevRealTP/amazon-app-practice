@@ -93,3 +93,33 @@ body.dark .signup-righticon.valid {color: #21a67e !important; }
 body.dark .signup-righticon.invalid {color: #d93025 !important; }
 body.dark .signup-righticon.idle {color: #ffffff !important; }
 body.dark .signup-righticon.loading{color: #f8c81b !important; }
+
+body.dark #toggle-checkbox:checked + .slider {background-color: var(--amazon-orange); border: var(--amazon-orange-dark);}
+#toggle-checkbox:checked + .slider::before {transform: translateX(37px);z-index: 3;}
+#toggle-status {margin-top: 12px;font-weight: bold;}
+.icons-hidden {opacity: 0;}
+
+body.dark .signup-flied{
+  background: var(--amazon-bg-light);
+  border: 1px solid var(--amazon-border-light);
+  color: var(--amazon-text-primary);
+}
+
+body.dark .signup-flied:focus{
+  border-color: var(--amazon-orange);
+  box-shadow: 0 0 0 3px rgba(255,153,0,0.3);
+}
+
+body.dark .signup-select{
+  background: var(--amazon-bg-light);
+  border: 1px solid var(--amazon-border-light);
+  color: var(--amazon-text-primary);
+}
+
+body.dark .continue-button.enabled{
+  color: var(--amazon-text-inverse);
+}
+
+body.dark .nextone-button.enabled{
+  color: var(--amazon-text-inverse);
+}
