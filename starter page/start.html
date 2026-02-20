@@ -37,40 +37,17 @@
         <a class="side-menu-item" href="#"><i class="fa-solid fa-arrow-right"></i><span onclick="opencagclosemenu()">Continue as Guest</span></a>
         <div class="side-menu-divider"></div>
         <a class="side-menu-item" href="#"><i class="fa-solid fa-universal-access"></i><span onclick="openaccessclosemenu()">Accessibilty</span></a>
-        <div class="side-menu-item side-menu-toggle" role="button" tabindex="0" aria-label="Screen mode toggle">
-          <div class="side-menu-left">
-            <i class="fa-solid fa-sun"></i>
-            <div class="side-menu-text">
-              <span class="side-menu-main">Screen mode</span>
-              <span class="side-menu-sub" id="screenModeLabel">Light mode</span>
-            </div>
-          </div>
-            <label class="switch" aria-label="Toggle light/dark mode">
-              <input id="screenModeToggle" type="checkbox"/>
-              <span class="slider" aria-hidden="true"></span>
-            </label>
-        </div>
-        <div class="side-menu-item side-menu-toggle" role="button" tabindex="0" aria-label="Close menu toggle">
-          <div class="side-menu-left">
-            <i class="fa-solid fa-clone"></i>
-            <div class="side-menu-text">
-              <span class="side-menu-main">Close menu</span>
-              <span class="side-menu-sub" id="screenModeLabel">For popups</span>
-            </div>
-          </div>
-            <label class="switch" aria-label="Toggle ON/OFF">
-              <input id="closemenuToggle" type="checkbox"/>
-              <span class="slider" aria-hidden="true"></span>
-            </label>
-        </div>
         <div class="side-menu-divider"></div>
         <a class="side-menu-item" href="#"><i class="fa-solid fa-shield-halved"></i><span onclick="openpandsclosemenu()">Privacy & Safety</span><i class="fa-solid fa-up-right-from-square"></i></a>
         <a class="side-menu-item" href="#"><i class="fa-solid fa-file-circle-check"></i><span onclick="opentosclosemenu()">Terms of service</span><i class="fa-solid fa-up-right-from-square"></i></a>
         <a class="side-menu-item" href="#"><i class="fa-solid fa-cookie"></i><span onclick="opencookiesclosemenu()">Cookies</span><i class="fa-solid fa-up-right-from-square"></i></a>
+        <a class="side-menu-item" href="#"><i class="fa-solid fa-briefcase"></i><span onclick="opencaaclosemenu()">Careers at amazon</span><i class="fa-solid fa-up-right-from-square"></i></a>
         <div class="side-menu-divider"></div>
         <a class="side-menu-item" href="#"><i class="fa-regular fa-message"></i><span onclick="opensupportclosemenu()">Support</span></a>
         <div class="side-menu-divider"></div>
-        <p><i class="fa-regular fa-copyright"></i> Copyright 1996-2026, Amazon.com, Inc. or its affiliates</p>
+        <a class="side-menu-item" href="#"><i class="fa-brands fa-amazon"></i><span onclick="openCNSclosemenu()">Company & Social</span><i class="fa-solid fa-up-right-from-square"></i></a>
+        <div class="side-menu-divider"></div>
+        <p class="side-menu-subtext">© 1996-2026, Amazon.com, Inc. or its affiliates</p>>
       </div>
     </aside>
     <!-- ------------- -->
@@ -116,7 +93,7 @@
     <div class="popup" id="popupphone" data-popup="popupphone">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-heart-crack popup-icon"></i></div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-circle-exclamation popup-icon"></i></div>
       <div class="content">
         <h1>Oops</h1>
         <p>We're sorry, but you're phone is not registered to a <strong>phone provider</strong>, this process is needed.</p>
@@ -131,7 +108,7 @@
     <div class="popup" id="popupai" data-popup="popupai">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-heart-crack popup-icon"></i></div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-circle-exclamation popup-icon"></i></div>
       <div class="content">
         <h1>Oops</h1>
         <p>We're sorry, <strong>Rufus.ai helper is currently unavailable</strong></p>
@@ -196,10 +173,155 @@
       <div class="content">
         <h1>Accessibilty</h1>
         <p>Sorry, This is to diffcult to make!</p>
+        <div>
+          <article class="option-row">
+            <div class="option-text">
+              <h2><i class="fa-solid fa-circle-half-stroke"></i> ‎ Screen Mode</h2>
+              <p id="screen-mode-text">Switch the interface from <strong>Light Mode</strong> to <strong>Dark Mode</strong>. <strong>Data is saved.</strong></p>
+            </div>
+          <div class="toggle-container">
+            <div class="toggle-row">
+              <label class="toggle">
+                <input type="checkbox" id="toggle-checkbox-screen-mode">
+                <span class="slider"></span>
+                <i class="fa-solid fa-grip-lines-vertical toggle-icon toggle-icon-off"></i>
+                <i class="fa-regular fa-circle toggle-icon toggle-icon-on"></i>
+              </label>
+            </div>
+          </div>
+          </article>
+          <article class="option-row">
+            <div class="option-text">
+              <h2><i class="fa-solid fa-clone"></i> ‎ Auto-close Menu</h2>
+              <p>Automatically close the menu, when a popup opens.</p>
+            </div>
+          <div class="toggle-container">
+            <div class="toggle-row">
+              <label class="toggle">
+                <input type="checkbox" id="toggle-checkbox-acm">
+                <span class="slider"></span>
+                <i class="fa-solid fa-grip-lines-vertical toggle-icon toggle-icon-off"></i>
+                <i class="fa-regular fa-circle toggle-icon toggle-icon-on"></i>
+              </label>
+            </div>
+          </div>
+          </article>
+          <article class="option-row">
+            <div class="option-text">
+              <h2><i class="fa-regular fa-square-plus"></i> ‎ Colourblind Indicators</h2>
+              <p>Adds Indicators to toggles, useful for colorblinds. <strong>|| --> ON. O --> OFF</strong>.</p>
+            </div>
+          <div class="toggle-container">
+            <div class="toggle-row">
+              <label class="toggle">
+                <input type="checkbox" id="toggle-checkbox-ci">
+                <span class="slider"></span>
+                <i class="fa-solid fa-grip-lines-vertical toggle-icon toggle-icon-off"></i>
+                <i class="fa-regular fa-circle toggle-icon toggle-icon-on"></i>
+              </label>
+            </div>
+          </div>
+          </article>
+        </div>
         <div class="actions">
           <button class="close-button" data-close="">Close</button>
-          <button class="apply-button" data-close="">Apply</button>
+          <button class="accept-button accept-button-access" data-close type="button">Apply</button>
         </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!--- Popup Careers at Amazon -->
+    <div class="popup" id="popupcaa" data-popup="popupcaa">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
+      <div class="content">
+        <h1>Redirect</h1>
+        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/careers</strong></p>
+        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
+        <div class="actions">
+          <button class="decline-button" data-close="">Decline</button>
+          <button onclick="caaredirect()" class="accept-button" data-close type="button">Accept</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!--- Popup Company & Social --->
+    <div class="popup" id="popupcns" data-popup="popupcns">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-brands fa-amazon popup-icon"></i></div>
+      <div class="content">
+        <h1>Company & Social</h1>
+        <p>Check out corporate Amazon Inc or affiliates. or social media links for news, events, and updates.</p>
+        <div>
+          <article class="option-row">
+            <div class="option-text">
+              <h2><i class="fa-solid fa-link"></i> ‎ Links to Social media</h2>
+              <p>Visit all social media pages.</p>
+            </div>
+          <div class="toggle-container">
+            <div class="toggle-row">
+              <label class="cnsbuttons">
+                <button onclick="socialredirect()" class="cnsbuttons-button">Visit</button>
+              </label>
+            </div>
+          </div>
+          </article>
+          <article class="option-row">
+            <div class="option-text">
+              <h2><i class="fa-regular fa-building"></i> ‎ Coperate Amazon.inc</h2>
+              <p>Check out stocks, news, and updates on corporate Amazon Inc.</p>
+            </div>
+          <div class="toggle-container">
+            <div class="toggle-row">
+              <label class="cnsbuttons">
+                <button onclick="coperateredirect()" class="cnsbuttons-button">Visit</button>
+              </label>
+            </div>
+          </div>
+          </article>
+        </div>
+        <div class="actions">
+          <button class="close-button" data-close="">Close</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+    <!-- Popup redirect loading -->
+    <div class="popup" id="popuprl" data-popup="popuprl">
+      <div class="handle"></div>
+      <div class="popup-image" aria-hidden="true"><span class="loader"></span></div>
+      <div class="content">
+        <h1>Loading</h1>
+        <p><strong>We're redirecting you, please wait.</strong></p>
+      </div>
+    </div>
+    <!-- Popup creation loading -->
+    <div class="popup" id="popupca" data-popup="popupca">
+      <div class="handle"></div>
+      <div class="popup-image" aria-hidden="true"><span class="loader"></span></div>
+      <div class="content">
+        <h1>Loading</h1>
+        <p><strong>We're creating your amazon account, please wait.</strong></p>
+      </div>
+    </div>
+    <!-- Popup creation success -->
+    <div class="popup" id="popupcas" data-popup="popupcas">
+      <div class="handle"></div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-square-check popup-icon"></i></div>
+      <div class="content">
+        <h1>Successful</h1>
+        <p><strong>Congratulations! Your Amazon account has been successfully created. We are now redirecting you; please wait a moment.</strong></p>
+      </div>
+    </div>
+    <!-- Popup creation fail -->
+    <div class="popup" id="popupcaf" data-popup="popupcaf">
+      <div class="handle"></div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-square-xmark popup-icon"></i></div>
+      <div class="content">
+        <h1>Failed</h1>
+        <p><strong>Something went wrong. Please try again later or contact support (<i class="fa-regular fa-message"></i>) if this continues.</strong></p>
       </div>
     </div>
     <!-- ------------- -->
@@ -577,7 +699,7 @@
               readonly
             >
             <button class="eye-btn eye-btn-2 edit-trigger" type="button" id="editphone" aria-label="Edit phone number">
-              <i class="fa-solid fa-pen-to-square""></i>
+              <i class="fa-solid fa-pen-to-square"></i>
             </button>
             <button class="eye-btn eye-btn-2" type="button" id="togglePhone" aria-label="Show phone number">
               <i class="fa-regular fa-eye"></i>

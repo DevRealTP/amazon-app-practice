@@ -1183,6 +1183,13 @@ function opencookiesclosemenu() {
   openPopup('popupcookies');
 }
 
+function opencaaclosemenu() {
+  if (cmtflag) {
+    closeMenu();
+  }
+  openPopup('popupcaa');
+}
+
 function opensupportclosemenu() {
   if (cmtflag) {
     closeMenu();
@@ -1190,11 +1197,78 @@ function opensupportclosemenu() {
   openPopup('popupSupport');
 }
 
-const closemenuToggle = document.getElementById('closemenuToggle')
+function openCNSclosemenu() {
+  if (cmtflag) {
+    closeMenu();
+  }
+  openPopup('popupcns');
+}
+
+const closemenuToggle = document.getElementById('toggle-checkbox-acm')
 let cmtflag = false
 
 if (closemenuToggle) {
   closemenuToggle.addEventListener('change', () => {
     cmtflag = closemenuToggle.checked;
   });
+}
+
+const colourblindIndicator = document.getElementById('toggle-checkbox-ci');
+
+const toggleiconON  = document.querySelectorAll('.toggle-icon-off');
+const toggleiconOFF = document.querySelectorAll('.toggle-icon-on');
+
+// 🔹 LOAD saved state on page start
+const saved = localStorage.getItem('colourblind');
+
+if (saved !== null) {
+  const enabled = saved === 'true';
+
+  colourblindIndicator.checked = enabled;
+
+  [...toggleiconON, ...toggleiconOFF].forEach(icon => {
+    icon.classList.toggle('enabled', enabled);
+  });
+}
+
+// 🔹 SAVE when user changes toggle
+colourblindIndicator.addEventListener('change', (e) => {
+  const enabled = e.target.checked;
+
+  // Apply indicators
+  [...toggleiconON, ...toggleiconOFF].forEach(icon => {
+    icon.classList.toggle('enabled', enabled);
+  });
+
+  // Save to localStorage
+  localStorage.setItem('colourblind', enabled);
+});
+
+const createbutton = document.querySelector('.next-two-button'); // ✅ class selector
+
+if (createbutton) {
+  createbutton.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const chanceofcreation = Math.floor(Math.random() * 10) + 1;
+    console.log('chanceofcreation:', chanceofcreation);
+
+    if (chanceofcreation <= 9) {
+      openPopup('popupca');
+      setTimeout(() => {
+        openPopup('popupcas');
+        setTimeout(() => {
+          cagredirect()
+        }, 1500);
+      }, 3000);
+    } else {
+      openPopup('popupcaf');
+      setTimeout(() => {
+        openPopup('popupreview')
+      }, 3000);
+    }
+  });
+} else {
+  console.warn('Create button not found (.next-two-button)');
 }

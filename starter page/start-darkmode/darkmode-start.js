@@ -1,57 +1,110 @@
-// ===== DARK MODE (Light by default) =====
-const screenToggle = document.getElementById('screenModeToggle');
-const screenLabel  = document.getElementById('screenModeLabel');
-
-const logoTop  = document.getElementById('amazonLogo');
+const screenToggle = document.getElementById('toggle-checkbox-screen-mode');
+const logoTop = document.getElementById('amazonLogo');
 const logoMenu = document.getElementById('amazonLogoMenu');
+const screenmodetext = document.getElementById('screen-mode-text');
 
-function setMode(isDark){
+const systemThemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+
+// ===== APPLY THEME =====
+function applyTheme(isDark, savePreference = true) {
   document.body.classList.toggle('dark', isDark);
 
-  if (screenLabel){
-    screenLabel.textContent = isDark ? 'Dark mode' : 'Light mode';
+  const logoSrc = isDark
+    ? '../images/amazon_white.webp'
+    : '../images/amazon_black.png';
+
+  if (logoTop) logoTop.src = logoSrc;
+  if (logoMenu) logoMenu.src = logoSrc;
+
+  // 🔹 Update description text
+  updateModeText(isDark);
+
+  if (savePreference) {
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   }
-
-  // ✅ Swap images based on mode
-  if (logoTop)  logoTop.src  = isDark ? "../images/amazon_white.webp" : "../images/amazon_black.png";
-  if (logoMenu) logoMenu.src = isDark ? "../images/amazon_white.webp" : "../images/amazon_black.png";
-
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
 
-// Default = LIGHT (unless user previously picked dark)
-const savedTheme = localStorage.getItem('theme');
-const initialDark = savedTheme ? (savedTheme === 'dark') : false;
 
-setMode(initialDark);
+// ===== INITIALIZE =====
+function initializeTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const hasUserChoice = savedTheme === 'dark' || savedTheme === 'light';
 
-if (screenToggle){
-  screenToggle.checked = initialDark;
+  const isDark = hasUserChoice
+    ? savedTheme === 'dark'
+    : systemThemeQuery.matches;
 
-  // When user clicks the actual switch
-  screenToggle.addEventListener('change', () => {
-    setMode(screenToggle.checked);
+  applyTheme(isDark, false);
+
+  if (screenToggle) {
+    screenToggle.checked = isDark;
+  }
+}
+
+
+// ===== MANUAL TOGGLE =====
+function handleToggle() {
+  if (!screenToggle) return;
+  applyTheme(screenToggle.checked, true);
+}
+
+
+// ===== SYSTEM CHANGES =====
+function listenForSystemChanges() {
+  systemThemeQuery.addEventListener('change', (e) => {
+    const saved = localStorage.getItem('theme');
+    const lockedIn = saved === 'dark' || saved === 'light';
+
+    // Ignore OS changes if user chose manually
+    if (lockedIn) return;
+
+    applyTheme(e.matches, false);
+
+    if (screenToggle) {
+      screenToggle.checked = e.matches;
+    }
   });
 }
 
-// When user clicks anywhere on the "Screen mode" row (not just the switch)
-document.querySelectorAll('.side-menu-toggle').forEach(row => {
-  row.addEventListener('click', (e) => {
-    // If user clicked the switch itself, let it handle it
-    if (e.target.closest('label.switch')) return;
-    if (!screenToggle) return;
 
+// ===== SIDE MENU CLICK SUPPORT =====
+document.querySelectorAll('.side-menu-toggle').forEach((row) => {
+  const toggle = () => {
+    if (!screenToggle) return;
     screenToggle.checked = !screenToggle.checked;
-    setMode(screenToggle.checked);
+    handleToggle();
+  };
+
+  row.addEventListener('click', (e) => {
+    if (e.target.closest('label.switch')) return;
+    toggle();
   });
 
   row.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      if (!screenToggle) return;
-
-      screenToggle.checked = !screenToggle.checked;
-      setMode(screenToggle.checked);
+      toggle();
     }
   });
 });
+
+
+// ===== TEXT SWITCHING =====
+function updateModeText(isDark) {
+  if (!screenmodetext) return;
+
+  screenmodetext.innerHTML = isDark
+    ? 'Switch the interface from <strong>Dark Mode</strong> to <strong>Light Mode</strong>. <strong>Data is saved.</strong>'
+    : 'Switch the interface from <strong>Light Mode</strong> to <strong>Dark Mode</strong>. <strong>Data is saved.</strong>';
+}
+
+
+// ===== START =====
+initializeTheme();
+
+if (screenToggle) {
+  screenToggle.addEventListener('change', handleToggle);
+}
+
+listenForSystemChanges();

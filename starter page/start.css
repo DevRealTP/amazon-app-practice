@@ -519,6 +519,10 @@ body{
   border-radius: 20px;
   border: 2px solid rgba(255,255,255,0.25);
   transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
 }
 
 .switch .slider::before{
@@ -532,6 +536,35 @@ body{
   background: #fff;
   transform: translateY(-50%);
   transition: 0.2s ease;
+  z-index: 2;
+}
+
+.switch .slider::after{
+  position: absolute;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+body.colorblind-mode .switch .slider::after {
+  opacity: 1;
+}
+
+/* OFF indicator (left side) */
+.switch .slider::after {
+  content: "-";
+  left: 8px;
+}
+
+/* ON indicator (right side) */
+.switch input:checked + .slider::after {
+  content: "+";
+  left: auto;
+  right: 8px;
 }
 
 .switch input:checked + .slider{background: var(--amazon-orange);border-color: var(--amazon-orange-dark)}
@@ -914,4 +947,64 @@ input[disabled]{
   outline: none;
   box-shadow: none;
   border: 2px solid var(--amazon-border-light);
+}
+
+.accept-button-access{
+  margin-top: 4.5px;
+}
+
+.side-menu-subtext{
+  font-size: 10px;
+}
+
+.cnsbuttons{
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 38px;
+  touch-action: pan-y;
+
+
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.cnsbuttons-button{
+  height: 50px;
+  width: 100px;
+  font-size: 17px;
+  color: #000;
+  font-weight: 700;
+  background-color: var(--amazon-btn-primary);
+  border: 2px solid var(--amazon-btn-primary-hover);
+  border-radius: 10px;
+}
+
+.cnsbuttons-button:active{
+  background-color: var(--amazon-btn-primary-active-background);
+  border: var(--amazon-btn-primary-active-border);
+  box-shadow: var(--amazon-btn-primary-active-boxshadow);
+  font-size: var(--amazon-btn-primary-active-fontsize);
+  transform: var(--amazon-btn-primary-active-transform);
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid var(--amazon-orange);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
 }
