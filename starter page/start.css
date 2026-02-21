@@ -1008,3 +1008,43 @@ input[disabled]{
       transform: rotate(360deg);
   }
 }
+
+.popuplc-codeinput-container{
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.popuplc-codeinput-container input {
+  width: 50px;
+  height: 60px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border: 2px solid var(--amazon-border-light);
+  caret-color: var(--amazon-orange);
+  transition: all 0.35s;
+}
+
+.popuplc-codeinput-container input:focus{
+  border-color: #ff9900;
+  outline: solid 3px rgba(255,153,0,0.35);
+}
+
+.popup-lc-continue-button{
+  background-color: var(--amazon-bg-light);
+  border: solid 2px var(--amazon-border-light);
+  color: grey;
+}
+
+.popup-lc-continue-button:active{
+  background: var(--amazon-btn-light-active-background);
+  border: var(--amazon-btn-light-active-border);
+  box-shadow: none;
+  font-size: 16px;
+  transform: none
+}

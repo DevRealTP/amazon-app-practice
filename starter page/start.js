@@ -1272,3 +1272,40 @@ if (createbutton) {
 } else {
   console.warn('Create button not found (.next-two-button)');
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  openPopup('popuplc')
+})
+
+const popuplcInputs = document.querySelectorAll('.popuplc-codeinput');
+
+popuplcInputs.forEach((popuplcInput, index) => {
+  popuplcInput.addEventListener('input', () => {
+    popuplcInput.value = popuplcInput.value.replace(/\D/g, '').slice(0, 1);
+
+    if (popuplcInput.value && index < popuplcInputs.length - 1) {
+      popuplcInputs[index + 1].focus();
+    }
+  });
+
+  popuplcInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Backspace' && !popuplcInput.value && index > 0) {
+      popuplcInputs[index - 1].focus();
+    }
+  });
+
+  popuplcInput.addEventListener('paste', (e) => {
+    const paste = (e.clipboardData || window.clipboardData).getData('text');
+    if (!paste) return;
+
+    e.preventDefault();
+
+    const digits = paste.replace(/\D/g, '').slice(0, popuplcInputs.length).split('');
+
+    popuplcInputs.forEach((box, i) => {
+      box.value = digits[i] || '';
+    });
+
+    popuplcInputs[Math.min(digits.length, popuplcInputs.length) - 1].focus();
+  });
+});
