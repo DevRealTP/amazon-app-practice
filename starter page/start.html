@@ -541,7 +541,7 @@
       </div>
     </div>
     <!--- Popup Login Face-ID - Verification Failed -->
-    <div class="popup" id="popuplcvf" data-popup="popuplcrf">
+    <div class="popup" id="popuplcvf" data-popup="popuplcvf">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
       <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation popup-icon"></i></div>
@@ -550,6 +550,21 @@
         <p>Unfortunately, no passkey data was found. Please press the <strong>back</strong> button and <strong>register from there.</strong></p>
         <div class="popupaskcookies-actions">
           <button class="declineall-button" id="declineall-button" data-open="popuplc">Back</button>
+        </div>
+      </div>
+    </div>
+      <!--- Popup Login Face-ID - Verification Failed -->
+    <div class="popup" id="popuplcvs" data-popup="popuplcvs">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-square-check popup-icon"></i></div>
+      <div class="content">
+        <h1>Verification - Success</h1>
+        <p>Click the <strong>next</strong> button to head to the main page</p>
+        <p>Or click the <strong>back</strong> button retry the process again.</p>
+        <div class="popupaskcookies-actions">
+          <button class="declineall-button" id="declineall-button" data-open="popuplc">Back</button>
+          <button onclick="cagredirect()" class="acceptall-button" id="acceptall-button">Next</button>
         </div>
       </div>
     </div>

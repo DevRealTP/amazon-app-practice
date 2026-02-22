@@ -1272,7 +1272,3 @@ if (createbutton) {
 } else {
   console.warn('Create button not found (.next-two-button)');
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  openPopup('popuplcvf')
-})
