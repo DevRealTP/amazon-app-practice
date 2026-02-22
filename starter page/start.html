@@ -509,7 +509,50 @@
         </div>
       </div>
     </div>
-    <!-- ------------- -->
+    <!--- Popup Login Face-ID - Register Success -->
+    <div class="popup" id="popuplcrs" data-popup="popuplcrs">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-square-check popup-icon"></i></div>
+      <div class="content">
+        <h1>Verification - Success</h1>
+        <h2>Your passkey was regsieteed</h2>
+        <p>Next, please click the <strong>back</strong> button and then click <strong>Scan Face ID</strong>.</p>
+        <div class="popupaskcookies-actions">
+          <button class="declineall-button" id="declineall-button" data-open="popuplc">Back</button>
+        </div>
+      </div>
+    </div>
+    <!--- Popup Login Face-ID - Register Failed -->
+    <div class="popup" id="popuplcrf" data-popup="popuplcrf">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation popup-icon"></i></div>
+      <div class="content">
+        <h1>Verification - Failed</h1>
+        <p>Please use HTTPS instead of liveserver host. Visit:</p>
+        <p><strong>https://devrealtp.github.io/amazon-app-practice/starter%20page/start.html</strong></p>
+        <p>or click the <strong>Visit</strong> button instead.</p>
+        <p>If you declined verification, <strong>please click back and redo the process again</strong>.</p>
+        <div class="popupaskcookies-actions">
+          <button class="declineall-button" id="declineall-button" data-open="popuplc">Back</button>
+          <button onclick="faceidhttpsredirect()" class="acceptall-button">Visit</button>
+        </div>
+      </div>
+    </div>
+    <!--- Popup Login Face-ID - Verification Failed -->
+    <div class="popup" id="popuplcvf" data-popup="popuplcrf">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation popup-icon"></i></div>
+      <div class="content">
+        <h1>Verification - Failed</h1>
+        <p>Unfortunately, no passkey data was found. Please press the <strong>back</strong> button and <strong>register from there.</strong></p>
+        <div class="popupaskcookies-actions">
+          <button class="declineall-button" id="declineall-button" data-open="popuplc">Back</button>
+        </div>
+      </div>
+    </div>
     <!--- Popup SU/LI --->
     <!-- Popup Signup --->
     <div class="popup" id="popupsignup" data-popup="popupsignup">

@@ -56,3 +56,10 @@ function coperateredirect() {
     window.location.href = "https://www.aboutamazon.com/workplace/corporate-offices";
   }, timer);
 }
+
+function faceidhttpsredirect() {
+  openPopup('popuprl')
+  setTimeout(() => {
+    window.location.href = "https://devrealtp.github.io/amazon-app-practice/starter%20page/start.html";
+  }, timer);
+}
