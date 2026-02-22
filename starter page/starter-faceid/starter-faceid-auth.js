@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         await navigator.credentials.get({ publicKey });
 
         openPopup('popuplcvs')
+        // testing
       } catch (err) {
         openPopup('popuplcvf')
         console.error(err);
