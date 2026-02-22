@@ -38,21 +38,57 @@
         <div class="side-menu-divider"></div>
         <a class="side-menu-item" href="#"><i class="fa-solid fa-universal-access"></i><span onclick="openaccessclosemenu()">Accessibilty</span></a>
         <div class="side-menu-divider"></div>
-        <a class="side-menu-item" href="#"><i class="fa-solid fa-shield-halved"></i><span onclick="openpandsclosemenu()">Privacy & Safety</span><i class="fa-solid fa-up-right-from-square"></i></a>
-        <a class="side-menu-item" href="#"><i class="fa-solid fa-file-circle-check"></i><span onclick="opentosclosemenu()">Terms of service</span><i class="fa-solid fa-up-right-from-square"></i></a>
-        <a class="side-menu-item" href="#"><i class="fa-solid fa-cookie"></i><span onclick="opencookiesclosemenu()">Cookies</span><i class="fa-solid fa-up-right-from-square"></i></a>
-        <a class="side-menu-item" href="#"><i class="fa-solid fa-briefcase"></i><span onclick="opencaaclosemenu()">Careers at amazon</span><i class="fa-solid fa-up-right-from-square"></i></a>
+        <a class="side-menu-item" href="#" data-go="pands"><i class="fa-solid fa-shield-halved"></i><span>Privacy & Safety</span><i class="fa-solid fa-up-right-from-square"></i></a>
+        <a class="side-menu-item" href="#" data-go="tos"><i class="fa-solid fa-file-circle-check"></i><span>Terms of service</span><i class="fa-solid fa-up-right-from-square"></i></a>
+        <a class="side-menu-item" href="#" data-go="cookies"><i class="fa-solid fa-cookie"></i><span>Cookies</span><i class="fa-solid fa-up-right-from-square"></i></a>
+        <a class="side-menu-item" href="#" data-go="careers"><i class="fa-solid fa-briefcase"></i><span>Careers at amazon</span><i class="fa-solid fa-up-right-from-square"></i></a>
         <div class="side-menu-divider"></div>
         <a class="side-menu-item" href="#"><i class="fa-regular fa-message"></i><span onclick="opensupportclosemenu()">Support</span></a>
         <div class="side-menu-divider"></div>
         <a class="side-menu-item" href="#"><i class="fa-brands fa-amazon"></i><span onclick="openCNSclosemenu()">Company & Social</span><i class="fa-solid fa-up-right-from-square"></i></a>
         <div class="side-menu-divider"></div>
-        <p class="side-menu-subtext">© 1996-2026, Amazon.com, Inc. or its affiliates</p>>
+        <p class="side-menu-subtext">© 1996-2026, Amazon.com, Inc. or its affiliates</p>
       </div>
     </aside>
     <!-- ------------- -->
     <!-- Popup storage -->
     <div class="overlay" id="overlay"></div>
+    <!-- ONE reusable redirect popup -->
+    <div class="popup" id="popupRedirect" data-popup="popupRedirect">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+
+      <div class="popup-image" aria-hidden="true">
+        <i class="fa-solid fa-up-right-from-square popup-icon"></i>
+      </div>
+
+      <div class="content">
+        <h1>Redirect</h1>
+
+        <!-- JS will fill these -->
+        <p id="redirectLine">
+          <strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i>
+          would like to redirect you to <strong id="redirectToText">...</strong>
+        </p>
+
+        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk.</p>
+
+        <div class="actions">
+          <button class="decline-button" type="button" data-close>Decline</button>
+          <button class="accept-button" type="button" id="redirectAcceptBtn">Accept</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Your existing loading popup (keep as-is) -->
+    <div class="popup" id="popuprl" data-popup="popuprl">
+      <div class="handle"></div>
+      <div class="popup-image" aria-hidden="true"><span class="loader"></span></div>
+      <div class="content">
+        <h1>Loading</h1>
+        <p><strong>We're redirecting you, please wait.</strong></p>
+      </div>
+    </div>
     <!-- Popup support -->
     <div class="popup" id="popupSupport" data-popup="popupSupport">
       <div class="handle"></div>
@@ -64,28 +100,12 @@
         <p>How would you like to be assisted?</p>
         <div class="support-grid">
           <div class="support-grid-top">
-            <button class="support-button support-email" type="button" data-switch="popupEmail"><i class="fa-regular fa-envelope"></i> Email</button>
+            <button class="support-button support-email" type="button" data-go="supportEmail"><i class="fa-regular fa-envelope"></i> Email</button>
             <button class="support-button support-phone" type="button" data-switch="popupphone"><i class="fa-solid fa-phone"></i> Phoneline</button>
           </div>
           <button class="support-button support-rufus" type="button" data-switch="popupai"><i class="fa-regular fa-star"></i> Rufus.ai helper</button>
         </div>
         <div class="actions"><button class="close-button" data-close type="button">Close</button></div>
-      </div>
-    </div>
-    <!-- ------------- -->
-    <!--- Popup email --->
-    <div class="popup" id="popupEmail" data-popup="popupEmail">
-      <div class="handle"></div>
-      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i> </div>
-      <div class="content">
-        <h1>Redirect</h1>
-        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/support</strong></p>
-        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
-         <div class="actions">
-          <button class="decline-button" data-switch="popupSupport">Decline</button>
-          <button onclick="supportemailredirect()" class="accept-button" data-close type="button">Accept</button>
-        </div>
       </div>
     </div>
     <!-- ------------- -->
@@ -114,54 +134,6 @@
         <p>We're sorry, <strong>Rufus.ai helper is currently unavailable</strong></p>
         <p>Please <strong>try again later or contact support for assistance.</strong></p>
         <div class="actions"><button class="back-button" data-switch="popupSupport">Back</button></div>
-      </div>
-    </div>
-    <!-- ------------- -->
-    <!--- Popup pands --->
-    <div class="popup" id="popuppands" data-popup="popuppands">
-      <div class="handle"></div>
-      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
-      <div class="content">
-        <h1>Redirect</h1>
-        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/privacy-and-safety</strong></p>
-        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
-        <div class="actions">
-          <button class="decline-button" data-close="">Decline</button>
-          <button onclick="pandsredirect()" class="accept-button" data-close type="button">Accept</button>
-        </div>
-      </div>
-    </div>
-    <!-- ------------- -->
-    <!---- Popup TOS ---->
-    <div class="popup" id="popuptos" data-popup="popuptos">
-      <div class="handle"></div>
-      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
-      <div class="content">
-        <h1>Redirect</h1>
-        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/terms-of-service</strong></p>
-        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
-        <div class="actions">
-          <button class="decline-button" data-close="">Decline</button>
-          <button onclick="tosredirect()" class="accept-button" data-close type="button">Accept</button>
-        </div>
-      </div>
-    </div>
-    <!-- ------------- -->
-    <!-- Popup cookies -->
-    <div class="popup" id="popupcookies" data-popup="popupcookies">
-      <div class="handle"></div>
-      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
-      <div class="content">
-        <h1>Redirect</h1>
-        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/cookies-and-usage</strong></p>
-        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
-        <div class="actions">
-          <button class="decline-button" data-close="">Decline</button>
-          <button onclick="cookieredirect()" class="accept-button" data-close type="button">Accept</button>
-        </div>
       </div>
     </div>
     <!-- ------------- -->
@@ -230,22 +202,6 @@
       </div>
     </div>
     <!-- ------------- -->
-    <!--- Popup Careers at Amazon -->
-    <div class="popup" id="popupcaa" data-popup="popupcaa">
-      <div class="handle"></div>
-      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
-      <div class="content">
-        <h1>Redirect</h1>
-        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/careers</strong></p>
-        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
-        <div class="actions">
-          <button class="decline-button" data-close="">Decline</button>
-          <button onclick="caaredirect()" class="accept-button" data-close type="button">Accept</button>
-        </div>
-      </div>
-    </div>
-    <!-- ------------- -->
     <!--- Popup Company & Social --->
     <div class="popup" id="popupcns" data-popup="popupcns">
       <div class="handle"></div>
@@ -263,7 +219,7 @@
           <div class="toggle-container">
             <div class="toggle-row">
               <label class="cnsbuttons">
-                <button onclick="socialredirect()" class="cnsbuttons-button">Visit</button>
+                <button class="cnsbuttons-button" type="button" data-go="social">Visit</button>
               </label>
             </div>
           </div>
@@ -276,7 +232,7 @@
           <div class="toggle-container">
             <div class="toggle-row">
               <label class="cnsbuttons">
-                <button onclick="coperateredirect()" class="cnsbuttons-button">Visit</button>
+                <button class="cnsbuttons-button" type="button" data-go="corporate">Visit</button>
               </label>
             </div>
           </div>
@@ -916,7 +872,7 @@
         </article>
         <div class="actions">
           <button class="declineall-button" id="declineall-button-closepopup" data-close="">Not now</button>
-          <button class="acceptall-button next-button nextone-button" id="acceptall-button-closepopup" data-open="popuplc">Login</button>
+          <button class="acceptall-button next-button nexttwo-button" id="acceptall-button-closepopup" data-open="popuplc">Login</button>
           <!-- add openpopupllwaitthenopenpopuplc() up here as .enabled -->
         </div>
       </div>

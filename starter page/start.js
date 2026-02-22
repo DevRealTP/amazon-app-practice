@@ -1260,13 +1260,13 @@ if (createbutton) {
         openPopup('popupcas');
         setTimeout(() => {
           cagredirect()
-        }, 1500);
+        }, 4500);
       }, 3000);
     } else {
       openPopup('popupcaf');
       setTimeout(() => {
         openPopup('popupreview')
-      }, 3000);
+      }, 5000);
     }
   });
 } else {
@@ -1286,3 +1286,12 @@ function openpopupllwaitthenopenpopuplc() {
     openPopup('popuplc')
   }, populltimer);
 }
+
+const loginnextbutton = document.querySelector('.nexttwo-button');
+
+if (loginnextbutton) {
+  loginnextbutton.addEventListener('click', (e) => {
+    if (e.target.disabled) console.log("ERROR");
+  });
+}
+

@@ -1,14 +1,92 @@
-                  <select class="phonecard-country" id="countrySelect"aria-label="Country">
-                    <option value="US" data-code="+1" selected>United States (+1)</option>
-                    <option value="GB" data-code="+44">United Kingdom (+44)</option>
-                    <option value="IE" data-code="+353">Ireland (+353)</option>
-                    <option value="FR" data-code="+33">France (+33)</option>
-                    <option value="DE" data-code="+49">Germany (+49)</option>
-                    <option value="ES" data-code="+34">Spain (+34)</option>
-                    <option value="PT" data-code="+351">Portugal (+351)</option>
-                    <option value="CH" data-code="+41">Switzerland (+41)</option>
-                    <option value="NO" data-code="+47">Norway (+47)</option>
-                    <option value="SE" data-code="+46">Sweden (+46)</option>
-                  </select>
+    <!--- Popup email --->
+    <div class="popup" id="popupEmail" data-popup="popupEmail">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i> </div>
+      <div class="content">
+        <h1>Redirect</h1>
+        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/support</strong></p>
+        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
+         <div class="actions">
+          <button class="decline-button" data-switch="popupSupport">Decline</button>
+          <button class="accept-button" data-close type="button" data-redirect="supportEmail">Accept</button>
+        </div>
+      </div>
+    </div>
 
-                                  <input class="phonecard-number" id="phoneNumber" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 (555) 000-000"/>
+    <!--- Popup pands --->
+    <div class="popup" id="popuppands" data-popup="popuppands">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
+      <div class="content">
+        <h1>Redirect</h1>
+        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/privacy-and-safety</strong></p>
+        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
+        <div class="actions">
+          <button class="decline-button" data-close="">Decline</button>
+          <button class="accept-button" data-close type="button" data-redirect="pands">Accept</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+
+    <!-- Popup cookies -->
+    <div class="popup" id="popupcookies" data-popup="popupcookies">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
+      <div class="content">
+        <h1>Redirect</h1>
+        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/cookies-and-usage</strong></p>
+        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
+        <div class="actions">
+          <button class="decline-button" data-close="">Decline</button>
+          <button class="accept-button" data-close type="button" data-redirect="cookies">Accept</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+
+    <!--- Popup Careers at Amazon -->
+    <div class="popup" id="popupcaa" data-popup="popupcaa">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
+      <div class="content">
+        <h1>Redirect</h1>
+        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/careers</strong></p>
+        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
+        <div class="actions">
+          <button class="decline-button" data-close="">Decline</button>
+          <button class="accept-button" data-close type="button" data-redirect="careers">Accept</button>
+        </div>
+      </div>
+    </div>
+    <!-- ------------- -->
+
+        <!---- Popup TOS ---->
+    <div class="popup" id="popuptos" data-popup="popuptos">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
+      <div class="content">
+        <h1>Redirect</h1>
+        <p><strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i> would like to redirect you to <strong>amazon.co.uk/terms-of-service</strong></p>
+        <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk</p>
+        <div class="actions">
+          <button class="decline-button" data-close="">Decline</button>
+          <button class="accept-button" data-close type="button" data-redirect="tos">Accept</button>
+        </div>
+      </div>
+    </div>
+
+     <a class="side-menu-item" href="#"><i class="fa-solid fa-shield-halved"></i><span onclick="openpandsclosemenu()">Privacy & Safety</span><i class="fa-solid fa-up-right-from-square"></i></a>
+
+      <a class="side-menu-item" href="#"><i class="fa-solid fa-file-circle-check"></i><span onclick="opentosclosemenu()">Terms of service</span><i class="fa-solid fa-up-right-from-square"></i></a>
+
+              <a class="side-menu-item" href="#"><i class="fa-solid fa-cookie"></i><span onclick="opencookiesclosemenu()">Cookies</span><i class="fa-solid fa-up-right-from-square"></i></a>
+
+              <a class="side-menu-item" href="#"><i class="fa-solid fa-briefcase"></i><span onclick="opencaaclosemenu()">Careers at amazon</span><i class="fa-solid fa-up-right-from-square"></i></a>
+
+     
