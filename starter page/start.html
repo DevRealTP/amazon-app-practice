@@ -491,29 +491,21 @@
       </div>
     </div>
     <!-- ------------- -->
-    <!--- Popup Login code -->
+    <!--- Popup Login Face-ID -->
     <div class="popup" id="popuplc" data-popup="popuplc">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
       <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-shield-halved popup-icon"></i></div>
       <div class="content">
-        <h1>Login code required</h1>
-        <p>We sent a <strong>6-digit code</strong> to <strong>{user-email-address}</strong> for verification, please open your inbox & enter the code. Don't see it? Check your Junk (<i class="fa-regular fa-trash-can"></i>) or spam folder (<i class="fa-solid fa-circle-exclamation"></i>).</p>
-        <p><strong>Do not share your code with anyone else.</strong> Only trust the address ending with: <strong>@amazon-verify.co.uk</strong></p>
-        <div class="popuplc-codeinput-container">
-          <input class="popuplc-codeinput popuplc-codeinput-one" type="text" id="popuplc-codeinput-one" inputmode="numeric" pattern="[0-9]*" maxlength="1" placeholder="1" autocomplete="one-time-code">
-          <input class="popuplc-codeinput popuplc-codeinput-two" type="text" id="popuplc-codeinput-two" inputmode="numeric" pattern="[0-9]*" maxlength="1" placeholder="2" autocomplete="one-time-code">
-          <input class="popuplc-codeinput popuplc-codeinput-three" type="text" id="popuplc-codeinput-three" inputmode="numeric" pattern="[0-9]*" maxlength="1" placeholder="3" autocomplete="one-time-code">
-          <input class="popuplc-codeinput popuplc-codeinput-four" type="text" id="popuplc-codeinput-four" inputmode="numeric" pattern="[0-9]*" maxlength="1" placeholder="4" autocomplete="one-time-code">
-          <input class="popuplc-codeinput popuplc-codeinput-five" type="text" id="popuplc-codeinput-five" inputmode="numeric" pattern="[0-9]*" maxlength="1" placeholder="5" autocomplete="one-time-code">
-          <input class="popuplc-codeinput popuplc-codeinput-six" type="text" id="popuplc-codeinput-six" inputmode="numeric" pattern="[0-9]*" maxlength="1" placeholder="6" autocomplete="one-time-code">
-        </div>
+        <h1>Face ID Verification</h1>
+        <p>This account is protected by Face ID verification. Please verify your identity using Face ID.</p>
+        <p><strong>(To register a new Face ID, click the‎ <i class="fa-solid fa-circle-plus"></i>‎ icon bottom left, for testing)</strong></p>
         <p></p> <!-- <===== for adding warnings, success, fail, etc-->
         <!-- <p><i class="fa-solid fa-triangle-exclamation"></i> <strong>Code required to continue</strong></p> -->
         <div class="popupaskcookies-actions">
-          <button class="options-button" id="options-button" data-open="popupcookiesoptions"><i class="fa-solid fa-arrows-rotate fa-flip-horizontal"></i></button>
+          <button class="options-button" id="registerBtn"><i class="fa-solid fa-circle-plus"></i></button>
           <button class="declineall-button" id="declineall-button" data-open="popuplogin">Back</button>
-          <button class="acceptall-button popup-lc-continue-button" id="acceptall-button">Continue</button>
+          <button class="acceptall-button" id="loginBtn">Scan Face ID</button>
         </div>
       </div>
     </div>
@@ -610,7 +602,7 @@
       <div class="content">
         <h1>Invalid</h1>
         <p>
-          Some details are incorrect, <strong>please review or try again later.</strong> A green checkmark <strong>(<i class="fa-solid fa-square-check" style="color: #1ac18f;"></i>)</strong> 
+          Some details are incorrect, <strong>please review or try again later.</strong> An green checkmark <strong>(<i class="fa-solid fa-square-check" style="color: #1ac18f;"></i>)</strong> 
           will appear if it's valid. Otherwise, a red cross <strong>(<i class="fa-solid fa-square-xmark" style="color: #c91d1d;"></i>)</strong> will appear if its Invalid.
         <div class="actions">
           <button class="declineall-button" id="declineall-button-closepopup" data-open="popupsignup">Back</button>
@@ -891,6 +883,7 @@
     </header> 
     <!-- ------------- -->
     <script defer src="start.js"></script>
+    <script defer src="../starter page/starter-faceid/starter-faceid-auth.js"></script>
     <script defer src="../global/global/global.js"></script>
     <script defer src="../starter page/start-darkmode/darkmode-start.js"></script>
     <script defer src="../global/popup-global/popup-stack.js"></script>
