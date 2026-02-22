@@ -120,7 +120,6 @@
   acceptBtn.addEventListener('click', () => {
     if (!pendingUrl) return;
 
-    closePopup('popupRedirect');
     openPopup('popuprl'); // your loading popup
 
     setTimeout(() => {

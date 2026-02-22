@@ -257,7 +257,7 @@ function updateNextButton() {
   if (passwordcheck) {
     nextbutton.dataset.open = 'popupreview'
   } else{
-    nextbutton.dataset.open = 'popupinvalidtwo'
+    nextbutton.dataset.open = 'popupinvalidpassword'
   }
 }
 
@@ -911,7 +911,7 @@ let passwordcheck_login = false;
 
 // Gate login button based on all three fields
 function loginButtonGating() {
-  const loginBtn = document.querySelector('#popuplogin .nextone-button');
+  const loginBtn = document.querySelector('#popuplogin .nexttwo-button'); 
   if (!loginBtn) return;
 
   const allowed = emailcheck_login && phonecheck_login && passwordcheck_login;
@@ -1289,9 +1289,9 @@ function openpopupllwaitthenopenpopuplc() {
 
 const loginnextbutton = document.querySelector('.nexttwo-button');
 
-if (loginnextbutton) {
-  loginnextbutton.addEventListener('click', (e) => {
-    if (e.target.disabled) console.log("ERROR");
-  });
-}
+loginnextbutton.addEventListener('click', (e) => {
+  const btn = e.target.closest('.enabled');
+  if (!btn) return;
 
+  openPopup('popuplc');
+});

