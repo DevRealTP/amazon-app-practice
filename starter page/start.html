@@ -568,6 +568,15 @@
         </div>
       </div>
     </div>
+    <!-- Popup Login loading -->
+    <div class="popup" id="popupll" data-popup="popupll">
+      <div class="handle"></div>
+      <div class="popup-image" aria-hidden="true"><span class="loader"></span></div>
+      <div class="content">
+        <h1>Loading</h1>
+        <p><strong>Please wait</strong>, as we process the details.</p>
+      </div>
+    </div>
     <!--- Popup SU/LI --->
     <!-- Popup Signup --->
     <div class="popup" id="popupsignup" data-popup="popupsignup">
@@ -908,6 +917,7 @@
         <div class="actions">
           <button class="declineall-button" id="declineall-button-closepopup" data-close="">Not now</button>
           <button class="acceptall-button next-button nextone-button" id="acceptall-button-closepopup" data-open="popuplc">Login</button>
+          <!-- add openpopupllwaitthenopenpopuplc() up here as .enabled -->
         </div>
       </div>
     </div>

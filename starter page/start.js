@@ -1272,3 +1272,17 @@ if (createbutton) {
 } else {
   console.warn('Create button not found (.next-two-button)');
 }
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   openPopup('popupll')
+// })
+
+const populltimer = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+
+function openpopupllwaitthenopenpopuplc() {
+  openPopup('popupll')
+  setTimeout(() => {
+    closePopup('popupll')
+    openPopup('popuplc')
+  }, populltimer);
+}
