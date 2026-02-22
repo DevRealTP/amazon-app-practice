@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         await navigator.credentials.get({ publicKey });
 
-        alert("Authentication successful ✅");
+        openPopup('popuplcvs')
       } catch (err) {
         openPopup('popuplcvf')
         console.error(err);
