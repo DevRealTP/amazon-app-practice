@@ -937,13 +937,19 @@ let passwordcheck_login = false;
 function loginButtonGating() {
   const loginBtn = document.querySelector('#popuplogin .next-two-button');
   if (!loginBtn) return;
-
   const allowed = emailcheck_login && phonecheck_login && passwordcheck_login;
-
   loginBtn.disabled = !allowed;
   loginBtn.setAttribute('aria-disabled', String(!allowed));
   loginBtn.classList.toggle('is-enabled', allowed);
   loginBtn.classList.toggle('enabled', allowed);
+  if (allowed) {
+    loginBtn.dataset.open = 'popupll';
+    setTimeout(() => {
+      openPopup('popuplc')
+    }, 4250);
+  } else {
+    loginBtn.dataset.open = 'popupinvalidlogin';
+  }
 }
 
 // Add click handler for login button to show invalid popup
@@ -951,12 +957,14 @@ const loginBtn = document.querySelector('#popuplogin .next-two-button');
 if (loginBtn) {
   loginBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopPropagation();          // stop global handler
     if (!(emailcheck_login && phonecheck_login && passwordcheck_login)) {
       openPopup('popupinvalidlogin');
     } else {
       openpopupllwaitthenopenpopuplc();
     }
   });
+  loginButtonGating();           // initialise state
 }
 
 // Login password validation
@@ -1407,7 +1415,7 @@ async function setShakeEnabled(enabled) {
     const ok = await requestIOSMotionPermission();
     if (!ok) {
       console.error("Motion permission denied on iOS");
-      alert("⚠️ Shake Detection: Permission denied on iOS. Please allow motion & orientation access in Settings > Safari > Motion & Orientation Access.");
+      openPopup('popupbrtf')
       return;
     }
 
@@ -1539,9 +1547,8 @@ if (bugReportSendBtn) {
       return;
     }
 
-    alert("✅ Thank you! Your bug report has been submitted.");
+    openPopup('popupbrss')
 
-    // reset
     bugReportEmailInput.value = '';
     setBugIcon(bugReportEmailStatusIcon, 'fa-regular fa-circle', false);
     setBugState(bugReportEmailStatusIcon, 'idle');

@@ -281,6 +281,7 @@
           </div>
           </article>
         </div>
+        <p><strong>© 1996-2026, Amazon.com, Inc. or its affiliates</strong></p>
         <div class="actions">
           <button class="close-button" data-close="">Close</button>
         </div>
@@ -577,6 +578,37 @@
         <p><strong>Please wait</strong>, as we process the details.</p>
       </div>
     </div>
+    <!--- Popup Bug Report - toggle Failed -->
+    <div class="popup" id="popupbrtf" data-popup="popupbrtf">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation popup-icon"></i></div>
+      <div class="content">
+        <h1>Toggle - Failed</h1>
+        <p>Please use HTTPS instead of liveserver host. Visit:</p>
+        <p><strong>https://devrealtp.github.io/amazon-app-practice/starter%20page/start.html</strong></p>
+        <p>or click the <strong>Visit</strong> button instead. If you want to go back, press the <strong>Back</strong> button</p>
+        <div class="popupaskcookies-actions">
+          <button class="declineall-button" id="declineall-button" data-open="popuprab">Back</button>
+          <button onclick="faceidhttpsredirect()" class="acceptall-button">Visit</button>
+        </div>
+      </div>
+    </div>
+    <!--- Popup Bug Report - Sent -->
+    <div class="popup" id="popupbrss" data-popup="popupbrss">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-square-check popup-icon"></i></div>
+      <div class="content">
+        <h1>Bug report - Success</h1>
+        <h2>Thank You!</h2>
+        <p>We will reach out by your email <strong>(addressed as: @amazon-bugs.com)</strong> for any contact.</p>
+        <p>You may close this popup, or go <strong>Back</strong>.</p>
+        <div class="popupaskcookies-actions">
+          <button class="declineall-button" id="declineall-button" data-open="popuprab">Back</button>
+        </div>
+      </div>
+    </div>
     <!--- Popup SU/LI --->
     <!-- Popup Signup --->
     <div class="popup" id="popupsignup" data-popup="popupsignup">
@@ -697,14 +729,14 @@
     <div class="popup" id="popupinvalidlogin" data-popup="popupinvalidlogin">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation popup-icon"></i></div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-circle-xmark popup-icon"></i></div>
       <div class="content">
-        <h1>Invalid</h1>
-        <p>
-          Some details are incorrect, <strong>please review or try again later.</strong> An green checkmark <strong>(<i class="fa-solid fa-square-check" style="color: #1ac18f;"></i>)</strong> 
-          will appear if it's valid. Otherwise, a red cross <strong>(<i class="fa-solid fa-square-xmark" style="color: #c91d1d;"></i>)</strong> will appear if its Invalid.
+        <h1>Invalid - Login details</h1>
+        <p>The details you entered <strong>do not match any accounts available on Amazon.</strong> Please review your information or try again later.</p>
+        <p>An green checkmark <strong>(<i class="fa-solid fa-square-check" style="color: #1ac18f;"></i>)</strong> will appear if it's valid. Otherwise, a red cross <strong>(<i class="fa-solid fa-square-xmark" style="color: #c91d1d;"></i>)</strong> will appear if its Invalid.</p>
+        <p><strong>For any issues or assistance, please contact support. (<i class="fa-regular fa-message"></i>)</strong></p>
         <div class="actions">
-          <button class="declineall-button" id="declineall-button-closepopup" data-open="popupsignup">Back</button>
+          <button class="declineall-button" id="declineall-button-closepopup" data-open="popuplogin">Back</button>
           <button class="acceptall-button" id="acceptall-button-closepopup" data-open="popupSupport">Support</button>
         </div>
       </div>
@@ -932,7 +964,7 @@
         </article>
         <div class="actions">
           <button class="declineall-button" id="declineall-button-closepopup" data-close="">Not now</button>
-          <button class="acceptall-button next-button next-two-button" id="acceptall-button-closepopup" data-open="popupinvalidlogin">Login</button>
+          <button class="acceptall-button next-button next-two-button" id="acceptall-button-closepopup">Login</button>
         </div>
       </div>
     </div>
