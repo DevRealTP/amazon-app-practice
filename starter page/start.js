@@ -1415,7 +1415,7 @@ async function setShakeEnabled(enabled) {
     window.addEventListener("devicemotion", motionListener, { passive: true });
     shakeEnabled = true;
     console.log("✅ Shake Detection: ENABLED (shake sensitivity: high)");
-    alert("✅ Shake Detection: ON\n\nTry shaking your device to test it! => E");
+    alert("✅ Shake Detection: ON\n\nTry shaking your device to test it! => F");
   } else {
     if (motionListener) {
       window.removeEventListener("devicemotion", motionListener);
