@@ -540,7 +540,7 @@ body.colorblind-mode .switch .slider::after{opacity:1;}
 .option-text p{margin:4px 0 0;font-size:0.875rem;color:var(--amazon-text-secondary);}
 .option-row input[type="checkbox"]{width:20px;height:20px;cursor:pointer;}
 
-.popup.pco .content{max-height:300px;overflow:auto;-webkit-overflow-scrolling:touch;transition:max-height 220ms ease;scroll-behaviour:smooth;scroll-padding-top:80vh;}
+.popup.pco .content{max-height:300px;overflow:auto;-webkit-overflow-scrolling:touch;transition:max-height 220ms ease;scroll-padding-top:80vh;}
 .popup.pco .content.expanded{max-height:80vh;}
 
 /* ========================= */

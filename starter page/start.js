@@ -1368,7 +1368,7 @@ function onShake() {
   alert("🎉 SHAKE DETECTED! Device shake is working!");
 }
 
-function buildMotionListener({ threshold = 15, timeout = 800 } = {}) {
+function buildMotionListener({ threshold = 18, timeout = 800 } = {}) {
   let lastTime = 0;
 
   return (event) => {
