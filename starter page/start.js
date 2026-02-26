@@ -41,7 +41,7 @@ document.addEventListener('keydown', (e) => {
 // Cookie logic
 document.addEventListener('DOMContentLoaded', () => {
   const consentExpiry = localStorage.getItem('cookieconsent-expiry');
-  const onemin = 60 * 1000;
+  const cookietimer = 60 * 10000;
 
   if (consentExpiry && Date.now() > Number(consentExpiry)) {
     localStorage.removeItem('cookieconsent');
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   buttonpressed.forEach(button => {
     button.addEventListener('click', () => {
-      localStorage.setItem('cookieconsent-expiry', Date.now() + onemin);
+      localStorage.setItem('cookieconsent-expiry', Date.now() + cookietimer);
 
       if (button.id === 'acceptall-button' || button.id === 'acceptall-button-closepopup') {
         localStorage.setItem('cookieconsent', '✓');
@@ -265,11 +265,19 @@ function updateContinueTarget() {
   updateNextButton();
 }
 
-// Open password popup when allowed
+// Open password popup when allowed, show invalid if not
 if (continueButton) {
   continueButton.addEventListener('click', (e) => {
     e.preventDefault();
-    if (emailcheck && phonecheck) openPopup('popuppassword');
+    if (emailcheck && phonecheck) {
+      openPopup('popuppassword');
+    } else {
+      if (typeof window.openInvalid === 'function') {
+        window.openInvalid('signup');
+      } else {
+        openPopup('popupinvalid');
+      }
+    }
   });
 }
 
@@ -299,6 +307,22 @@ function nextButtonAllowedOnePassword() {
   passwordPopupNextBtn.disabled = !allowed;
   passwordPopupNextBtn.setAttribute('aria-disabled', String(!allowed));
   passwordPopupNextBtn.classList.toggle('is-enabled', allowed);
+}
+
+if (passwordPopupNextBtn) {
+  passwordPopupNextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const v = document.getElementById('password')?.value || '';
+    if (!passwordRulesLocal(v)) {
+      if (typeof window.openInvalid === 'function') {
+        window.openInvalid('password');
+      } else {
+        openPopup('popupinvalid');
+      }
+    } else {
+      openPopup('popupreview');
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -911,7 +935,7 @@ let passwordcheck_login = false;
 
 // Gate login button based on all three fields
 function loginButtonGating() {
-  const loginBtn = document.querySelector('#popuplogin .nexttwo-button'); 
+  const loginBtn = document.querySelector('#popuplogin .next-two-button');
   if (!loginBtn) return;
 
   const allowed = emailcheck_login && phonecheck_login && passwordcheck_login;
@@ -920,6 +944,23 @@ function loginButtonGating() {
   loginBtn.setAttribute('aria-disabled', String(!allowed));
   loginBtn.classList.toggle('is-enabled', allowed);
   loginBtn.classList.toggle('enabled', allowed);
+}
+
+// Add click handler for login button to show invalid popup
+const loginBtn = document.querySelector('#popuplogin .next-two-button');
+if (loginBtn) {
+  loginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!(emailcheck_login && phonecheck_login && passwordcheck_login)) {
+      if (typeof window.openInvalid === 'function') {
+        window.openInvalid('login');
+      } else {
+        openPopup('popupinvalid');
+      }
+    } else {
+      openpopupllwaitthenopenpopuplc();
+    }
+  });
 }
 
 // Login password validation
@@ -1122,17 +1163,17 @@ editpassword.addEventListener('click', () => {
   ClosereviewOpenpassword()
 })
 
-const email = document.getElementById('email')
-const phoneoptions = document.getElementById('phoneCountry')
-const phone = document.getElementById('phone')
+const email = document.getElementById('email');
+const phoneoptions = document.getElementById('phoneCountry');
+const phone = document.getElementById('phone');
 
-email.addEventListener('keydown', (e) => {
+email?.addEventListener('keydown', (e) => {
   if (e.key === 'Enter'){
     e.preventDefault();
     email.blur();
-    phoneoptions.focus()
+    phoneoptions?.focus();
   }
-})
+});
 
 function opensignupclosemenu() {
   if (cmtflag) {
@@ -1204,6 +1245,13 @@ function openCNSclosemenu() {
   openPopup('popupcns');
 }
 
+function openbrclosemenu() {
+  if (cmtflag) {
+    closeMenu();
+  }
+  openPopup('popuprab');
+}
+
 const closemenuToggle = document.getElementById('toggle-checkbox-acm')
 let cmtflag = false
 
@@ -1221,77 +1269,176 @@ const toggleiconOFF = document.querySelectorAll('.toggle-icon-on');
 // 🔹 LOAD saved state on page start
 const saved = localStorage.getItem('colourblind');
 
-if (saved !== null) {
-  const enabled = saved === 'true';
+if (colourblindIndicator) {
+  if (saved !== null) {
+    const enabled = saved === 'true';
+    colourblindIndicator.checked = enabled;
+    [...toggleiconON, ...toggleiconOFF].forEach(icon => {
+      icon.classList.toggle('enabled', enabled);
+    });
+  }
 
-  colourblindIndicator.checked = enabled;
+  // 🔹 SAVE when user changes toggle
+  colourblindIndicator.addEventListener('change', (e) => {
+    const enabled = e.target.checked;
 
-  [...toggleiconON, ...toggleiconOFF].forEach(icon => {
-    icon.classList.toggle('enabled', enabled);
+    // Apply indicators
+    [...toggleiconON, ...toggleiconOFF].forEach(icon => {
+      icon.classList.toggle('enabled', enabled);
+    });
+
+    // Save to localStorage
+    localStorage.setItem('colourblind', String(enabled));
   });
 }
 
-// 🔹 SAVE when user changes toggle
-colourblindIndicator.addEventListener('change', (e) => {
-  const enabled = e.target.checked;
+const createbutton = document.getElementById('create-button');
+const passwordnextbutton = document.getElementById('password-button');
 
-  // Apply indicators
-  [...toggleiconON, ...toggleiconOFF].forEach(icon => {
-    icon.classList.toggle('enabled', enabled);
-  });
+const createbuttontimer = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+console.log(createbuttontimer);
 
-  // Save to localStorage
-  localStorage.setItem('colourblind', enabled);
-});
+let createflag = false;
 
-const createbutton = document.querySelector('.next-two-button'); // ✅ class selector
+function waitcreatebutton() {
+  if (!createbutton) {
+    console.log("ERROR: Line 1293 — create-button not found");
+    return;
+  }
+
+  setTimeout(() => {
+    createbutton.classList.add('is-enabled');
+    createbutton.disabled = false;
+    createflag = true;
+  }, 3000);
+}
 
 if (createbutton) {
-  createbutton.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  createbutton.addEventListener('click', () => {
+    if (!createflag) return;
 
-    const chanceofcreation = Math.floor(Math.random() * 10) + 1;
-    console.log('chanceofcreation:', chanceofcreation);
+    openPopup('popupca');
 
-    if (chanceofcreation <= 9) {
-      openPopup('popupca');
-      setTimeout(() => {
-        openPopup('popupcas');
-        setTimeout(() => {
-          cagredirect()
-        }, 4500);
-      }, 3000);
-    } else {
-      openPopup('popupcaf');
-      setTimeout(() => {
-        openPopup('popupreview')
-      }, 5000);
-    }
+    setTimeout(() => {
+      aftercreation();
+    }, createbuttontimer);
+  });
+}
+
+function aftercreation() {
+  const chanceofcreation = Math.floor(Math.random() * 10) + 1;
+
+  if (chanceofcreation <= 9) {
+    openPopup('popupcas');
+    setTimeout(() => {
+      creationredirect()
+    }, 3000);
+  } else {
+    openPopup('popupcaf');
+  }
+}
+
+function creationredirect(){
+  openPopup('popuprl')
+  setTimeout(() => {
+    cagredirect()
+  }, 1000);
+}
+
+function creationfail(){
+  setTimeout(() => {
+    openPopup('popupreview')
+  }, 5000);
+}
+
+if (passwordnextbutton) {
+  passwordnextbutton.addEventListener('click', () => {
+    waitcreatebutton();
   });
 } else {
-  console.warn('Create button not found (.next-two-button)');
+  console.log("ERROR — password-button not found");
 }
 
 // document.addEventListener('DOMContentLoaded', () => {
-//   openPopup('popupll')
-// })
+//   openPopup('popuprab');
+// });
 
-const populltimer = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+// ---- Shake toggle ----
+let shakeEnabled = false;
+let motionListener = null;
 
-function openpopupllwaitthenopenpopuplc() {
-  openPopup('popupll')
-  setTimeout(() => {
-    closePopup('popupll')
-    openPopup('popuplc')
-  }, populltimer);
+function onShake() {
+  console.log("🔥 SHAKE DETECTED!");
+  alert("🎉 SHAKE DETECTED! Device shake is working!");
 }
 
-const loginnextbutton = document.querySelector('.nexttwo-button');
+function buildMotionListener({ threshold = 14, timeout = 800 } = {}) {
+  let lastTime = 0;
 
-loginnextbutton.addEventListener('click', (e) => {
-  const btn = e.target.closest('.enabled');
-  if (!btn) return;
+  return (event) => {
+    const acc = event.accelerationIncludingGravity || event.acceleration;
+    if (!acc) return;
 
-  openPopup('popuplc');
-});
+    const x = acc.x || 0;
+    const y = acc.y || 0;
+    const z = acc.z || 0;
+
+    const magnitude = Math.sqrt(x * x + y * y + z * z);
+    const now = Date.now();
+
+    if (magnitude > threshold && now - lastTime > timeout) {
+      lastTime = now;
+      onShake();
+    }
+  };
+}
+
+async function requestIOSMotionPermission() {
+  if (
+    typeof DeviceMotionEvent !== "undefined" &&
+    typeof DeviceMotionEvent.requestPermission === "function"
+  ) {
+    const permission = await DeviceMotionEvent.requestPermission();
+    return permission === "granted";
+  }
+  return true; // non-iOS or older iOS
+}
+
+async function setShakeEnabled(enabled) {
+  if (enabled === shakeEnabled) return;
+
+  if (enabled) {
+    const ok = await requestIOSMotionPermission();
+    if (!ok) {
+      console.error("Motion permission denied on iOS");
+      alert("⚠️ Shake Detection: Permission denied on iOS. Please allow motion & orientation access in Settings > Safari > Motion & Orientation Access.");
+      return;
+    }
+
+    motionListener = buildMotionListener({ threshold: 14, timeout: 800 });
+    window.addEventListener("devicemotion", motionListener, { passive: true });
+    shakeEnabled = true;
+    console.log("✅ Shake Detection: ENABLED (shake sensitivity: high)");
+    alert("✅ Shake Detection: ON\n\nTry shaking your device to test it!");
+  } else {
+    if (motionListener) {
+      window.removeEventListener("devicemotion", motionListener);
+      motionListener = null;
+    }
+    shakeEnabled = false;
+    console.log("❌ Shake Detection: DISABLED");
+    alert("❌ Shake Detection: OFF");
+  }
+}
+
+togglestobr = document.getElementById('toggle-checkbox-stobr')
+
+if(togglestobr){
+  togglestobr.addEventListener('change', async () => {
+    await setShakeEnabled(togglestobr.checked);
+    
+    if(togglestobr.checked && !shakeEnabled){
+      togglestobr.checked = false;
+    }
+  })
+}

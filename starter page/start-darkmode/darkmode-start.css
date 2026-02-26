@@ -1,125 +1,127 @@
 body.dark{
-  --amazon-orange: #FF9900;
-  --amazon-orange-dark: #E47911;
+  --amazon-orange:#FF9900;
+  --amazon-orange-dark:#E47911;
 
-  --amazon-dark: #0B0F14;
-  --amazon-dark-2: #111827;
-  --amazon-dark-3: #1F2937;
+  --amazon-dark:#0B0F14;
+  --amazon-dark-2:#111827;
+  --amazon-dark-3:#1F2937;
 
-  --amazon-text-primary: #E8EAED;
-  --amazon-text-secondary: #f0f0f0;
-  --amazon-text-inverse: #0B0F14;
+  --amazon-text-primary:#E8EAED;
+  --amazon-text-secondary:#f0f0f0;
+  --amazon-text-inverse:#0B0F14;
 
-  --amazon-bg-light: #0B0F14;
-  --amazon-bg-grey: #0F141B;
-  --amazon-bg-panel: #111827;
+  --amazon-bg-light:#0B0F14;
+  --amazon-bg-grey:#0F141B;
+  --amazon-bg-panel:#111827;
 
-  --amazon-border-light: rgba(255,255,255,0.14);
-  --amazon-border-dark: rgba(255,255,255,0.18);
+  --amazon-border-light:rgba(255,255,255,0.14);
+  --amazon-border-dark:rgba(255,255,255,0.18);
 
-  --amazon-btn-primary: #FFD814;
-  --amazon-btn-primary-hover: #F7CA00;
-  --amazon-btn-secondary: #FFA41C;
+  --amazon-btn-primary:#FFD814;
+  --amazon-btn-primary-hover:#F7CA00;
+  --amazon-btn-secondary:#FFA41C;
 
-  --amazon-link: #2EC4B6;
-  --amazon-link-hover: #FFB15A;
+  --amazon-link:#2EC4B6;
+  --amazon-link-hover:#FFB15A;
 
-  --amazon-success: #22C55E;
-  --amazon-warning: #B12704;
+  --amazon-success:#22C55E;
+  --amazon-warning:#B12704;
 
-  /* ACTIVE*/
-  /* Light*/
-  --amazon-btn-light-active-background: rgba(255,255,255,0.02);
-  --amazon-btn-light-active-border: 1px solid var(--amazon-border-light);
-  --amazon-btn-light-active-transform: scale(0.95);
+  /* ACTIVE */
+  --amazon-btn-light-active-background:rgba(255,255,255,0.02);
+  --amazon-btn-light-active-border:1px solid var(--amazon-border-light);
+  --amazon-btn-light-active-transform:scale(0.95);
 
-  /* Primary*/
-  --amazon-btn-primary-active-background: var(--amazon-btn-primary-hover);
-  --amazon-btn-primary-active-border: 1px solid var(--amazon-btn-primary-hover);
-  --amazon-btn-primary-active-transform: scale(0.95);
-  --amazon-btn-primary-active-fontsize: 17px;
-  --amazon-btn-primary-active-boxshadow: 0 1px 3px rgba(0,0,0,0.35);
+  --amazon-btn-primary-active-background:var(--amazon-btn-primary-hover);
+  --amazon-btn-primary-active-border:1px solid var(--amazon-btn-primary-hover);
+  --amazon-btn-primary-active-transform:scale(0.95);
+  --amazon-btn-primary-active-fontsize:17px;
+  --amazon-btn-primary-active-boxshadow:0 1px 3px rgba(0,0,0,0.35);
 }
 
+/* ===== grouped “surface” styling ===== */
+body.dark .topheader,
+body.dark .bottomheader,
+body.dark .side-menu,
+body.dark .popup{background:var(--amazon-bg-light);}
 
-body.dark .topheader,body.dark .bottomheader,body.dark .side-menu,body.dark .popup{background: var(--amazon-bg-light);}
-body.dark .topheader,body.dark .bottomheader{border-color: var(--amazon-border-light);}
-body.dark .md-slide{border-color: var(--amazon-border-light);box-shadow: 0 6px 18px rgba(0,0,0,0.35);}
-body.dark .side-menu{border-left-color: var(--amazon-border-light);box-shadow: -12px 0 30px rgba(0,0,0,0.55);}
-body.dark .side-menu-title-text{color: var(--amazon-text-primary);}
-body.dark .side-menu-item{color: var(--amazon-text-primary);}
-body.dark .side-menu-item i{color: var(--amazon-text-secondary);}
-body.dark .side-menu-item:active{background: rgba(255,255,255,0.06);}
-body.dark .menu-overlay,body.dark .overlaybackground{ background: rgba(0,0,0,0.60);}
-body.dark .bottomheader-cag,body.dark .close-button,body.dark .back-button{background: rgba(255,255,255,0.02);color: var(--amazon-text-primary);border-color: var(--amazon-border-light);}
-body.dark .popup .content p,body.dark .popup .content h1,body.dark .popup .content h2{color: var(--amazon-text-primary);}
-body.dark .popup .handle{background: rgba(255,255,255,0.12);}
-body.dark .popup-image{background: var(--amazon-bg-light);}
+body.dark .topheader,
+body.dark .bottomheader{border-color:var(--amazon-border-light);}
+
+body.dark .md-slide{border-color:var(--amazon-border-light);box-shadow:0 6px 18px rgba(0,0,0,0.35);}
+body.dark .side-menu{border-left-color:var(--amazon-border-light);box-shadow:-12px 0 30px rgba(0,0,0,0.55);}
+
+body.dark .side-menu-title-text,
+body.dark .side-menu-item,
+body.dark .popup .content p,
+body.dark .popup .content h1,
+body.dark .popup .content h2{color:var(--amazon-text-primary);}
+
+body.dark .side-menu-item i{color:var(--amazon-text-secondary);}
+body.dark .side-menu-item:active{background:rgba(255,255,255,0.06);}
+
+body.dark .menu-overlay,
+body.dark .overlaybackground{background:rgba(0,0,0,0.60);}
+
+body.dark .popup .handle{background:rgba(255,255,255,0.12);}
+body.dark .popup-image{background:var(--amazon-bg-light);}
+
+/* ===== unified “light button” set in dark mode ===== */
 body.dark .back-button,
 body.dark .close-button,
 body.dark .decline-button,
 body.dark .declineall-button,
-body.dark .options-button{
-  background: var(--amazon-bg-light);
-  border: 2px solid var(--amazon-border-light);
-  color: var(--amazon-text-primary);
+body.dark .options-button,
+body.dark .bottomheader-cag{
+  background:var(--amazon-bg-light);
+  border:2px solid var(--amazon-border-light);
+  color:var(--amazon-text-primary);
 }
+
 body.dark .declineall-button:active,
 body.dark .options-button:active,
 body.dark .close-button:active,
 body.dark .back-button:active,
 body.dark .decline-button:active{
-  transform: var(--amazon-btn-light-active-transform);
-  background: var(--amazon-btn-light-active-background);
-  border: var(--amazon-btn-light-active-border);
+  transform:var(--amazon-btn-light-active-transform);
+  background:var(--amazon-btn-light-active-background);
+  border:var(--amazon-btn-light-active-border);
 }
+
+/* ===== unified “primary button active” set in dark mode ===== */
 body.dark .acceptall-button:active,
 body.dark .accept-button:active,
 body.dark .apply-button:active,
 body.dark .support-button:active,
 body.dark .bottomheader button:not(.bottomheader-cag):active{
-  transform: var(--amazon-btn-primary-active-transform);
-  background: var(--amazon-btn-primary-active-background);
-  border: var(--amazon-btn-primary-active-border);
-  box-shadow: var(--amazon-btn-primary-active-boxshadow);
-  font-size: var(--amazon-btn-primary-active-fontsize);
+  transform:var(--amazon-btn-primary-active-transform);
+  background:var(--amazon-btn-primary-active-background);
+  border:var(--amazon-btn-primary-active-border);
+  box-shadow:var(--amazon-btn-primary-active-boxshadow);
+  font-size:var(--amazon-btn-primary-active-fontsize);
 }
 
-body.dark .signup-rightdot {
-  color: white;
-}
+/* ===== status icons ===== */
+body.dark .signup-rightdot{color:#fff;}
+body.dark .signup-righticon.valid{color:#21a67e !important;}
+body.dark .signup-righticon.invalid{color:#d93025 !important;}
+body.dark .signup-righticon.idle{color:#ffffff !important;}
+body.dark .signup-righticon.loading{color:#f8c81b !important;}
 
-body.dark .signup-righticon.valid {color: #21a67e !important; }
-body.dark .signup-righticon.invalid {color: #d93025 !important; }
-body.dark .signup-righticon.idle {color: #ffffff !important; }
-body.dark .signup-righticon.loading{color: #f8c81b !important; }
+/* ===== toggle fixes (bug: border value + missing dark scope on other selectors) ===== */
+body.dark #toggle-checkbox:checked + .slider{background-color:var(--amazon-orange);border-color:var(--amazon-orange-dark);}
+body.dark #toggle-checkbox:checked + .slider::before{transform:translateX(37px);z-index:3;}
+body.dark #toggle-status{margin-top:12px;font-weight:700;}
+body.dark .icons-hidden{opacity:0;}
 
-body.dark #toggle-checkbox:checked + .slider {background-color: var(--amazon-orange); border: var(--amazon-orange-dark);}
-#toggle-checkbox:checked + .slider::before {transform: translateX(37px);z-index: 3;}
-#toggle-status {margin-top: 12px;font-weight: bold;}
-.icons-hidden {opacity: 0;}
+/* ===== inputs ===== */
+body.dark .signup-flied{background:var(--amazon-bg-light);border:1px solid var(--amazon-border-light);color:var(--amazon-text-primary);}
+body.dark .signup-flied:focus{border-color:var(--amazon-orange);box-shadow:0 0 0 3px rgba(255,153,0,0.3);}
 
-body.dark .signup-flied{
-  background: var(--amazon-bg-light);
-  border: 1px solid var(--amazon-border-light);
-  color: var(--amazon-text-primary);
-}
+body.dark .signup-select{background:var(--amazon-bg-light);border:1px solid var(--amazon-border-light);color:var(--amazon-text-primary);}
 
-body.dark .signup-flied:focus{
-  border-color: var(--amazon-orange);
-  box-shadow: 0 0 0 3px rgba(255,153,0,0.3);
-}
-
-body.dark .signup-select{
-  background: var(--amazon-bg-light);
-  border: 1px solid var(--amazon-border-light);
-  color: var(--amazon-text-primary);
-}
-
-body.dark .continue-button.enabled{
-  color: var(--amazon-text-inverse);
-}
-
-body.dark .nextone-button.enabled{
-  color: var(--amazon-text-inverse);
-}
+/* FIX: your “enabled” selector didn’t match your main CSS (.is-enabled). Support both. */
+body.dark .continue-button.is-enabled,
+body.dark .continue-button.enabled,
+body.dark .nextone-button.is-enabled,
+body.dark .nextone-button.enabled{color:var(--amazon-text-inverse);}

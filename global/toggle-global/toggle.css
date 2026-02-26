@@ -55,7 +55,7 @@
 
 .toggle-icon-on{right: 3px;color: transparent;}
 .toggle-icon-off{left: 20px;color: transparent;}
-.toggle-icon-on.enabled{right: 3px; color: rgb(255, 255, 255);}
+.toggle-icon-on.enabled{right: -1px; color: #ebeaea;}
 .toggle-icon-off.enabled{left: 20px;color: #fff;}
 
 #toggle-checkbox:checked + .slider {background-color:#FF9900;}

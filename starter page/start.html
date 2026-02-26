@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="../global/toggle-global/toggle.css">
     <link rel="shortcut icon" href="../images/favicon-dark.svg" id="favicon" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
   </head>
   <body>
     <!--- Top Header --->
     <header class="topheader">
-      <button class="topheader-support" data-open="popupSupport" aria-label="Support" type="button"><i class="fa-regular fa-message"></i></button>
+      <button class="topheader-support" data-open="popup-label="Support" type="button"><i class="fa-regular fa-message"></i></button>
       <img id="amazonLogo" class="topheader-logo" src="../images/amazon_black.png" alt="Amazon Logo" />
       <button class="topheader-menu" aria-label="Menu" type="button"><i class="fa-solid fa-bars"></i></button>
     </header>
@@ -37,6 +38,7 @@
         <a class="side-menu-item" href="#"><i class="fa-solid fa-arrow-right"></i><span onclick="opencagclosemenu()">Continue as Guest</span></a>
         <div class="side-menu-divider"></div>
         <a class="side-menu-item" href="#"><i class="fa-solid fa-universal-access"></i><span onclick="openaccessclosemenu()">Accessibilty</span></a>
+        <a class="side-menu-item" href="#"><i class="fa-solid fa-bug"></i><span onclick="openbrclosemenu()">Report a bug</span></a>
         <div class="side-menu-divider"></div>
         <a class="side-menu-item" href="#" data-go="pands"><i class="fa-solid fa-shield-halved"></i><span>Privacy & Safety</span><i class="fa-solid fa-up-right-from-square"></i></a>
         <a class="side-menu-item" href="#" data-go="tos"><i class="fa-solid fa-file-circle-check"></i><span>Terms of service</span><i class="fa-solid fa-up-right-from-square"></i></a>
@@ -190,6 +192,57 @@
         </div>
       </div>
     </div>
+    <!--- Popup report a bug --->
+    <div class="popup" id="popuprab" data-popup="popuprab">
+      <div class="handle"></div>
+      <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-bug popup-icon"></i></div>
+      <div class="content">
+        <h1>Report an Bug</h1>
+        <p>Welcome to the bug report page. <strong>If you find any bugs, please report them here.</strong> We will fix it as soon as possible. 
+          <strong>Please provide an email for any discussions, follow-ups, or compensations</strong>.
+        </p>
+        <div>
+          <article class="signup-field">
+            <div class="signup-row">
+              <i class="fa-regular fa-envelope signup-lefticon"></i>
+              <p class="signup-label">Email Address</p>
+              <div class="signup-divider" aria-hidden="true"></div>
+              <i class="fa-regular fa-circle signup-rightdot" id="emailStatusIcon" aria-hidden="true"></i>
+            </div>
+            <input class="signup-flied"type="email"id="email"name="email"placeholder="Enter your email address..."maxlength="254"autocomplete="email"inputmode="email"autocapitalize="none"autocorrect="off"spellcheck="false" enterkeyhint="next">
+          </article>
+          <article class="signup-field">
+            <div class="signup-row">
+              <i class="fa-solid fa-circle-info signup-lefticon"></i>
+              <p class="signup-label">Information | Recreation Method | Location</p>
+              <div class="signup-divider" aria-hidden="true"></div>
+            </div>
+            <input class="signup-flied"type="text"id="info"name="info"placeholder="Enter information..."maxlength="254"autocomplete="off"inputmode="text"autocapitalize="none"autocorrect="off"spellcheck="false" enterkeyhint="next">
+          </article>
+          <article class="option-row">
+            <div class="option-text">
+              <h2><i class="fa-solid fa-mobile-vibrate"></i> ‎ Shake to open bug report</h2>
+              <p>Your phone will <strong>detect any shaking, and if it does, the bug report page will open</strong> for easy access, if toggled.</p>
+            </div>
+          <div class="toggle-container">
+            <div class="toggle-row">
+              <label class="toggle">
+                <input type="checkbox" id="toggle-checkbox-stobr">
+                <span class="slider"></span>
+                <i class="fa-solid fa-grip-lines-vertical toggle-icon toggle-icon-off"></i>
+                <i class="fa-regular fa-circle toggle-icon toggle-icon-on"></i>
+              </label>
+            </div>
+          </div>
+          </article>
+        </div>
+        <div class="actions">
+          <button class="close-button" data-close="">Close</button>
+          <button class="accept-button accept-button-access" data-close type="button">Send</button>
+        </div>
+      </div>
+    </div>
     <!-- ------------- -->
     <!--- Popup Company & Social --->
     <div class="popup" id="popupcns" data-popup="popupcns">
@@ -331,6 +384,7 @@
         </div>
       </div>
     </div>
+    <!-- ------------- -->
     <!-- ------------- -->
     <!-- Popup OPTIONS -->
     <div class="popup pco" id="popupcookiesoptions" data-popup="popupcookiesoptions">
@@ -610,12 +664,12 @@
     <div class="popup" id="popupinvalid" data-popup="popupinvalid">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation popup-icon"></i></div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-circle-xmark popup-icon"></i></div>
       <div class="content">
-        <h1>Invalid</h1>
-        <p>
-          Some details are incorrect, <strong>please review or try again later.</strong> An green checkmark <strong>(<i class="fa-solid fa-square-check" style="color: #1ac18f;"></i>)</strong> 
-          will appear if it's valid. Otherwise, a red cross <strong>(<i class="fa-solid fa-square-xmark" style="color: #c91d1d;"></i>)</strong> will appear if its Invalid.
+        <h1>Invalid - Signup details</h1>
+        <p>Some details are incorrect. <strong>Please review them or try again later.</strong></p>
+        <p>An green checkmark <strong>(<i class="fa-solid fa-square-check" style="color: #1ac18f;"></i>)</strong> will appear if it's valid. Otherwise, a red cross <strong>(<i class="fa-solid fa-square-xmark" style="color: #c91d1d;"></i>)</strong> will appear if its Invalid.</p>
+        <p><strong>For any issues or assistance, please contact support. (<i class="fa-regular fa-message"></i>)</strong></p>
         <div class="actions">
           <button class="declineall-button" id="declineall-button-closepopup" data-open="popupsignup">Back</button>
           <button class="acceptall-button" id="acceptall-button-closepopup" data-open="popupSupport">Support</button>
@@ -626,14 +680,14 @@
     <div class="popup" id="popupinvalidpassword" data-popup="popupinvalidpassword">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation popup-icon"></i></div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-circle-xmark popup-icon"></i></div>
       <div class="content">
-        <h1>Invalid</h1>
-        <p>
-          Some details are not met, <strong>please review or try again later.</strong> An green checkmark <strong>(<i class="fa-solid fa-square-check" style="color: #1ac18f;"></i>)</strong> 
-          will appear if it's valid. Otherwise, a red cross <strong>(<i class="fa-solid fa-square-xmark" style="color: #c91d1d;"></i>)</strong> will appear if its Invalid.
+        <h1>Invalid - Password details</h1>
+        <p>Your password does not meet the requirements. <strong>A strong password is required for strong account security.</strong></p>
+        <p>An green checkmark <strong>(<i class="fa-solid fa-square-check" style="color: #1ac18f;"></i>)</strong> will appear if it's valid. Otherwise, a red cross <strong>(<i class="fa-solid fa-square-xmark" style="color: #c91d1d;"></i>)</strong> will appear if its Invalid.</p>
+        <p><strong>For any issues or assistance, please contact support. (<i class="fa-regular fa-message"></i>)</strong></p>
         <div class="actions">
-          <button class="declineall-button" id="declineall-button-closepopup" data-open="popupsignup">Back</button>
+          <button class="declineall-button" id="declineall-button-closepopup" data-open="popuppassword">Back</button>
           <button class="acceptall-button" id="acceptall-button-closepopup" data-open="popupSupport">Support</button>
         </div>
       </div>
@@ -683,7 +737,7 @@
         </article>
         <div class="actions">
           <button class="declineall-button" id="declineall-button-closepopup" data-open="popupsignup">Back</button>
-          <button class="acceptall-button next-button nextone-button" id="acceptall-button-closepopup">Next</button>
+          <button class="acceptall-button next-button nextone-button" id="password-button" data-popup="popupinvalidpassword">Next</button>
         </div>
       </div>
     </div>
@@ -772,7 +826,7 @@
               readonly
             >
             <button class="eye-btn eye-btn-2" type="button" id="editpassword" aria-label="Edit email">
-              <i class="fa-solid fa-pen-to-square""></i>
+              <i class="fa-solid fa-pen-to-square"></i>
             </button>
             <button class="eye-btn eye-btn-2" type="button" id="togglePassword" aria-label="Show password">
               <i class="fa-regular fa-eye"></i>
@@ -781,7 +835,7 @@
         </article>
         <div class="actions">
           <button class="declineall-button" id="declineall-button-closepopup" data-open="popuppassword">Back</button>
-          <button class="acceptall-button next-button.is-enabled next-two-button" id="acceptall-button-closepopup">Create</button>
+          <button class="acceptall-button next-two-button" id="create-button">Create</button>
         </div>
       </div>
     </div>
@@ -877,7 +931,7 @@
         </article>
         <div class="actions">
           <button class="declineall-button" id="declineall-button-closepopup" data-close="">Not now</button>
-          <button class="acceptall-button next-button nexttwo-button" id="acceptall-button-closepopup" data-open="popupinvalidlogin">Login</button>
+          <button class="acceptall-button next-button next-two-button" id="acceptall-button-closepopup" data-open="popupinvalidlogin">Login</button>
         </div>
       </div>
     </div>
