@@ -1548,3 +1548,5 @@ if (bugReportSendBtn) {
     setBugSendEnabled(false);
   });
 }
+
+alert('HELLOOOO')
