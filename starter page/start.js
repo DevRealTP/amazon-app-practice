@@ -952,11 +952,7 @@ if (loginBtn) {
   loginBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (!(emailcheck_login && phonecheck_login && passwordcheck_login)) {
-      if (typeof window.openInvalid === 'function') {
-        window.openInvalid('login');
-      } else {
-        openPopup('popupinvalid');
-      }
+      openPopup('popupinvalidlogin');
     } else {
       openpopupllwaitthenopenpopuplc();
     }
@@ -1372,7 +1368,7 @@ function onShake() {
   alert("🎉 SHAKE DETECTED! Device shake is working!");
 }
 
-function buildMotionListener({ threshold = 14, timeout = 800 } = {}) {
+function buildMotionListener({ threshold = 15, timeout = 800 } = {}) {
   let lastTime = 0;
 
   return (event) => {
@@ -1441,4 +1437,114 @@ if(togglestobr){
       togglestobr.checked = false;
     }
   })
+}
+
+// ---- Bug Report Email Validation (FIXED like phone/email) ----
+const bugReportEmailInput = document.getElementById('email-bugreport');
+const bugReportEmailStatusIcon = document.getElementById('emailStatusIcon-bugreport');
+const bugReportSendBtn = document.querySelector('#popuprab .accept-button-access');
+
+let bugReportEmailSpinnerTimer = null;
+let bugReportEmailFinalTimer = null;
+let bugReportEmailEmptyTimer = null;
+let bugReportEmailCheck = false;
+
+// Generic icon setter (same behaviour style as your others)
+function setBugIcon(iconEl, iconClasses, spin = false) {
+  if (!iconEl) return;
+
+  iconEl.classList.remove(
+    'fa-regular', 'fa-solid', 'fa-brands',
+    'fa-circle', 'fa-circle-notch', 'fa-square-check', 'fa-square-xmark',
+    'spin'
+  );
+
+  iconClasses.split(/\s+/).filter(Boolean).forEach(c => iconEl.classList.add(c));
+  iconEl.classList.toggle('spin', !!spin);
+}
+
+function setBugState(iconEl, state) {
+  if (!iconEl) return;
+  iconEl.classList.toggle('idle', state === 'idle');
+  iconEl.classList.toggle('loading', state === 'loading');
+  iconEl.classList.toggle('valid', state === 'valid');
+  iconEl.classList.toggle('invalid', state === 'invalid');
+}
+
+
+function setBugSendEnabled(ok) {
+  bugReportEmailCheck = !!ok;
+  if (bugReportSendBtn) bugReportSendBtn.disabled = !ok;
+}
+
+if (bugReportEmailInput && bugReportEmailStatusIcon) {
+  // initial idle
+  setBugIcon(bugReportEmailStatusIcon, 'fa-regular fa-circle', false);
+  setBugState(bugReportEmailStatusIcon, 'idle');
+  setBugSendEnabled(false);
+
+  bugReportEmailInput.addEventListener('input', () => {
+    const v = bugReportEmailInput.value.trim();
+
+    clearTimeout(bugReportEmailSpinnerTimer);
+    clearTimeout(bugReportEmailFinalTimer);
+    clearTimeout(bugReportEmailEmptyTimer);
+
+    // empty
+    if (!v) {
+      setBugIcon(bugReportEmailStatusIcon, 'fa-solid fa-square-xmark', false);
+      setBugState(bugReportEmailStatusIcon, 'invalid');
+      setBugSendEnabled(false);
+
+      bugReportEmailEmptyTimer = setTimeout(() => {
+        if (!bugReportEmailInput.value.trim()) {
+          setBugIcon(bugReportEmailStatusIcon, 'fa-regular fa-circle', false);
+          setBugState(bugReportEmailStatusIcon, 'idle');
+        }
+      }, 2500);
+
+      return;
+    }
+
+    // spinner
+    bugReportEmailSpinnerTimer = setTimeout(() => {
+      setBugIcon(bugReportEmailStatusIcon, 'fa-solid fa-circle-notch', true);
+      setBugState(bugReportEmailStatusIcon, 'loading');
+      setBugSendEnabled(false);
+    }, 190);
+
+    // final
+    bugReportEmailFinalTimer = setTimeout(() => {
+      const ok = isValidEmail(v);
+
+      setBugIcon(
+        bugReportEmailStatusIcon,
+        ok ? 'fa-solid fa-square-check' : 'fa-solid fa-square-xmark',
+        false
+      );
+      setBugState(bugReportEmailStatusIcon, ok ? 'valid' : 'invalid');
+      setBugSendEnabled(ok);
+    }, 700);
+  });
+}
+
+// Send button behaviour (keep yours, just make sure it resets properly)
+if (bugReportSendBtn) {
+  bugReportSendBtn.disabled = true;
+
+  bugReportSendBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!bugReportEmailCheck) {
+      alert('⚠️ Please enter a valid email address before sending the bug report.');
+      return;
+    }
+
+    alert("✅ Thank you! Your bug report has been submitted.");
+
+    // reset
+    bugReportEmailInput.value = '';
+    setBugIcon(bugReportEmailStatusIcon, 'fa-regular fa-circle', false);
+    setBugState(bugReportEmailStatusIcon, 'idle');
+    setBugSendEnabled(false);
+  });
 }

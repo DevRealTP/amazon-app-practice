@@ -659,6 +659,12 @@ body.colorblind-mode .switch .slider::after{opacity:1;}
 .signup-divider{flex:1;height:3px;border-radius:999px;background:var(--amazon-border-light);opacity:0.9;margin:0 6px;}
 .signup-rightdot{font-size:16px;opacity:1;color:#000;}
 
+/* match validation states used by bug report form (same colors as signup-righticon) */
+.signup-rightdot.valid{color:#21a67e !important;}
+.signup-rightdot.invalid{color:#d93025 !important;}
+.signup-rightdot.idle{color:#000 !important;}
+.signup-rightdot.loading{color:#f8c81b !important;}
+
 .signup-inputwrap{width:100%;}
 .signup-field-phone{font-weight:500;}
 .signup-field-phone > div{display:flex;gap:5px;align-items:center;}

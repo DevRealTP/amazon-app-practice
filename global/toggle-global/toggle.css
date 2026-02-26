@@ -66,6 +66,8 @@
 #toggle-checkbox-acm:checked + .slider::before {transform: translateX(37px);z-index: 3;}
 #toggle-checkbox-ci:checked + .slider {background-color:#FF9900;}
 #toggle-checkbox-ci:checked + .slider::before {transform: translateX(37px);z-index: 3;}
+#toggle-checkbox-stobr:checked + .slider {background-color:#FF9900;}
+#toggle-checkbox-stobr:checked + .slider::before {transform: translateX(37px);z-index: 3;}
 
 #toggle-status {margin-top: 12px;font-weight: bold;}
 .icons-hidden {opacity: 0;}
