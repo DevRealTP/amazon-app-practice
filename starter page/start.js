@@ -1536,22 +1536,98 @@ if (bugReportEmailInput && bugReportEmailStatusIcon) {
   });
 }
 
-// Send button behaviour (keep yours, just make sure it resets properly)
-if (bugReportSendBtn) {
-  bugReportSendBtn.disabled = true;
+// Firebase Firestore SendBug function
+async function SendBug() {
+  // Check if Firebase is initialized
+  if (!window.firebaseDb) {
+    console.error('❌ Firebase not initialized. Waiting for initialization...');
+    alert('❌ Error: Firebase service initializing. Please wait a moment and try again.');
+    return false;
+  }
 
-  bugReportSendBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (!bugReportEmailCheck) {
-      alert('⚠️ Please enter a valid email address before sending the bug report.');
-      return;
+  // Wait a moment for Firebase to be fully ready if needed
+  let retries = 0;
+  while (!window.firebaseDb && retries < 5) {
+    await new Promise(resolve => setTimeout(resolve, 500));
+    retries++;
+  }
+
+  if (!window.firebaseDb || !window.addDoc || !window.collection || !window.serverTimestamp) {
+    console.error('❌ Firebase initialization failed');
+    alert('❌ Error: Firebase service not available. Please refresh the page.');
+    return false;
+  }
+
+  try {
+    const email = bugReportEmailInput?.value?.trim();
+    const information = document.getElementById('info')?.value?.trim();
+
+    // Validate inputs
+    if (!email || !isValidEmail(email)) {
+      alert('⚠️ Please enter a valid email address.');
+      return false;
     }
 
-    openPopup('popupbrss')
+    if (!information || information.length === 0) {
+      alert('⚠️ Please provide bug information/recreation method.');
+      return false;
+    }
 
+    console.log('📤 Sending bug report to Firebase...');
+
+    // Prepare the bug report data
+    const bugReportData = {
+      email: email,
+      information: information,
+      userAgent: navigator.userAgent,
+      timestamp: window.serverTimestamp(),
+      url: window.location.href,
+      language: navigator.language,
+      platform: navigator.platform
+    };
+
+    // Add the document to 'bugReports' collection
+    const docRef = await window.addDoc(window.collection(window.firebaseDb, 'bugReports'), bugReportData);
+    
+    console.log('✅ Bug report sent successfully! Document ID:', docRef.id);
+
+    // Clear the form
     bugReportEmailInput.value = '';
+    document.getElementById('info').value = '';
     setBugIcon(bugReportEmailStatusIcon, 'fa-regular fa-circle', false);
     setBugState(bugReportEmailStatusIcon, 'idle');
     setBugSendEnabled(false);
+
+    // Show success popup
+    openPopup('popupbrss');
+    return true;
+
+  } catch (error) {
+    console.error('❌ Error sending bug report to Firebase:', error);
+    alert(`❌ Error sending report: ${error.message}. Please try again.`);
+    return false;
+  }
+}
+
+// Make SendBug globally accessible
+window.SendBug = SendBug;
+
+// Update your event listener at the bottom of your script:
+if (bugReportSendBtn) {
+  bugReportSendBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    e.stopImmediatePropagation(); // Prevents the event from bubbling up or firing twice
+
+    // Add a simple "isProcessing" check to prevent spam clicks
+    if (bugReportSendBtn.dataset.loading === 'true') return;
+    
+    if (!bugReportEmailCheck) {
+      alert('⚠️ Please enter a valid email address.');
+      return;
+    }
+
+    bugReportSendBtn.dataset.loading = 'true'; // Lock the button
+    await SendBug();
+    bugReportSendBtn.dataset.loading = 'false'; // Unlock after completion
   });
 }

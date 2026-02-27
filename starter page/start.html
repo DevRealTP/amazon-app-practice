@@ -240,7 +240,7 @@
         </div>
         <div class="actions">
           <button class="close-button" data-close="">Close</button>
-          <button class="accept-button accept-button-access" data-close type="button">Send</button>
+          <button class="accept-button accept-button-access" data-close type="button" onclick="SendBug()">Send</button>
         </div>
       </div>
     </div>
@@ -1006,5 +1006,28 @@
     <script src="../global/global!/global.js?v=4f94d49" defer></script>
     <script defer src="../global/popup-global/popup.js"></script>
     <script defer src="../global/toggle-global/toggle.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+      import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyCAND8KcZvrD2sI2gK5EQk0ykuQvpDuzP4",
+        authDomain: "amzbrdevkev.firebaseapp.com",
+        projectId: "amzbrdevkev",
+        storageBucket: "amzbrdevkev.firebasestorage.app",
+        messagingSenderId: "884232822699",
+        appId: "1:644859516548:web:b0103748741:884232822699:web:b3396fc812733113193cee6b8cc7d194d1",
+        measurementId: "G-YB6SBBV1R7"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Make Firebase database and functions globally accessible
+      window.firebaseDb = db;
+      window.addDoc = addDoc;
+      window.collection = collection;
+      window.serverTimestamp = serverTimestamp;
+    </script>
   </body>
 </html>
