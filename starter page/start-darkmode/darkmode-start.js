@@ -17,6 +17,14 @@ function applyTheme(isDark, savePreference = true) {
   if (logoTop) logoTop.src = logoSrc;
   if (logoMenu) logoMenu.src = logoSrc;
 
+  // swap main slider graphic (light/dark versions)
+  const slideImg = document.getElementById('slideMainImg');
+  if (slideImg) {
+    slideImg.src = isDark
+      ? '../images/sliders/slide-main/Add a heading (3).png'
+      : '../images/sliders/slide-main/Add a heading (2).png';
+  }
+
   // 🔹 Update description text
   updateModeText(isDark);
 

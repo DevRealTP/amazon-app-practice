@@ -1140,6 +1140,28 @@ if (loginPasswordInput && loginPasswordStatusIcon) {
   });
 })();
 
+// ---------------------------
+// POPUP PASSWORD: show/hide toggle
+(function passwordPopupToggle() {
+  const pwdInput = document.getElementById('password');
+  const toggleBtn = document.getElementById('togglepasswordone');
+  if (!pwdInput || !toggleBtn) return;
+
+  function updateEye(isShown) {
+    const icon = toggleBtn.querySelector('i');
+    if (icon) {
+      icon.className = isShown ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+    }
+    toggleBtn.setAttribute('aria-label', isShown ? 'Hide password' : 'Show password');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isCurrentlyVisible = pwdInput.type === 'text';
+    pwdInput.type = isCurrentlyVisible ? 'password' : 'text';
+    updateEye(!isCurrentlyVisible);
+  });
+})();
+
 const editemailandphone = document.querySelectorAll('.edit-trigger')
 const editpassword = document.getElementById('editpassword')
 
@@ -1170,12 +1192,13 @@ editpassword.addEventListener('click', () => {
 const email = document.getElementById('email');
 const phoneoptions = document.getElementById('phoneCountry');
 const phone = document.getElementById('phone');
+const password = document.getElementsByClassName('password')
 
 email?.addEventListener('keydown', (e) => {
   if (e.key === 'Enter'){
     e.preventDefault();
     email.blur();
-    phoneoptions?.focus();
+    phone?.focus();
   }
 });
 
@@ -1339,6 +1362,7 @@ function aftercreation() {
     }, 3000);
   } else {
     openPopup('popupcaf');
+    creationfail()
   }
 }
 

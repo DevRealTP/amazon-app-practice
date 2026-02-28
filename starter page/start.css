@@ -388,6 +388,7 @@ body{
   font-weight:700;
   margin:0;
   line-height:1;
+  margin-bottom: 3.5px;
 }
 
 .side-menu-close{
@@ -395,8 +396,8 @@ body{
   top:50%;
   right:6px;
   transform:translateY(-50%);
-  height:42px;
-  width:42px;
+  height:30px;
+  width:35px;
   color:var(--amazon-text-primary);
   background:transparent;
   border:0;

@@ -1,0 +1,8 @@
+#toggle-checkbox1:checked + .slider {background-color:#FF9900;}
+#toggle-checkbox2:checked + .slider {background-color:#FF9900;}
+#toggle-checkbox3:checked + .slider {background-color:#FF9900;}
+#toggle-checkbox4:checked + .slider {background-color:#FF9900;}
+#toggle-checkbox1:checked + .slider::before {transform: translateX(37px);z-index: 3;}
+#toggle-checkbox2:checked + .slider::before {transform: translateX(37px);z-index: 3;}
+#toggle-checkbox3:checked + .slider::before {transform: translateX(37px);z-index: 3;}
+#toggle-checkbox4:checked + .slider::before {transform: translateX(37px);z-index: 3;}

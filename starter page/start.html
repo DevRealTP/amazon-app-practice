@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="../starter page/start-darkmode/darkmode-start.css">
     <link rel="stylesheet" href="../global/global!/global.css">
     <link rel="stylesheet" href="../global/popup-global/popup.css">
-    <link rel="stylesheet" href="../starter page/starter popup/starter-popup.css">
     <link rel="stylesheet" href="../global/toggle-global/toggle.css">
     <link rel="stylesheet" href="../global/global!/global.css?v=4f94d49">
+    <link rel="stylesheet" href="../starter%20page/starter-toggle/starter-toggle.css">
     <link rel="shortcut icon" href="../images/favicon-dark.svg" id="favicon" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
@@ -18,7 +18,7 @@
   <body>
     <!--- Top Header --->
     <header class="topheader">
-      <button class="topheader-support" data-open="popup-label="Support" type="button"><i class="fa-regular fa-message"></i></button>
+      <button class="topheader-support" data-open="popupSupport" type="button"><i class="fa-regular fa-message"></i></button>
       <img id="amazonLogo" class="topheader-logo" src="../images/amazon_black.png" alt="Amazon Logo" />
       <button class="topheader-menu" aria-label="Menu" type="button"><i class="fa-solid fa-bars"></i></button>
     </header>
@@ -36,7 +36,7 @@
       <div class="side-menu-content">
         <a class="side-menu-item" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i><span onclick="opensignupclosemenu()">Sign up</span></a>
         <a class="side-menu-item" href="#"><i class="fa-solid fa-arrow-right-to-bracket"></i><span onclick="openloginclosemenu()">Log in</span></a>
-        <a class="side-menu-item" href="#"><i class="fa-solid fa-arrow-right"></i><span onclick="opencagclosemenu()">Continue as Guest</span></a>
+        <a class="side-menu-item" href="#"><i class="fa-regular fa-circle-right"></i><span onclick="opencagclosemenu()">Continue as Guest</span></a>
         <div class="side-menu-divider"></div>
         <a class="side-menu-item" href="#"><i class="fa-solid fa-universal-access"></i><span onclick="openaccessclosemenu()">Accessibilty</span></a>
         <a class="side-menu-item" href="#"><i class="fa-solid fa-bug"></i><span onclick="openbrclosemenu()">Report a bug</span></a>
@@ -68,6 +68,7 @@
           would like to redirect you to <strong id="redirectToText">...</strong>
         </p>
         <p>Would you like to continue? Be cautious of suspicious links, please go at your own risk.</p>
+        <p><i class="fa-solid fa-square-check" style="color: rgb(43, 190, 145);"></i> This link is <strong>verified</strong> by amazon and <strong>safe to access</strong></p>
         <div class="actions">
           <button class="decline-button" type="button" data-close>Decline</button>
           <button class="accept-button" type="button" id="redirectAcceptBtn">Accept</button>
@@ -90,13 +91,14 @@
       <div class="content">
         <h1>Support</h1>
         <h2>We're here to help you.</h2>
-        <p>How would you like to be assisted?</p>
+        <p>How would you like to be assisted today?</p>
+        <p><strong>Select one of the options below.</strong></p>
         <div class="support-grid">
           <div class="support-grid-top">
             <button class="support-button support-email" type="button" data-go="supportEmail"><i class="fa-regular fa-envelope"></i> Email</button>
-            <button class="support-button support-phone" type="button" data-switch="popupphone"><i class="fa-solid fa-phone"></i> Phoneline</button>
+            <button class="support-button support-phone" type="button" data-switch="popupphone"><i class="fa-regular fa-phone"></i> Phoneline</button>
           </div>
-          <button class="support-button support-rufus" type="button" data-switch="popupai"><i class="fa-regular fa-star"></i> Rufus.ai helper</button>
+          <button class="support-button support-rufus" type="button" data-switch="popupai"><i class="fa-solid fa-comment"></i> Rufus.ai helper</button>
         </div>
         <div class="actions"><button class="close-button" data-close type="button">Close</button></div>
       </div>
@@ -136,7 +138,7 @@
       <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-universal-access popup-icon"></i></div>
       <div class="content">
         <h1>Accessibilty</h1>
-        <p>Sorry, This is to diffcult to make!</p>
+        <p>Customise your experience to assist you better on Amazon, <strong>Some features may already be turned on by default.</strong></p>
         <div>
           <article class="option-row">
             <div class="option-text">
@@ -173,7 +175,9 @@
           <article class="option-row">
             <div class="option-text">
               <h2><i class="fa-regular fa-square-plus"></i> ‎ Colourblind Indicators</h2>
-              <p>Adds Indicators to toggles, useful for colorblinds. <strong>|| --> ON. O --> OFF</strong>.</p>
+              <p>Adds Indicators to toggles, useful for colorblinds.</p>
+              <p><strong><i class="fa-solid fa-grip-lines-vertical"></i></strong>: ON</p>
+              <p><strong><i class="fa-regular fa-circle"></i></strong>: OFF</p>
             </div>
           <div class="toggle-container">
             <div class="toggle-row">
@@ -406,7 +410,7 @@
           <div class="toggle-container">
             <div class="toggle-row">
               <label class="toggle">
-                <input type="checkbox" id="toggle-checkbox" checked>
+                <input type="checkbox" id="toggle-checkbox1" checked>
                 <span class="slider"></span>
                 <i class="fa-solid fa-grip-lines-vertical toggle-icon toggle-icon-off"></i>
                 <i class="fa-regular fa-circle toggle-icon toggle-icon-on"></i>
@@ -423,7 +427,7 @@
           <div class="toggle-container">
             <div class="toggle-row">
               <label class="toggle">
-                <input type="checkbox" id="toggle-checkbox" checked>
+                <input type="checkbox" id="toggle-checkbox2" checked>
                 <span class="slider"></span>
                 <i class="fa-solid fa-grip-lines-vertical toggle-icon toggle-icon-off"></i>
                 <i class="fa-regular fa-circle toggle-icon toggle-icon-on"></i>
@@ -440,7 +444,7 @@
           <div class="toggle-container">
             <div class="toggle-row">
               <label class="toggle">
-                <input type="checkbox" id="toggle-checkbox" checked>
+                <input type="checkbox" id="toggle-checkbox3" checked>
                 <span class="slider"></span>
                 <i class="fa-solid fa-grip-lines-vertical toggle-icon toggle-icon-off"></i>
                 <i class="fa-regular fa-circle toggle-icon toggle-icon-on"></i>
@@ -457,7 +461,7 @@
           <div class="toggle-container">
             <div class="toggle-row">
               <label class="toggle">
-                <input type="checkbox" id="toggle-checkbox" checked>
+                <input type="checkbox" id="toggle-checkbox4" checked>
                 <span class="slider"></span>
                 <i class="fa-solid fa-grip-lines-vertical toggle-icon toggle-icon-off"></i>
                 <i class="fa-regular fa-circle toggle-icon toggle-icon-on"></i>
@@ -697,7 +701,7 @@
     <div class="popup" id="popupinvalid" data-popup="popupinvalid">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-circle-xmark popup-icon"></i></div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-circle-exclamation popup-icon"></i></div>
       <div class="content">
         <h1>Invalid - Signup details</h1>
         <p>Some details are incorrect. <strong>Please review them or try again later.</strong></p>
@@ -713,7 +717,7 @@
     <div class="popup" id="popupinvalidpassword" data-popup="popupinvalidpassword">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-circle-xmark popup-icon"></i></div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-circle-exclamation popup-icon"></i></div>
       <div class="content">
         <h1>Invalid - Password details</h1>
         <p>Your password does not meet the requirements. <strong>A strong password is required for strong account security.</strong></p>
@@ -729,7 +733,7 @@
     <div class="popup" id="popupinvalidlogin" data-popup="popupinvalidlogin">
       <div class="handle"></div>
       <div class="close" data-close role="button" aria-label="Close popup">&times;</div>
-      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-circle-xmark popup-icon"></i></div>
+      <div class="popup-image" aria-hidden="true"><i class="fa-solid fa-circle-exclamation popup-icon"></i></div>
       <div class="content">
         <h1>Invalid - Login details</h1>
         <p>The details you entered <strong>do not match any accounts available on Amazon.</strong> Please review your information or try again later.</p>
@@ -759,7 +763,12 @@
             <i class="fa-regular fa-circle signup-rightdot" id="passwordStatusIcon" aria-hidden="true"></i>
           </div>
           <div>
-            <input class="signup-flied"type="password"id="password"name="password"placeholder="Enter your password..."maxlength="254"autocomplete="new-password"autocapitalize="none"autocorrect="off"spellcheck="false"enterkeyhint="done">
+            <div class="display-wrap">
+              <input class="signup-flied"type="password"id="password"name="password"placeholder="Enter your password..."maxlength="254"autocomplete="new-password"autocapitalize="none"autocorrect="off"spellcheck="false"enterkeyhint="done">
+              <button class="eye-btn eye-btn-2" type="button" id="togglepasswordone" aria-label="Show password">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
           </div>
         </article>
         <article class="signup-field">
@@ -791,7 +800,7 @@
             <i class="fa-regular fa-envelope signup-lefticon"></i>
             <p class="signup-label">Email address</p>
             <div class="signup-divider" aria-hidden="true"></div>
-            <i class="fa-solid fa-square-check signup-rightdot" style="color: #20c594;"></i>
+            <i class="fa-solid fa-square-check signup-rightdot" style="color: #21a67e"></i>
           </div>
           <div class="display-wrap">
             <input 
@@ -819,7 +828,7 @@
             <i class="fa-solid fa-phone signup-lefticon"></i>
             <p class="signup-label">Phone number</p>
             <div class="signup-divider" aria-hidden="true"></div>
-            <i class="fa-solid fa-square-check signup-rightdot" style="color: #20c594;"></i>
+            <i class="fa-solid fa-square-check signup-rightdot" style="color: #21a67e;"></i>
           </div>
 
           <div class="display-wrap password-review">
@@ -846,7 +855,7 @@
             <i class="fa-solid fa-user-lock signup-lefticon"></i>
             <p class="signup-label">Password</p>
             <div class="signup-divider" aria-hidden="true"></div>
-            <i class="fa-solid fa-square-check signup-rightdot" style="color: #20c594;"></i>
+            <i class="fa-solid fa-square-check signup-rightdot" style="color: #21a67e"></i>
           </div>
 
           <div class="display-wrap password-review">
@@ -971,20 +980,21 @@
     <!-- Middle Header -->
     <main class="middle-header">
       <div class="middle-header-track">
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(1).png" alt="Slide 1"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(2).png" alt="Slide 2"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(3).png" alt="Slide 3"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(4).png" alt="Slide 4"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(5).png" alt="Slide 5"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(6).png" alt="Slide 6"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(7).png" alt="Slide 7"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(8).png" alt="Slide 8"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(9).png" alt="Slide 9"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(10).png" alt="Slide 10"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(11).png" alt="Slide 11"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(12).png" alt="Slide 12"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(13).png" alt="Slide 13"></article>
-        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(14).png" alt="Slide 14"></article>
+        <article class="md-slide"><img id="slideMainImg" class="md-slide-img" src="../images/sliders/slide-main/Add a heading (2).png" alt="Slide 1"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(1).png" alt="Slide 2"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(2).png" alt="Slide 4"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(3).png" alt="Slide 5"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(4).png" alt="Slide 6"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(5).png" alt="Slide 7"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(6).png" alt="Slide 8"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(7).png" alt="Slide 9"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(8).png" alt="Slide 10"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(9).png" alt="Slide 11"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(10).png" alt="Slide 12"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(11).png" alt="Slide 13"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(12).png" alt="Slide 14"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(13).png" alt="Slide 15"></article>
+        <article class="md-slide"><img class="md-slide-img" src="../images/sliders/slider-img(14).png" alt="Slide 16"></article>
       </div>
     </main>
     <!-- ------------- -->
@@ -997,13 +1007,13 @@
       <div class="bottomheader-bottom"><button class="bottomheader-cag" type="button" data-open="popupcag">Continue as Guest</button></div>
     </header> 
     <!-- ------------- -->
-    <script defer src="start.js"></script>
-    <script defer src="../starter page/starter-faceid/starter-faceid-auth.js"></script>
-    <script defer src="../global/global/global.js"></script>
-    <script defer src="../starter page/start-darkmode/darkmode-start.js"></script>
+    <script defer src="../starter%20page/start.js"></script>
+    <script defer src="../starter%20page/starter-faceid/starter-faceid-auth.js"></script>
+    <script defer src="../global/global!/global.js"></script>
+    <script defer src="../starter%20page/start-darkmode/darkmode-start.js"></script>
     <script defer src="../global/popup-global/popup-stack.js"></script>
-    <script defer src="../starter page/starter-redirect/starter-redirect.js"></script>
-    <script src="../global/global!/global.js?v=4f94d49" defer></script>
+    <script defer src="../starter%20page/starter-redirect/starter-redirect.js"></script>
+    <script defer src="../global/global!/global.js?v=4f94d49"></script>
     <script defer src="../global/popup-global/popup.js"></script>
     <script defer src="../global/toggle-global/toggle.js"></script>
     <script type="module">

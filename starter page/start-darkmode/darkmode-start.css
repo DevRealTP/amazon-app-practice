@@ -2,6 +2,9 @@ body.dark{
   --amazon-orange:#FF9900;
   --amazon-orange-dark:#E47911;
 
+  --amazon-btn-primary:var(--amazon-btn-secondary);
+  --amazon-btn-primary-hover:var(--amazon-btn-secondary);
+
   --amazon-dark:#0B0F14;
   --amazon-dark-2:#111827;
   --amazon-dark-3:#1F2937;
@@ -101,6 +104,14 @@ body.dark .bottomheader button:not(.bottomheader-cag):active{
   font-size:var(--amazon-btn-primary-active-fontsize);
 }
 
+body.dark .acceptall-button:active,
+body.dark .accept-button:active,
+body.dark .apply-button:active,
+body.dark .support-button:active,
+body.dark .bottomheader button:not(.bottomheader-cag):active{
+  background-color: var(--amazon-btn-secondary);
+}
+
 /* ===== status icons ===== */
 body.dark .signup-rightdot{color:#fff;}
 body.dark .signup-righticon.valid{color:#21a67e !important;}
@@ -124,4 +135,13 @@ body.dark .signup-select{background:var(--amazon-bg-light);border:1px solid var(
 body.dark .continue-button.is-enabled,
 body.dark .continue-button.enabled,
 body.dark .nextone-button.is-enabled,
-body.dark .nextone-button.enabled{color:var(--amazon-text-inverse);}
+body.dark .nextone-button.enabled{color:var(--amazon-text-inverse)}
+
+body.dark .bottomheader button:not(.bottomheader-cag){background:var(--amazon-btn-secondary);}
+body.dark .support-button{background:var(--amazon-btn-secondary);}
+body.dark .accept-button{background:var(--amazon-btn-secondary);}
+body.dark .apply-button{background:var(--amazon-btn-secondary);}
+body.dark .acceptall-button:enabled:not(#create-button){background:var(--amazon-btn-secondary);}
+body.dark #create-button:enabled{background:var(--amazon-btn-secondary);}
+body.dark #create-button:enabled:active{background:var(--amazon-btn-secondary);}
+body.dark #create-button.is-enabled{background:var(--amazon-btn-secondary);border: none;}
