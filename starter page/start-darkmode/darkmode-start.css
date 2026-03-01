@@ -51,7 +51,7 @@ body.dark .popup{background:var(--amazon-bg-light);}
 body.dark .topheader,
 body.dark .bottomheader{border-color:var(--amazon-border-light);}
 
-body.dark .md-slide{border-color:var(--amazon-border-light);box-shadow:0 6px 18px rgba(0,0,0,0.35);}
+body.dark .md-slide{border-color:var(--amazon-border-light);box-shadow: 0 0 0 3px rgba(91, 90, 90, 0.2);margin:3px 0;}
 body.dark .side-menu{border-left-color:var(--amazon-border-light);box-shadow:-12px 0 30px rgba(0,0,0,0.55);}
 
 body.dark .side-menu-title-text,

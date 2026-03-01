@@ -152,21 +152,23 @@ body{
 
 .middle-header{
   flex:1;
-  padding:14px 0;
+  padding:18px 0;
+  padding-top:14px;
   display:flex;
   justify-content:center;
   align-items:center;
-  overflow:hidden;
 }
 
 .middle-header-track{
   flex:1;
   gap:12px;
-  padding:0 16px 14px;
+  padding: 0 16px 18px;
+  padding-bottom: 10px;
   min-height:0;
   display:flex;
   overflow-x:auto;
-  overflow-y:hidden;
+  /* allow vertical overflow so shadows aren’t clipped */
+  overflow-y:visible;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
   overscroll-behavior-x:contain;
@@ -184,12 +186,14 @@ body{
   border-radius:25px;
   border:3px solid var(--amazon-border-light);
   background:var(--amazon-bg-light);
-  box-shadow:var(--shadow-hero);
+  box-shadow: 0 0 0 3px rgba(169, 169, 169, 0.2);
   display:flex;
   align-items:center;
   justify-content:center;
   scroll-snap-align:center;
   overflow:hidden;
+  /* give a small vertical margin so the shadow has room when track hides overflow */
+  margin:3px 0;
 }
 
 .md-slide img{

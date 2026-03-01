@@ -1234,7 +1234,7 @@ function openpandsclosemenu() {
   if (cmtflag) {
     closeMenu();
   }
-  openPopup('popuppands');
+  openPopup('popupRedirect');
 }
 
 function opentosclosemenu() {

@@ -25,6 +25,15 @@ function applyTheme(isDark, savePreference = true) {
       : '../images/sliders/slide-main/Add a heading (2).png';
   }
 
+  // swap any secondary slides that have explicit light/dark sources
+  document.querySelectorAll('.md-slide-img[data-light]').forEach(img => {
+    if (isDark && img.dataset.dark) {
+      img.src = img.dataset.dark;
+    } else {
+      img.src = img.dataset.light;
+    }
+  });
+
   // 🔹 Update description text
   updateModeText(isDark);
 

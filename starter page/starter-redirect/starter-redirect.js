@@ -132,11 +132,8 @@ function faceidhttpsredirect() {
 
     const sideMenu = document.getElementById('sideMenu');
     const menuOverlay = document.getElementById('menuOverlay');
-    if (sideMenu && menuOverlay) {
-      sideMenu.classList.remove('open');
-      menuOverlay.classList.remove('show');
-      sideMenu.setAttribute('aria-hidden', 'true');
-      menuOverlay.setAttribute('aria-hidden', 'true');
+    if(cmtflag){
+      closeMenu();
     }
 
     openRedirect(key);
