@@ -39,7 +39,7 @@
         <a class="side-menu-item" href="#"><i class="fa-regular fa-circle-right"></i><span onclick="opencagclosemenu()">Continue as Guest</span></a>
         <div class="side-menu-divider"></div>
         <a class="side-menu-item" href="#"><i class="fa-solid fa-universal-access"></i><span onclick="openaccessclosemenu()">Accessibilty</span></a>
-        <a class="side-menu-item" href="#"><i class="fa-solid fa-bug"></i><span onclick="openbrclosemenu()">Report a bug</span></a>
+        <a class="side-menu-item" href="#"><i class="fa-solid fa-bug"></i><span class="bugreportclass" onclick="openbrclosemenu()">Report a bug</span></a>
         <div class="side-menu-divider"></div>
         <a class="side-menu-item" href="#" data-go="pands"><i class="fa-solid fa-shield-halved"></i><span>Privacy & Safety</span><i class="fa-solid fa-up-right-from-square"></i></a>
         <a class="side-menu-item" href="#" data-go="tos"><i class="fa-solid fa-file-circle-check"></i><span>Terms of service</span><i class="fa-solid fa-up-right-from-square"></i></a>
@@ -339,7 +339,7 @@
         <p>Would you like cookies? Cookies are used to remember you and your preferences</p>
         <p>However, you have a choice to decline this option.</p>
         <div class="popupaskcookies-actions">
-          <button class="options-button" id="options-button" data-open="popupcookiesoptions"><i class="fa-solid fa-sliders fa-rotate-90 "></i></button>
+          <button class="options-button options-button-click" id="options-button" data-open="popupcookiesoptions"><i class="fa-solid fa-sliders fa-rotate-90 "></i></button>
           <button class="declineall-button" id="declineall-button" data-open="popupcookiesdecline">Decline All</button>
           <button class="acceptall-button" id="acceptall-button" data-open="popupcookiesaccept">Accept All</button>
         </div>
@@ -877,7 +877,7 @@
         </article>
         <div class="actions">
           <button class="declineall-button" id="declineall-button-closepopup" data-open="popuppassword">Back</button>
-          <button class="acceptall-button next-two-button" id="create-button">Create</button>
+          <button class="acceptall-button next-three-button" id="create-button">Create</button>
         </div>
       </div>
     </div>
@@ -1005,6 +1005,9 @@
       </div>
       <div class="bottomheader-bottom"><button class="bottomheader-cag" type="button" data-open="popupcag">Continue as Guest</button></div>
     </header> 
+    <div class="helperbox-scrollup">
+      <span class="helperbox-scrollup-content"><i class="fa-solid fa-arrow-up-from-bracket"></i> This popup is compact; scroll up to expand!</span>
+    </div>
     <!-- ------------- -->
     <script defer src="../starter%20page/start.js"></script>
     <script defer src="../starter%20page/starter-faceid/starter-faceid-auth.js"></script>

@@ -1655,3 +1655,27 @@ if (bugReportSendBtn) {
     bugReportSendBtn.dataset.loading = 'false'; // Unlock after completion
   });
 }
+
+helperbox = document.querySelector('.helperbox-scrollup')
+cookieoptions = document.querySelector('.options-button-click')
+bugreport = document.querySelector('.bugreportclass')
+
+cookieoptions.addEventListener('click', () => {
+  setTimeout(() => {
+    helperbox.classList.add('show')
+    setTimeout(() => {
+      helperbox.classList.remove('show')
+      helperbox.classList.add('hide')
+    }, 6500);
+  }, 500);
+})
+
+bugreport.addEventListener('click', () => {
+  setTimeout(() => {
+    helperbox.classList.add('show')
+    setTimeout(() => {
+      helperbox.classList.remove('show')
+      helperbox.classList.add('hide')
+    }, 6500);
+  }, 500);
+})
