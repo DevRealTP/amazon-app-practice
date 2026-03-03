@@ -1679,3 +1679,13 @@ bugreport.addEventListener('click', () => {
     }, 6500);
   }, 500);
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+  slide = document.querySelectorAll('.md-slide')
+
+  slide.forEach(s => {
+    s.addEventListener('click', () => {
+      openPopup('popupredirectslides')
+    })
+  })
+})

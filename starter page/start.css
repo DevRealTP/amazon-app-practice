@@ -191,7 +191,6 @@ body{
   align-items:center;
   justify-content:center;
   scroll-snap-align:center;
-  overflow:hidden;
   /* give a small vertical margin so the shadow has room when track hides overflow */
   margin:3px 0;
 }
@@ -204,6 +203,11 @@ body{
   display:block;
   pointer-events:none;
   border-radius:20px;
+}
+
+.md-slide.active{
+  border-color:var(--amazon-orange);
+  box-shadow:0 0 0 4px rgba(255,153,0,0.4);
 }
 
 /* ========================= */

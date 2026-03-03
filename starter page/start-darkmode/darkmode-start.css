@@ -145,3 +145,4 @@ body.dark .acceptall-button:enabled:not(#create-button){background:var(--amazon-
 body.dark #create-button:enabled{background:var(--amazon-btn-secondary);}
 body.dark #create-button:enabled:active{background:var(--amazon-btn-secondary);}
 body.dark #create-button.is-enabled{background:var(--amazon-btn-secondary);border: none;}
+body.dark .cnsbuttons-button {background: var(--amazon-btn-secondary);border: none;}
