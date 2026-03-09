@@ -9,6 +9,9 @@ document.querySelectorAll('.topheader button, .bottomheader button').forEach(btn
   btn.addEventListener('mouseleave', () => btn.classList.remove('pressed'));
 });
 
+// Better verison of the DOMCONTENTLOAD!!!
+function init() {initCookieLogic();initEmailChips();initPasswordButton();initSlides();initChangeSaved();}
+if (document.readyState === 'loading') {document.addEventListener('DOMContentLoaded', init);} else {init}
 // ---------------------------
 // Side menu: OPEN & CLOSE
 const menuBtn = document.querySelector('.topheader-menu');
@@ -41,7 +44,7 @@ document.addEventListener('keydown', (e) => {
 // Cookie logic
 document.addEventListener('DOMContentLoaded', () => {
   const consentExpiry = localStorage.getItem('cookieconsent-expiry');
-  const cookietimer = 60 * 10000;
+  const cookietimer = 60 * 10000; // 10 mins
 
   if (consentExpiry && Date.now() > Number(consentExpiry)) {
     localStorage.removeItem('cookieconsent');
@@ -64,11 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('cookieconsent-expiry', Date.now() + cookietimer);
 
       if (button.id === 'acceptall-button' || button.id === 'acceptall-button-closepopup') {
-        localStorage.setItem('cookieconsent', '✓');
+        localStorage.setItem('cookieconsent', '✓'); // accept
       }
 
       if (button.id === 'declineall-button' || button.id === 'declineall-button-closepopup') {
-        localStorage.setItem('cookieconsent', '✗');
+        localStorage.setItem('cookieconsent', '✗'); // decline
       }
     });
   });
@@ -89,11 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
     { domain: 'icloud.com',  icon: 'fa-brands fa-apple' },
     { domain: 'hotmail.com', icon: 'fa-brands fa-microsoft' },
     { domain: 'live.com',    icon: 'fa-regular fa-cloud' },
-    { domain: 'kevin.com',   icon: 'fa-solid fa-k' }
+    { domain: 'kevin.com',   icon: 'fa-solid fa-k' } // thats me!
   ];
 
   const domainSet = new Set(domains.map(d => d.domain.toLowerCase()));
   let chipsIdleTimer = null;
+
+  // shared timers
 
   function stopIdleTimer() {
     clearTimeout(chipsIdleTimer);
@@ -113,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
     bar.innerHTML = '';
   }
 
-  // Close if exact domain match after @
   function EMCB(v) {
     const at = v.indexOf('@');
     if (at === -1) return false;
@@ -125,6 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (domainSet.has(domain)) return true;
     return false;
   }
+
+  // open chips, shifts the container to fit contnet in
 
   function openChips(user, filteredItems) {
     if (!filteredItems.length) return closeBar();
@@ -164,13 +170,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     bar.classList.add('is-open');
-    startIdleTimer();
+    startIdleTimer(); // close after inactivty
   }
 
   input.addEventListener('input', () => {
     const v = input.value.trim();
 
-    // close if exact match exists
     if (EMCB(v)) return closeBar();
 
     const at = v.indexOf('@');
@@ -186,11 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     openChips(user, filtered);
 
-    // reset timer on every keystroke while open
     startIdleTimer();
   });
 
-  // optional: interacting with the chip bar keeps it open
   bar.addEventListener('pointerdown', startIdleTimer, { passive: true });
   bar.addEventListener('touchstart', startIdleTimer, { passive: true });
 
@@ -203,8 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ---------------------------
-// ---------------------------
 // Shared: Continue + Next button gating
 const continueButton = document.querySelector('.continue-button');
 const nextbutton = document.querySelector('.next-button'); // ✅ FIXED selector
@@ -237,13 +238,13 @@ function nextButtonAllowedTwo() {
   nextbutton.classList.toggle('enabled', allowed);
 }
 
-// ✅ Single wrapper that updates BOTH (so old code can call it)
+// calls both functions if detaiols are valid*
 function nextButtonAllowed() {
   nextButtonAllowedOne();
   nextButtonAllowedTwo();
 }
 
-// Keep your dataset targeting
+// Keep dataset targeting
 function updateNextButton() {
   if (!continueButton) return;
   if (!nextbutton) return;
@@ -261,11 +262,13 @@ function updateNextButton() {
   }
 }
 
+// same thing, calls function.
+
 function updateContinueTarget() {
   updateNextButton();
 }
 
-// Open password popup when allowed, show invalid if not
+// Open password popup when allowed, show invalid if not.
 if (continueButton) {
   continueButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -281,13 +284,11 @@ if (continueButton) {
   });
 }
 
-// initial state
+// this is needed fo some reason, (breaks withot it.)
 nextButtonAllowed();
 updateNextButton();
 
-// ---------------------------
-// Password popup: Next button gating (ADDED)
-// This is independent and does NOT modify your password section.
+// Password popup and valided
 const passwordPopupNextBtn = document.querySelector('#popuppassword .next-button');
 
 function passwordRulesLocal(v) {
@@ -332,22 +333,24 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ---------------------------
-// Email validation (spinner -> tick/cross)
+// Email validation (spinner ---> tick/cross)
 const emailinput = document.getElementById('email');
 const emailinput2 = document.getElementById('email2');
 const emailstatusicon = document.getElementById('emailStatusIcon');
 const emailstatusicon2 = document.getElementById('emailStatusIcon2');
 
+// DEFAULT Timers
+
 let spinnerTimer = null;
 let finalTimer = null;
 let emptyTimer = null;
 
-// SIGNUP email timers (separate)
+// SIGNUP email timers
 let spinnerTimer_signup = null;
 let finalTimer_signup = null;
 let emptyTimer_signup = null;
 
-// LOGIN email timers (separate)
+// LOGIN email timers
 let spinnerTimer_login = null;
 let finalTimer_login = null;
 let emptyTimer_login = null;
@@ -543,14 +546,15 @@ if (emailinput2 && emailstatusicon2) {
   });
 }
 
-// ---------------------------
-// Phone validation (spinner -> tick/cross)
+// Phone validation (spinner ---> tick/cross)
 const phoneInput = document.getElementById('phone');
 const phoneCountry = document.getElementById('phoneCountry');
 const phoneStatusIcon = document.getElementById('phoneStatusIcon');
 const phoneInput2 = document.getElementById('phone2');
 const phoneCountry2 = document.getElementById('phoneCountry2');
 const phoneStatusIcon2 = document.getElementById('phoneStatusIcon2');
+
+// DEFAULT Timers
 
 let phoneSpinnerTimer = null;
 let phoneFinalTimer = null;
@@ -897,7 +901,6 @@ if (passwordInput && passwordStatusIcon) {
       setPwdIcon(passwordStatusIcon, 'fa-solid fa-circle-notch', true);
       setPwdState(passwordStatusIcon, 'loading');
 
-      // Rules go into loading too (nice feedback while user types)
       [passwordStatusIconOne, passwordStatusIconTwo, passwordStatusIconThree, passwordStatusIconFour].forEach(el => {
         setPwdIcon(el, 'fa-solid fa-circle-notch', true);
         setPwdState(el, 'loading');
@@ -926,14 +929,12 @@ if (passwordInput && passwordStatusIcon) {
   });
 }
 
-// ---------------------------
-// LOGIN FORM VALIDATION (separate from signup)
-// Validation states specific to login form
+// LOGIN valid (separate from signupo)
 let emailcheck_login = false;
 let phonecheck_login = false;
 let passwordcheck_login = false;
 
-// Gate login button based on all three fields
+// Gated login
 function loginButtonGating() {
   const loginBtn = document.querySelector('#popuplogin .next-two-button');
   if (!loginBtn) return;
@@ -952,7 +953,6 @@ function loginButtonGating() {
   }
 }
 
-// Add click handler for login button to show invalid popup
 const loginBtn = document.querySelector('#popuplogin .next-two-button');
 if (loginBtn) {
   loginBtn.addEventListener('click', (e) => {
@@ -1023,8 +1023,7 @@ if (loginPasswordInput && loginPasswordStatusIcon) {
   });
 }
 
-// ---------------------------
-// REVIEW POPUP: copy values + mask phone/password + eye toggles
+// Review logic
 
 (function reviewMasking() {
   const emailInput = document.getElementById('email');
@@ -1127,7 +1126,6 @@ if (loginPasswordInput && loginPasswordStatusIcon) {
   document.addEventListener('click', (e) => {
     const opener = e.target.closest('[data-open="popupreview"]');
     if (opener) {
-      // reset to masked every time you open review (optional)
       phoneShown = false;
       passwordShown = false;
       refreshReviewFields();
@@ -1140,8 +1138,7 @@ if (loginPasswordInput && loginPasswordStatusIcon) {
   });
 })();
 
-// ---------------------------
-// POPUP PASSWORD: show/hide toggle
+// Password logic
 (function passwordPopupToggle() {
   const pwdInput = document.getElementById('password');
   const toggleBtn = document.getElementById('togglepasswordone');
@@ -1194,6 +1191,8 @@ const phoneoptions = document.getElementById('phoneCountry');
 const phone = document.getElementById('phone');
 const password = document.getElementsByClassName('password')
 
+// ez access keybopard, press next to trigger.
+
 email?.addEventListener('keydown', (e) => {
   if (e.key === 'Enter'){
     e.preventDefault();
@@ -1201,6 +1200,8 @@ email?.addEventListener('keydown', (e) => {
     phone?.focus();
   }
 });
+
+// redirect functions
 
 function opensignupclosemenu() {
   if (cmtflag) {
@@ -1561,6 +1562,8 @@ if (bugReportEmailInput && bugReportEmailStatusIcon) {
 }
 
 // Firebase Firestore SendBug function
+// (Gemnei did this)
+
 async function SendBug() {
   // Check if Firebase is initialized
   if (!window.firebaseDb) {
@@ -1569,7 +1572,6 @@ async function SendBug() {
     return false;
   }
 
-  // Wait a moment for Firebase to be fully ready if needed
   let retries = 0;
   while (!window.firebaseDb && retries < 5) {
     await new Promise(resolve => setTimeout(resolve, 500));
@@ -1657,6 +1659,7 @@ if (bugReportSendBtn) {
 }
 
 helperbox = document.querySelector('.helperbox-scrollup')
+helperboxcs = document.querySelector('.helperbox-cs')
 cookieoptions = document.querySelector('.options-button-click')
 bugreport = document.querySelector('.bugreportclass')
 
@@ -1666,8 +1669,8 @@ cookieoptions.addEventListener('click', () => {
     setTimeout(() => {
       helperbox.classList.remove('show')
       helperbox.classList.add('hide')
-    }, 6500);
-  }, 500);
+    }, 3250);
+  }, 100);
 })
 
 bugreport.addEventListener('click', () => {
@@ -1676,8 +1679,8 @@ bugreport.addEventListener('click', () => {
     setTimeout(() => {
       helperbox.classList.remove('show')
       helperbox.classList.add('hide')
-    }, 6500);
-  }, 500);
+    }, 3250);
+  }, 100);
 })
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1689,3 +1692,21 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+  const chnagesaved = document.querySelectorAll('.changessaved')
+
+  chnagesaved.forEach(cs => {
+    cs.addEventListener('click', () => {
+      setTimeout(() => {
+        helperboxcs.classList.add('show')
+        setTimeout(() => {
+          helperboxcs.classList.remove('show')
+          helperboxcs.classList.add('hide')
+        }, 3250);
+      }, 50);
+    })
+  })
+})
+
+// end
